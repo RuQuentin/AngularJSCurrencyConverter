@@ -10,8 +10,9 @@
   <b>
   Install generator-angular-webpack-es6:
   </b>
-  <pre>
+  <div> 
   ```
   npm install -g generator-angular-webpack-es6
   ```
+  </div>
 </div>
