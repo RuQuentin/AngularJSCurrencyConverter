@@ -3,6 +3,7 @@
 const shared = angular.module('core.shared', []);
 
 import validationTestDirective from './directives/validation-test/validation-test.directive';
+import customSort from './directives/directive.table';
 
 import constants from './services/constants';
 import storeFactory from './services/store.factory';
@@ -13,5 +14,7 @@ validationTestDirective(shared);
 constants(shared);
 storeFactory(shared);
 resolverProvider(shared);
+customSort(shared)
+
 
 export default shared;
