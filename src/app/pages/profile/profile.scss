@@ -1,6 +1,18 @@
-
 .profileContainer {
-  color: red;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  .card {
+    padding: 0px;
+    .card-body {
+      padding-left: 60px;
+      .email {
+        margin-bottom: 40px;
+      }
+    }
+
+  }
 }
   
 

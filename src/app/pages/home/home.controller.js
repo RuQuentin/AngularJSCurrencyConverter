@@ -1,4 +1,3 @@
-/* eslint-disable */
 'use strict';
 
 function MainController($scope, data, currentUser) {
