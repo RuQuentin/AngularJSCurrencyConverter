@@ -1,15 +1,22 @@
 'use strict';
 
 
+import profileTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/profile/profile.html';
 
-function routeConfig($urlRouterProvider, $stateProvider) {
+function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
   'ngInject';
 
 
     $stateProvider
-        .state('example', {
-          // ..
-        });
+        .state('profile', {
+          url: '/profile',
+          templateUrl: profileTemplate,
+          controller: 'profileController',
+          resolve: {
+            asyncPreloading: resolverProvider.profilePagePrealoading
+          }
+        })
+
 
 
   $urlRouterProvider.otherwise('/');
