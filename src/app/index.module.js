@@ -11,6 +11,7 @@ import indexRoutes from './index.routes';
 
 import mainModule from './pages/main/main.module';
 import converterModule from './pages/currency-converter/converter.module';
+import homeModule from './pages/home/home.module';
 
 const App = angular.module(
   "angularApp", [
@@ -31,6 +32,7 @@ const App = angular.module(
     // pages
     mainModule.name,
     converterModule.name,
+    homeModule.name
   ]
 );
 

@@ -6,6 +6,7 @@ import validationTestDirective from './directives/validation-test/validation-tes
 
 import constants from './services/constants';
 import storeFactory from './services/store.factory';
+import homeService from './services/mock.home.service';
 import resolverProvider from './services/resolver.provider';
 
 import workWithCurrencyProvider from './services/converter.provider';
@@ -16,6 +17,7 @@ validationTestDirective(shared);
 
 constants(shared);
 storeFactory(shared);
+homeService(shared);
 resolverProvider(shared);
 
 workWithCurrencyProvider(shared);
