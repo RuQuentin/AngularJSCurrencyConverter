@@ -9,6 +9,7 @@ import coreModule from './core/core.module';
 import indexComponents from './index.components';
 import indexRoutes from './index.routes';
 import mainModule from './pages/main/main.module';
+import homeModule from './pages/home/home.module';
 
 
 const App = angular.module(
@@ -28,7 +29,8 @@ const App = angular.module(
     indexRoutes.name,
 
     // pages
-    mainModule.name
+    mainModule.name,
+    homeModule.name
 
   ]
 );

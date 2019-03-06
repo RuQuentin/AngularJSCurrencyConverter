@@ -1,0 +1,19 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="header-wrapper">
+      <h3>Welcome to this app!</h3>
+    </div>
+
+    <section class="home-section">
+      <table class="table table-striped">
+        <tr ng-repeat="el in data">
+          <td>{{el.currencyFrom}}</td>
+          <td>{{el.currencyTo}}</td>
+          <td>{{el.rate}}</td>
+          <td>{{el.amountFrom}}</td>
+          <td>{{el.amountTo}}</td>
+        </tr>
+      </table>
+    </section>
+  </div>
+</div>
