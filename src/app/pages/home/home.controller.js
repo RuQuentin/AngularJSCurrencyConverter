@@ -1,13 +1,12 @@
+/* eslint-disable */
 'use strict';
 
-function MainController($scope, homeService) {
+function MainController($scope, data, currentUser) {
   'ngInject';
 
+  $scope.data = data;
 
-  homeService.getData()
-    .then(data => {
-      $scope.data = data;
-    })
+  $scope.currentUser = currentUser;
 }
 
 export default MainController;

@@ -1,19 +1,31 @@
-<div class="jumbotron">
-  <div class="container">
-    <div class="header-wrapper">
-      <h3>Welcome to this app!</h3>
-    </div>
+<section class="home-section">
+  <div class="jumbotron">
+    <div class="container">
+      <div class="header-wrapper">
+        <h3>Welcome to this app!</h3>
+      </div>
 
-    <section class="home-section">
-      <table class="table table-striped">
-        <tr ng-repeat="el in data">
-          <td>{{el.currencyFrom}}</td>
-          <td>{{el.currencyTo}}</td>
-          <td>{{el.rate}}</td>
-          <td>{{el.amountFrom}}</td>
-          <td>{{el.amountTo}}</td>
-        </tr>
-      </table>
-    </section>
+      <div class="table-wrapper col-md-8" ng-if="currentUser">
+        <table class="table table-striped">
+          <thead>Successful transactions</thead>
+          <tbody>
+            <tr>
+              <th>Currency From</th>
+              <th>Currency To</th>
+              <th>Rate</th>
+              <th>Amount From</th>
+              <th>Amount To</th>
+            </tr>
+            <tr ng-repeat="el in data">
+              <td>{{el.currencyFrom}}</td>
+              <td>{{el.currencyTo}}</td>
+              <td>{{el.rate}}</td>
+              <td>{{el.amountFrom}}</td>
+              <td>{{el.amountTo}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
-</div>
+</section>

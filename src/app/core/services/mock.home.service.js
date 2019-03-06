@@ -19,5 +19,6 @@ export default function (app) {
           }, 2000);
         })
       };
-    });
+    })
+    .constant('currentUser', 'petya');
 }
