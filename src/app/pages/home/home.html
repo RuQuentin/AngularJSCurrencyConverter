@@ -1,31 +1,23 @@
-<section class="home-section">
-  <div class="jumbotron">
-    <div class="container">
-      <div class="header-wrapper mb-5">
-        <h3>Welcome to this app!</h3>
-      </div>
-
-      <div class="table-wrapper col-md-8 mx-auto text-center" ng-if="currentUser">
-        <table class="table table-striped">
-          <h5 class="mb-3">Successful transactions</h5>
-          <tbody>
-            <tr class="table-row">
-              <th class='thead'>Currency From</th>
-              <th class='thead'>Currency To</th>
-              <th class='thead'>Rate</th>
-              <th class='thead'>Amount From</th>
-              <th class='thead'>Amount To</th>
-            </tr>
-            <tr class="table-row" ng-repeat="el in data">
-              <td>{{el.currencyFrom}}</td>
-              <td>{{el.currencyTo}}</td>
-              <td>{{el.rate}}</td>
-              <td>{{el.amountFrom}}</td>
-              <td>{{el.amountTo}}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+<section class="container">
+  <h1 class="display-4 text-center">Successful transactions</h1>
+  <table class="border table table-striped rounded table-hover">
+    <thead>
+      <tr class="table-row">
+        <th class='thead'>Currency From</th>
+        <th class='thead'>Currency To</th>
+        <th class='thead'>Rate</th>
+        <th class='thead'>Amount From</th>
+        <th class='thead'>Amount To</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-row" ng-repeat="el in data">
+        <td>{{el.currencyFrom}}</td>
+        <td>{{el.currencyTo}}</td>
+        <td>{{el.rate}}</td>
+        <td>{{el.amountFrom}}</td>
+        <td>{{el.amountTo}}</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
