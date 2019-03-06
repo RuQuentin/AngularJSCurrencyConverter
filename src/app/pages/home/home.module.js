@@ -2,6 +2,7 @@
 
 import HomeComponent from './home.component';
 import HomeController from './home.controller';
+import './home.scss';
 import homeTpl from './home.html';
 
 const homePageModule = angular.module('home-module', [
