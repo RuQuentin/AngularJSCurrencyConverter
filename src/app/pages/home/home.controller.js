@@ -1,14 +1,12 @@
 'use strict';
 
-function MainController($scope, $filter, currentUserDeals) {
+function MainController($scope, $filter, $rootScope) {
   'ngInject';
 
   $scope.sort = {
     sortingOrder: 'date',
     reverse: false
   };
-
-  $scope.gap = 5;
 
   $scope.filteredItems = [];
 
@@ -20,7 +18,7 @@ function MainController($scope, $filter, currentUserDeals) {
   };
 
   $scope.search = function () {
-    $scope.filteredItems = $filter('filter')(currentUserDeals, function (item) {
+    $scope.filteredItems = $filter('filter')($rootScope.currentUserDeals, function (item) {
       for (let attr in item) {
         if (searchMatch(item[attr], $scope.query))
           return true;
