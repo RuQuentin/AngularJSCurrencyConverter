@@ -10,13 +10,11 @@ export default function (app) {
               sort: '='
             },
             template : 
-              ' <a ng-click="sort_by(order)" style="color: #555555;">'+
+              ' <a ng-click="sort_by(order)" class="table__header__item">'+
               '    <span ng-transclude></span>'+
               '    <i ng-class="selectedCls(order)"></i>'+
               '</a>',
             link: function(scope) {
-                        
-            // change sorting order
             scope.sort_by = function(newSortingOrder) {       
                 let sort = scope.sort;
                 
@@ -30,13 +28,13 @@ export default function (app) {
            
             scope.selectedCls = function(column) {
                 if(column === scope.sort.sortingOrder){
-                    return ('icon-chevron-' + ((scope.sort.reverse) ? 'down' : 'up'));
+                    return ('fas fa-angle-' + ((scope.sort.reverse) ? 'down' : 'up'));
                 }
                 else{            
-                    return'icon-sort' 
+                    return'fas fa-sort' 
                 } 
             };      
-          }// end link
+          }
         }
         });
     }
