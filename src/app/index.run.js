@@ -1,8 +1,9 @@
 'use strict';
 
-function runBlock() {
+function runBlock(usersMocksService) {
 	'ngInject';
 
+	usersMocksService.initMocks();
 }
 
 export default runBlock;

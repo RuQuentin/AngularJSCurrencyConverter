@@ -13,6 +13,12 @@ header {
 
         .nav-item {
             margin-right: 20px;
+            .dropdown {
+                align-content: flex-end;
+                .menu {
+                    padding: 0;
+                }
+            }
 
             &:last-child {
                 margin-right: 0;
