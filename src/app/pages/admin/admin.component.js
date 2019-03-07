@@ -6,6 +6,7 @@ import adminTpl from './admin.html';
 export default class AdminComponent {
     constructor() {
         this.controller = AdminController;
+        this.controllerAs = 'admCont';
         this.templateUrl = adminTpl;
     }
 }
