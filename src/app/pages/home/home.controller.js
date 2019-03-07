@@ -12,8 +12,6 @@ function MainController($scope, data, currentUser, $filter) {
     reverse: false
   };
 
-  $scope.gap = 5;
-
   $scope.filteredItems = [];
 
   let searchMatch = function (haystack, needle) {

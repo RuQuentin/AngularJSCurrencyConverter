@@ -19,9 +19,7 @@ const homePageModule = angular.module('home-module', [
         controller: HomeController,
         templateUrl: homeTpl,
         resolve: {
-          data: homeService => {
-            return homeService.getData();
-          }
+          data: homeService => homeService.getData()
         }
       });
   })
