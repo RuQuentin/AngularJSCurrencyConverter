@@ -3,43 +3,46 @@
 export default class AdminController {
     constructor($scope, $filter, usersMocksService) {
         'ngInject';
-        $scope.usersMocksService = usersMocksService;
-        $scope.listOfUsers = usersMocksService.listOfUsers;
-        $scope.sort = {       
+        this.scope = $scope;
+        this.filter = $filter;
+
+        this.scope.usersMocksService = usersMocksService;
+        this.scope.listOfUsers = usersMocksService.listOfUsers;
+        this.scope.filteredItems = [];
+        this.scope.sort = {       
             sortingOrder : 'id',
             reverse : false
         }
 
-$scope.filteredItems = [];
-
-let searchMatch = function (haystack, needle) {
-    if (!needle) {
-        return true;
+        this.search();
     }
-    return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
-};
 
-$scope.search = function () {
-    $scope.filteredItems = $filter('filter')($scope.listOfUsers, function (item) {
-        for(let attr in item) {
-            if (searchMatch(item[attr], $scope.query))
-                return true;
+    searchMatch (haystack, needle) {
+        if (!needle) {
+            return true;
         }
-        return false;
-    });
-
-    if ($scope.sort.sortingOrder !== '') {
-        $scope.filteredItems = $filter('orderBy')($scope.filteredItems, $scope.sort.sortingOrder, $scope.sort.reverse);
-    }
-};
-
-$scope.search();
-$scope.testConsole = item => {
-    // eslint-disable-next-line no-console
-    console.log(item);
-}
-       
+        return haystack.toLowerCase().indexOf(needle.toLowerCase()) !== -1;
     }
 
-}
+    search () {
+        this.scope.filteredItems = this.filter('filter')(this.scope.listOfUsers, item => {
+            for(let attr in item) {
+                if (this.searchMatch(item[attr], this.scope.query))
+                    return true;
+            }
+            return false;
+        });
 
+        if (this.scope.sort.sortingOrder !== '') {
+            this.scope.filteredItems = this.filter('orderBy')(this.scope.filteredItems, this.scope.sort.sortingOrder, this.scope.sort.reverse);
+        }
+    }
+
+    showHistory (id){
+        // const data = APIservice.getData(id);
+        // eslint-disable-next-line no-console
+        console.log(id);
+
+        
+    }
+}

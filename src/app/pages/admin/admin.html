@@ -42,10 +42,10 @@
 
       <tbody>
         <tr ng-repeat="item in filteredItems | orderBy:sort.sortingOrder:sort.reverse">
-          <td ng-click='testConsole({{ item.id }})'>{{ item.id }}</td>
-          <td ng-click='testConsole({{ item.name }})'>{{ item.name }}</td>
-          <td ng-click='testConsole({{ item.name }})'>{{ item.description }}</td>
-          <td ng-click='testConsole({{ item.name }})'>{{ item.field3 }}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.name }}</td>
+          <td>{{ item.description }}</td>
+          <td>{{ item.field3 }}</td>
           <td>
             <div class="make-switch switch-mini">
               <label><input type="checkbox" checked></label>
@@ -59,7 +59,7 @@
               </div>
             </div>
           </td>
-          <td><i class="fas fa-history tabble__icon"></i></td>
+          <td><i class="fas fa-history tabble__icon" ng-click="admCont.showHistory(item.id)"></i></td>
           <td><i class="fas fa-user-circle tabble__icon"></i></td>
         </tr>
       </tbody>
