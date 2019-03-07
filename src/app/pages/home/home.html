@@ -5,7 +5,7 @@
         <h3>Welcome to this app!</h3>
       </div>
 
-      <div class="table-wrapper col-md-8 mx-auto text-center" ng-if="currentUser">
+      <div class="table-wrapper col-md-8 mx-auto text-center">
         <table class="table table-striped">
           <h5 class="mb-3">Successful transactions</h5>
           <thead>
@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="table-row" ng-repeat="el in data | orderBy:sort.sortingOrder:sort.reverse">
+            <tr class="table-row" ng-repeat="el in currentUserDeals | orderBy:sort.sortingOrder:sort.reverse">
               <td>{{el.date}}</td>
               <td>{{el.currencyFrom}}</td>
               <td>{{el.currencyTo}}</td>
