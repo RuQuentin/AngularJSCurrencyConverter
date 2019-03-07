@@ -1,9 +1,10 @@
 'use strict';
 
 export default class currencyController {
-    constructor($scope, CurrencyService, converterConstants) {
+    constructor($scope, $rootScope, CurrencyService, converterConstants) {
         'ngInject';
         this.CurrencyService = CurrencyService;
+        this.rootScope = $rootScope;
 
         this.currency = CurrencyService.getResponse();
         this.currencyObj = CurrencyService.getList();
@@ -50,6 +51,19 @@ export default class currencyController {
         this.convertMoney();
         const resWithFee = this.CurrencyService.convertWithFee(this.receiveValue, this.comission);
         this.receiveValue = Number((this.receiveValue - resWithFee).toFixed(2));
-      }
+    }
+
+    send() {
+        const objValue = {
+            currencyGiveName: this.currencyGiveName, 
+            currencyReceiveName: this.currencyReceiveName, 
+            tradeValue: this.tradeValue,
+            receiveValue: this.receiveValue,
+            comission: this.comission
+        };
+        const userDeals = this.CurrencyService.getUserDeals(objValue);
+
+        this.rootScope.currentUserDeals.push(userDeals);
+   }
 
 }

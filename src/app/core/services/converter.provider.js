@@ -29,6 +29,29 @@ export default function (app) {
             return data;
           },
 
+          getUserDeals: value => {
+            const time = new Date();
+            const {
+              currencyGiveName, 
+              currencyReceiveName, 
+              tradeValue,
+              receiveValue,
+              comission
+            } = value;
+
+            return {
+              date: `${time.getDay()}.${time.getMonth()}.${time.getFullYear()}`,
+  
+              currencyFrom: currencyGiveName,
+              currencyTo: currencyReceiveName,
+              
+              amountFrom: tradeValue,
+              amountTo: receiveValue,
+  
+              comission: comission
+            }
+          },
+
           getList: () => list,
           convertToUAH: (currentlyVal, buyVal) => Number((currentlyVal * buyVal).toFixed(2)),
           convertFromUAH: (sumUAH, buyVal) => Number((sumUAH / buyVal).toFixed(2)),
