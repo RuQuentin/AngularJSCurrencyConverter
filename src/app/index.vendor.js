@@ -12,6 +12,10 @@ import "angular-messages";
 
 import "jquery";
 
+import "popper.js";
+
+import "bootstrap";
+
 
 
 // local scripts
