@@ -2,6 +2,7 @@
 
 
 import profileTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/profile/profile.html';
+import editProfileTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/edit-profile/edit-profile.html';
 
 function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
   'ngInject';
@@ -14,6 +15,14 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           controller: 'profileController',
           resolve: {
             asyncPreloading: resolverProvider.profilePagePrealoading
+          }
+        })
+        .state('editProfile', {
+          url: '/editProfile',
+          templateUrl: editProfileTemplate,
+          controller: 'editProfileController',
+          resolve: {
+            asyncPreloading: resolverProvider.editProfilePagePrealoading
           }
         })
 

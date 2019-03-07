@@ -11,7 +11,6 @@ import homeService from './services/mock.home.service';
 import resolverProvider from './services/resolver.provider';
 
 import workWithCurrencyProvider from './services/converter.provider';
-import currencyConstant from './services/converter.constants';
 import currencyFilter from './filter/currenyc.filter';
 
 validationTestDirective(shared);
@@ -24,7 +23,6 @@ customSort(shared)
 
 
 workWithCurrencyProvider(shared);
-currencyConstant(shared);
 currencyFilter(shared);
 
 
