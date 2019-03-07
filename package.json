@@ -74,7 +74,9 @@
     "url": "^0.11.0",
     "url-loader": "^0.5.7",
     "webpack": "^3.12.0",
-    "webpack-dev-server": "^2.2.0"
+    "webpack-dev-server": "^2.2.0",
+    "angularfire": "^2.3.0",
+    "firebase": "^5.8.5"
   },
   "engines": {
     "node": ">=0.12.0"
