@@ -2,57 +2,58 @@
   <div class="header">
     <h1 class="display-4 text-center">Admin Page</h1>
   </div>
-  <table class="table table-striped rounded table-hover">
-    <thead>
-      <tr>
-        <th custom-sort order="'id'" sort="sort">
-          Id
-        </th>
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-striped rounded table-hover">
+      <thead>
+        <tr>
+          <th custom-sort order="'id'" sort="sort">
+            Id
+          </th>
 
-        <th custom-sort order="'name'" sort="sort">
-          Name
-        </th>
+          <th custom-sort order="'name'" sort="sort">
+            Name
+          </th>
 
-        <th custom-sort order="'description'" sort="sort">
-          E-mail
-        </th>
-        
-        <th custom-sort order="'field3'" sort="sort">
-          Status
-        </th>
-      </tr>
-    </thead>
+          <th custom-sort order="'description'" sort="sort">
+            E-mail
+          </th>
+          
+          <th custom-sort order="'field3'" sort="sort">
+            Status
+          </th>
+          <th class="field3" custom-sort order="'field3'" sort="sort">
+              Admin&nbsp;
+            </th>
+            <th class="field3" custom-sort order="'field3'" sort="sort">
+                Password&nbsp;
+              </th>
+              <th class="field3" custom-sort order="'field3'" sort="sort">
+                  Transactions&nbsp;
+                </th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr
-        ng-repeat="item in pagedItems[currentPage] | orderBy:sort.sortingOrder:sort.reverse"
-      >
-        <td>{{ item.id }}</td>
-        <td>{{ item.name }}</td>
-        <td>{{ item.description }}</td>
-        <td>{{ item.field3 }}</td>
-      </tr>
-    </tbody>
-  </table>
-  <ul class="pagination justify-content-end">
-    <li ng-class="{disabled: currentPage == 0}" class="page-item">
-      <a class="page-link" ng-click="prevPage()" href>Previous </a>
-    </li>
-
-    <li
-      class="page-item"
-      ng-repeat="n in range(pagedItems.length, currentPage, currentPage + gap)"
-      ng-class="{active: n == currentPage}"
-      ng-click="setPage()"
-    >
-      <a ng-bind="n + 1" class="page-link" href>1 </a>
-    </li>
-
-    <li
-      ng-class="{disabled: (currentPage) == pagedItems.length - 1}"
-      class="page-item"
-    >
-      <a ng-click="nextPage()" class="page-link" href>Next </a>
-    </li>
-  </ul>
+      <tbody>
+        <tr ng-repeat="item in filteredItems | orderBy:sort.sortingOrder:sort.reverse">
+          <td ng-click='testConsole({{ item.id }})'>{{ item.id }}</td>
+          <td ng-click='testConsole({{ item.name }})'>{{ item.name }}</td>
+          <td ng-click='testConsole({{ item.name }})'>{{ item.description }}</td>
+          <td ng-click='testConsole({{ item.name }})'>{{ item.field3 }}</td>
+          <td>
+              <div class="make-switch switch-mini">
+                <label><input type="checkbox" checked></label>
+                  
+              </div>
+          </td>
+          <td><div class="input-group mb-2">
+              <input type="text" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon1" readonly>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Reset password</button>
+              </div>
+            </div></td>
+            <td><button type="button" class="btn btn-primary">show history</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
