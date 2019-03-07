@@ -17,12 +17,7 @@ const homePageModule = angular.module('home-module', [
       .state('home', {
         url: '/home',
         controller: HomeController,
-        templateUrl: homeTpl,
-        resolve: {
-          currentUserDeals: function($rootScope) {
-            return $rootScope.currentUserDeals;
-          }
-        }
+        templateUrl: homeTpl
       });
   })
   .component('home', new HomeComponent());
