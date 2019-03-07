@@ -3,11 +3,11 @@
     <div class="card flex-md-row box-shadow h-md-250 col-xs-5 col-md-5 col-lg-5">
         <div class="card-body d-flex flex-column align-items-start">
             <h3 class="mb-4">
-                Vasya Poopkin
+                {{currentUserInfo.firstName}} {{currentUserInfo.lastName}}
             </h3>
-            <strong class="d-inline-block mb-2 text-primary">USER</strong>
-            <p><span class>phone: </span><span>380982886189</span></p>
-            <p class='email'><span>email: </span><span>vasya@gmail.com</span></p>
+            <strong class="d-inline-block mb-2 text-primary">{{currentUserInfo.role | uppercase}}</strong>
+            <p><span class>phone: </span><span>{{currentUserInfo.phone}}</span></p>
+            <p class='email'><span>email: </span><span>{{currentUserInfo.email}}</span></p>
             <button class="btn btn-info" type="button" ui-sref="editProfile">Edit profile</button>
         </div>
         <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Thumbnail [200x250]"
