@@ -36,11 +36,12 @@ export default function (app) {
               currencyReceiveName, 
               tradeValue,
               receiveValue,
-              comission
+              commission,
+              rate
             } = value;
 
             return {
-              date: `${time.getDay()}.${time.getMonth()}.${time.getFullYear()}`,
+              date: `${time.getDate()}.${time.getMonth() + 1}.${time.getFullYear()}`,
   
               currencyFrom: currencyGiveName,
               currencyTo: currencyReceiveName,
@@ -48,7 +49,8 @@ export default function (app) {
               amountFrom: tradeValue,
               amountTo: receiveValue,
   
-              comission: comission
+              commission: commission,
+              rate: rate
             }
           },
 

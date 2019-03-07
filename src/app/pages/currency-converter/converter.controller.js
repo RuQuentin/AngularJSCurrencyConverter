@@ -9,7 +9,7 @@ export default class currencyController {
         this.currency = CurrencyService.getResponse();
         this.currencyObj = CurrencyService.getList();
 
-        [this.comission] = converterConstants.fee;
+        [this.commission] = converterConstants.fee;
         this.constantsFee = converterConstants.fee;
 
         this.tradeValue = null;
@@ -22,7 +22,7 @@ export default class currencyController {
         this.currencyObj[this.currencyReceiveName] = {};
 
         $scope.$watchGroup(
-            ['cc.currencyReceiveName', 'cc.currencyReceiveName', 'cc.tradeValue', 'cc.comission'],
+            ['cc.currencyReceiveName', 'cc.currencyReceiveName', 'cc.tradeValue', 'cc.commission'],
             () => {
               this.convertMoney();
               this.withCommissions();
@@ -40,6 +40,7 @@ export default class currencyController {
         }
 
         this.receiveValue = this.CurrencyService.convertFromUAH(result, this.currencyObj[this.currencyReceiveName].sale);
+        this.rate = (this.currencyObj[this.currencyGiveName].buy / this.currencyObj[this.currencyReceiveName].sale).toFixed(2);
     }
 
     swapCurrency () {
@@ -49,7 +50,7 @@ export default class currencyController {
 
     withCommissions () {
         this.convertMoney();
-        const resWithFee = this.CurrencyService.convertWithFee(this.receiveValue, this.comission);
+        const resWithFee = this.CurrencyService.convertWithFee(this.receiveValue, this.commission);
         this.receiveValue = Number((this.receiveValue - resWithFee).toFixed(2));
     }
 
@@ -59,7 +60,8 @@ export default class currencyController {
             currencyReceiveName: this.currencyReceiveName, 
             tradeValue: this.tradeValue,
             receiveValue: this.receiveValue,
-            comission: this.comission
+            commission: this.commission,
+            rate: this.rate
         };
         const userDeals = this.CurrencyService.getUserDeals(objValue);
 
