@@ -7,11 +7,12 @@ export default class AdminController {
             sortingOrder : 'id',
             reverse : false
         };
+    this.itemId = 0;
 
 $scope.gap = 3;
 $scope.filteredItems = [];
 $scope.groupedItems = [];
-$scope.itemsPerPage = 8;
+$scope.itemsPerPage = 5;
 $scope.pagedItems = [];
 $scope.currentPage = 1;
 $scope.items = [
@@ -107,6 +108,10 @@ $scope.setPage = function () {
 
 // functions have been describe process the data for display
 $scope.search();
+$scope.testConsole = $event => {
+    // eslint-disable-next-line no-console
+    console.log($event.target.innerHTML);
+}
        
     }
 
