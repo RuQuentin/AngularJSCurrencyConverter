@@ -1,0 +1,40 @@
+    .card {
+      padding: 0px;
+      background-color: #F8F8FF;
+      .card-body {
+        display: flex;
+        justify-content: space-between;
+        padding-left: 60px;
+        .content{
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 15px;
+          .editItem {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            p, h3 {
+              margin-bottom: 0;
+            }
+            input {
+              padding: 0 15px 0 15px;
+            }
+          }
+          .title {
+            margin-bottom: 35px;
+          }
+        }
+        .group {
+          display: flex;
+          justify-content: space-between;
+        }
+      }
+      .card-ava {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px 20px 20px 20px;
+      }
+    }
+  
