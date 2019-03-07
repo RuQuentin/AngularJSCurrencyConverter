@@ -12,11 +12,19 @@
     cursor: pointer;
     color: #555555;
 }
+
 .my-custom-scrollbar {
     position: relative;
     height: 400px;
     overflow: auto;
-  }
-  .table-wrapper-scroll-y {
+}
+
+.table-wrapper-scroll-y {
     display: block;
-  }
+}
+
+.tabble__icon {
+    font-size: 31px;
+    color: #007BFF;
+    cursor: pointer;
+}
