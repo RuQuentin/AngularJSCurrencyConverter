@@ -15,9 +15,9 @@ export default function (app) {
         };
 
         this.currentUserDeals = [
-          { date: '10.10.2010', currencyFrom: 'EUR', currencyTo: 'USD', comission: 0, rate: 1.11, amountFrom: 200, amountTo: 222 },
-          { date: '11.11.2011', currencyFrom: 'UAH', currencyTo: 'USD', comission: 0, rate: 27.1, amountFrom: 271, amountTo: 10 },
-          { date: '12.12.2012', currencyFrom: 'EUR', currencyTo: 'USD', comission: 0, rate: 1.11, amountFrom: 100, amountTo: 111 }
+          { date: '10.10.2010', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 200, amountTo: 222 },
+          { date: '11.11.2011', currencyFrom: 'UAH', currencyTo: 'USD', commission: 0, rate: 27.1, amountFrom: 271, amountTo: 10 },
+          { date: '12.12.2012', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 100, amountTo: 111 }
         ];
 
         this.listOfUsers = [
