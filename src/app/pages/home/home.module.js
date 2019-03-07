@@ -17,10 +17,7 @@ const homePageModule = angular.module('home-module', [
       .state('home', {
         url: '/home',
         controller: HomeController,
-        templateUrl: homeTpl,
-        resolve: {
-          data: homeService => homeService.getData()
-        }
+        templateUrl: homeTpl
       });
   })
   .component('home', new HomeComponent());
