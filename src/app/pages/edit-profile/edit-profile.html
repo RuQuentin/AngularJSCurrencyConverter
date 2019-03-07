@@ -8,16 +8,16 @@
                     <button class="btn btn-outline-info" type="button" ui-sref="profile">Return to profile</button>
                 </div>
                 <div class="editItem">
-                    <p>first name: </p><input type="text">
+                    <p>first name: </p><input type="text" ng-model='currentUserInfo.firstName'>
                 </div>
                 <div class="editItem">
-                    <p>last name: </p><input type="text">
+                    <p>last name: </p><input type="text" ng-model='currentUserInfo.lastName'>
                 </div>
                 <div class="editItem">
-                    <p>phone: </p><input type="text">
+                    <p>phone: </p><input type="text" ng-model='currentUserInfo.phone'>
                 </div>
                 <div class="editItem">
-                    <p>email: </p><input type="text">
+                    <p>email: </p><input type="text" ng-model='currentUserInfo.email'>
                 </div>
             </div>
             <button class="btn btn-info" type="button" ui-sref="profile">Save changes</button>
