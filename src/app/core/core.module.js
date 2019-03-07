@@ -8,6 +8,7 @@ import customSort from './directives/directive.table';
 import constants from './services/constants';
 import storeFactory from './services/store.factory';
 import usersMocksService from './services/user.mocks.service';
+import syncDataService from './services/sync-data.service';
 import resolverProvider from './services/resolver.provider';
 
 import workWithCurrencyProvider from './services/converter.provider';
@@ -18,6 +19,7 @@ validationTestDirective(shared);
 constants(shared);
 storeFactory(shared);
 usersMocksService(shared);
+syncDataService(shared);
 resolverProvider(shared);
 customSort(shared)
 
