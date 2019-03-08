@@ -39,6 +39,8 @@ export default function (app) {
           $rootScope.listOfUsers = this.listOfUsers;
         }
 
-        this.userDataBase = [];
+        this.userDeal = {
+          date: '10.10.2010', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 200, amountTo: 222
+        };
     });
 }

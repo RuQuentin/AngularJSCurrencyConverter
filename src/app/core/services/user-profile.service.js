@@ -20,8 +20,6 @@ export default function (app) {
       this.createNewUser = (email, uid) => {
         usersMocksService.currentUser = new newUser(email);
         usersMocksService.currentUserId = uid;
-        console.log(usersMocksService.currentUser)
-        console.log(usersMocksService.currentUserId)
       };
     })
 }
