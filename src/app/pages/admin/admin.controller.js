@@ -1,10 +1,11 @@
 'use strict';
 
 export default class AdminController {
-    constructor($scope, $filter, usersMocksService) {
+    constructor($scope, $rootScope, $filter, usersMocksService) {
         'ngInject';
         this.scope = $scope;
         this.filter = $filter;
+        this.rootScope = $rootScope;
 
         this.scope.usersMocksService = usersMocksService;
         this.scope.listOfUsers = usersMocksService.listOfUsers;
@@ -42,7 +43,9 @@ export default class AdminController {
         // const data = APIservice.getData(id);
         // eslint-disable-next-line no-console
         console.log(id);
+    }
 
-        
+    resetPsw(id) {
+        this.rootScope.listOfUsers[id].password = this.rootScope.listOfUsers[id].login;
     }
 }
