@@ -39,10 +39,10 @@ export default class AdminController {
         }
     }
 
-    showHistory (id){
-        // const data = APIservice.getData(id);
+    setSelectedUser(id){
+        // this.rootScope.currentUserDeals = APIservice.getData(id);
         // eslint-disable-next-line no-console
-        console.log(id);
+        this.rootScope.selectedUser = id;
     }
 
     resetPsw(id) {
