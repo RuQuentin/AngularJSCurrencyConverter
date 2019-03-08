@@ -8,18 +8,20 @@ import customSort from './directives/directive.table';
 import constants from './services/constants';
 import storeFactory from './services/store.factory';
 import usersMocksService from './services/user.mocks.service';
-import syncDataService from './services/sync-data.service';
 import resolverProvider from './services/resolver.provider';
 
 import workWithCurrencyProvider from './services/converter.provider';
 import currencyFilter from './filter/currenyc.filter';
+
+import syncDataService from './services/sync-data.service';
+import authenticationService from './services/authentication.service';
+import userProfileService from './services/user-profile.service';
 
 validationTestDirective(shared);
 
 constants(shared);
 storeFactory(shared);
 usersMocksService(shared);
-syncDataService(shared);
 resolverProvider(shared);
 customSort(shared)
 
@@ -27,5 +29,8 @@ customSort(shared)
 workWithCurrencyProvider(shared);
 currencyFilter(shared);
 
+syncDataService(shared);
+authenticationService(shared);
+userProfileService(shared);
 
 export default shared;
