@@ -7,5 +7,6 @@ export default class HeaderComponent {
     constructor() {
         this.templateUrl = headerTpl;
         this.controller = HeaderController;
+        this.controllerAs = 'headerCtrl';
     }
 }

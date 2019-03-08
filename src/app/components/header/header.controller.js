@@ -1,12 +1,18 @@
 'use strict';
 
-export default class HeaderController {
-    constructor($log) {
-        'ngInject';
-        this.$log = $log;
-    }
+function HeaderController($log, $rootScope) {
+    'ngInject';
 
-    $onInit() {
-        this.$log.log('Hello from the footer component controller!');
-    }
+    this.firstName = $rootScope.currentUserInfo.firstName;
+    this.lastName = $rootScope.currentUserInfo.lastName;
+
+    $rootScope.$watch('currentUserInfo', currentUserInfo => {
+        this.firstName = currentUserInfo.firstName;
+        this.lastName = currentUserInfo.lastName;
+    });
+
+    $log.debug('Hello from Header controller!');
 }
+
+export default HeaderController;
+
