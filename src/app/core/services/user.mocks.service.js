@@ -20,6 +20,8 @@ export default function (app) {
           { date: '12.12.2012', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 100, amountTo: 111 }
         ];
 
+        this.currentUserId = 'randomId';
+
         this.listOfUsers = [
           { "id": 0, "name":"Alex", "login":"alex@gmail.com", "status":"user", "password":"a123" }, 
           { "id": 1, "name":"Bill", "login":"bill@gmail.com", "status":"user", "password":"b123" }, 
@@ -36,5 +38,7 @@ export default function (app) {
           $rootScope.adminRole = this.adminRole;
           $rootScope.listOfUsers = this.listOfUsers;
         }
+
+        this.userDataBase = [];
     });
 }

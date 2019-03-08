@@ -1,32 +1,26 @@
 'use strict';
 
 import firebase from 'firebase';
+import "angularfire";
 
-const configFirebase = {
-  apiKey: 'AIzaSyBn1zDplUrVMJnXmmc2qQDmn3JcKhrjkd4',
-  authDomain: 'currencyconverter-bbce9.firebaseapp.com',
-  databaseURL: 'https://currencyconverter-bbce9.firebaseio.com',
-  projectId: 'currencyconverter-bbce9',
-  storageBucket: 'currencyconverter-bbce9.appspot.com',
-  messagingSenderId: '885797039896',
-};
 
+// ==== connecting to firebase ====
+import configFirebase from '~/env.js'
 firebase.initializeApp(configFirebase);
+// ================================
 
 
 export default function (app) {
   app
-    .service('syncDataService', function ($firebaseArray, userDatabase) {
+    .service('syncDataService', function ($firebaseArray, usersMocksService) {
       'ngInject';
       
-      // eslint-disable-next-line no-console
-      console.log(firebase);
-      this.syncWithFirebase = user => {
+      this.syncDealsWithFirebase = deal => {
         const ref = firebase.database().ref();
-        userDatabase = $firebaseArray(ref);
-        userDatabase.$add(user);
+        usersMocksService.userDatabase = $firebaseArray(ref.child('listOfDeals').child(usersMocksService.currentUserId));
+        usersMocksService.userDatabase.$add(deal);
         // eslint-disable-next-line no-console
-        console.log(userDatabase);
+        console.log(usersMocksService.userDatabase);
       };
     })
 

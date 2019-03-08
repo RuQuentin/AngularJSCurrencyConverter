@@ -5,7 +5,7 @@ export default class SignUpController {
     'ngInject';
 
     this.addUser = () => {
-      syncDataService.syncWithFirebase(this.newUser);
+      syncDataService.syncDealsWithFirebase(this.newUser);
     }
   }  
 }
