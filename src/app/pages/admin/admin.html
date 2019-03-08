@@ -14,19 +14,19 @@
             Name
           </th>
 
-          <th custom-sort order="'description'" sort="sort">
+          <th custom-sort order="'login'" sort="sort">
             E-mail
           </th>
           
-          <th custom-sort order="'field3'" sort="sort">
+          <th custom-sort order="'status'" sort="sort">
             Status
           </th>
 
-          <th custom-sort order="'field3'" sort="sort">
+          <th custom-sort order="'field5'" sort="sort">
             Admin
           </th>
 
-          <th custom-sort order="'field3'" sort="sort">
+          <th custom-sort order="'password'" sort="sort">
             Password
           </th>
 
@@ -44,18 +44,17 @@
         <tr ng-repeat="item in filteredItems | orderBy:sort.sortingOrder:sort.reverse">
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
-          <td>{{ item.description }}</td>
-          <td>{{ item.field3 }}</td>
+          <td>{{ item.login }}</td>
+          <td>{{ item.status }}</td>
           <td>
             <div class="make-switch switch-mini">
               <label><input type="checkbox" checked></label>
-                
             </div>
           </td>
           <td><div class="input-group mb-2">
-              <input type="text" class="form-control" placeholder="password" aria-label="Recipient's username" aria-describedby="basic-addon1" readonly>
+              <input type="text" class="form-control" placeholder="password" value='{{ item.password }}' readonly>
               <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="button">Reset password</button>
+                <button class="btn btn-outline-secondary" type="button" ng-click='admCont.resetPsw(item.id)'>Reset password</button>
               </div>
             </div>
           </td>
