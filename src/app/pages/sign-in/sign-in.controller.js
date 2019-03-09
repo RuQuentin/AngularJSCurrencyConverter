@@ -1,19 +1,18 @@
-function SignInController($scope) {
+function SignInController($scope, authenticationService) {
   'ngInject';
-
-  $scope.signInUser = () => {
-        // const username = 'dasf';
-        // const password = '123456';
-        // const auth = $firebaseAuth();
-        // auth.$signInWithEmailAndPassword(username, password)
-        //   .then(function(user) {
-        //       // eslint-disable-next-line no-console
-        //       console.log(user.uid);
-        //   }).catch(function(err){
-        //       // eslint-disable-next-line no-console
-        //       console.log(err);
-        //   }); 
-      };
+  $scope.warning = "";
+  $scope.signIn = () => {
+    const login = $scope.user.email;
+    const password = $scope.user.password;  
+    if (!authenticationService.signInToFirebase(login, password)) {
+      $scope.showWarning();
+    } else {
+      $scope.warning = "";
+    }
+  };
+  $scope.showWarning = () => {
+    $scope.warning = "Wrong E-mail or password"
+  }
 }
 
 export default SignInController;

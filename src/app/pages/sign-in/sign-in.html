@@ -18,10 +18,12 @@
                                 <input ng-minlength="6" class="form-control" type="password" name="password" ng-model='user.password' placeholder="Password" required>
                                 <small class="help-block text-danger" ng-show="loginForm.password.$touched && loginForm.password.$invalid">
                                     Password must include minimum 6 characters
-                                </small>
+                                </small> <br>
                                 <small class="help-block text-info forgot-pass" ng-click="forgotPass()">
                                     Forgot your password?
                                 </small>
+                                <br>
+                                <small class="help-block text-danger" ng-hide="warning === ''" ng-bind="warning"></small> 
                             </div>
                           </div>
                           <pre></pre>
