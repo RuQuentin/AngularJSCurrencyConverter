@@ -1,8 +1,10 @@
 .profileContainer {
-  padding-top: 100px;
+  padding-top: 80px;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  overflow: hidden;
+  padding-bottom: 120px;
   .card {
     padding: 0px;
     background-color: #F8F8FF;

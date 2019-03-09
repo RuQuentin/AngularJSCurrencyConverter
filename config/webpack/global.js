@@ -32,6 +32,7 @@ module.exports = function (_path) {
     resolve: {
       extensions: ['.js', '.es6', '.jsx', '.scss', '.css'],
       alias: {
+        ['~']: path.resolve(_path),
         _appRoot: path.join(_path, 'src', 'app'),
         _images: path.join(_path, 'src', 'assets', 'images'),
         _stylesheets: path.join(_path, 'src', 'assets', 'styles'),
