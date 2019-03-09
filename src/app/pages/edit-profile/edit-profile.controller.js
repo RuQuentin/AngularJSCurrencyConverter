@@ -1,7 +1,8 @@
 'use strict';
 
-function EditProfileController($log, $scope, $rootScope) {
+function EditProfileController($log, $scope, $rootScope, $state) {
   'ngInject';
+  $scope.success = false;
 
   $scope.formInfo = {
     firstName: $rootScope.currentUserInfo.firstName,
@@ -11,11 +12,17 @@ function EditProfileController($log, $scope, $rootScope) {
     email: $rootScope.currentUserInfo.email
   };
   
-  $scope.saveProfile = data => {
-    $rootScope.currentUserInfo = data;
-  };
+  $scope.submitForm = function(data) {
+    if ($scope.profile.$valid) {
+      $rootScope.currentUserInfo = data;
+      $scope.success = true;
+      setTimeout(function(){
+        $state.go('profile');
+      },1700);
+    }
+  }
 
-  $log.debug('Hello from EDIT-PROFILE controller!');
+  $log.debug('Hello from EDIT-PROFILE controller!' + $scope.first);
 }
 
 export default EditProfileController;
