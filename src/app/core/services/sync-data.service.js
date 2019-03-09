@@ -52,5 +52,19 @@ export default function (app) {
           })
           .then(console.log(usersMocksService.fullBase));
       }
+
+      this.getAllUsersFromFirebase = () => {
+        const ref = firebase.database().ref();
+        usersMocksService.listOfUsers = $firebaseObject(ref.child('listOfUsers'));
+        usersMocksService.listOfUsers.$loaded()
+          .then(console.log(usersMocksService.listOfUsers));
+      }
+
+      this.getAllDealsFromFirebase = () => {
+        const ref = firebase.database().ref();
+        usersMocksService.listOfDeals = $firebaseObject(ref.child('listOfDeals'));
+        usersMocksService.listOfDeals.$loaded()
+          .then(console.log(usersMocksService.listOfDeals));
+      }
     })
 }
