@@ -13,6 +13,10 @@ import resolverProvider from './services/resolver.provider';
 import workWithCurrencyProvider from './services/converter.provider';
 import currencyFilter from './filter/currenyc.filter';
 
+import syncDataService from './services/sync-data.service';
+import authenticationService from './services/authentication.service';
+import userProfileService from './services/user-profile.service';
+
 validationTestDirective(shared);
 
 constants(shared);
@@ -25,5 +29,8 @@ customSort(shared)
 workWithCurrencyProvider(shared);
 currencyFilter(shared);
 
+syncDataService(shared);
+authenticationService(shared);
+userProfileService(shared);
 
 export default shared;
