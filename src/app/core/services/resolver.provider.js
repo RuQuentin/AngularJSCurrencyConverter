@@ -7,6 +7,7 @@ export default function (app) {
         this.profilePagePrealoading = profilePagePrealoading;
         this.editProfilePagePrealoading = editProfilePagePrealoading;
         this.transactionsListPagePreloading = transactionsListPagePreloading;
+        this.signInPagePreloading = signInPagePreloading;
         this.$get = function() { return this; };
     }
 
@@ -48,6 +49,20 @@ export default function (app) {
                 name: transactionsListModule.default.name,
             });
             deferred.resolve(transactionsListModule.default.controller);
+        });
+        return deferred.promise;
+    }
+
+    function signInPagePreloading ($q, $ocLazyLoad) {
+        "ngInject";
+
+        const deferred = $q.defer();
+        require.ensure([], require => {
+            const signInModule = require('../../pages/sign-in/sign-in.module');
+            $ocLazyLoad.load({
+                name: signInModule.default.name,
+            });
+            deferred.resolve(signInModule.default.controller);
         });
         return deferred.promise;
     }

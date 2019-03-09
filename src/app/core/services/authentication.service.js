@@ -13,7 +13,7 @@ firebase.initializeApp(configFirebase);
 
 export default function (app) {
   app
-    .service('authenticationService', function ($firebaseAuth, userProfileService, syncDataService) {
+    .service('authenticationService', function ($firebaseAuth, userProfileService, syncDataService, $location) {
       'ngInject';
 
       this.signUpToFirebase = (email, password) => {
@@ -22,6 +22,25 @@ export default function (app) {
           .then(function(firebaseUser) {
             userProfileService.createNewUser(email, firebaseUser.user.uid);
             syncDataService.saveUserInfoToFirebase(firebaseUser.user.uid);
+          })
+          .catch(function(error) {
+            console.log('error: ', error)
+          })
+      };
+
+      // this.getUserFromLocalStorage = () => {
+      //   const user = '';
+      //   if (user === "") {
+      //     localStorage.getItem(user)
+      //     console.log(user);
+      //   }
+      // }
+
+      this.signInToFirebase = (email, password) => {
+        const auth = $firebaseAuth(firebase.auth());
+        auth.$signInWithEmailAndPassword(email, password)
+          .then(function() {
+            $location.path('/#!/home')
           })
           .catch(function(error) {
             console.log('error: ', error)
