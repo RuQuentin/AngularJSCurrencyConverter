@@ -1,20 +1,20 @@
 'use strict';
 
-function EditProfileController($log, $scope, $rootScope, userProfileService, usersMocksService, syncDataService, $state) {
+function EditProfileController($log, $scope, $rootScope, userProfileService, syncDataService, $state) {
   'ngInject';
   $scope.success = false;
   $scope.formInfo = userProfileService.createFormInfo($rootScope);
-  // syncDataService.getUserInfoFromFirebase(usersMocksService.currentUserId);
+  // syncDataService.getUserInfoFromFirebase('6Nu69dWHexMwcebH3CtqUtcV1eC2');
+  syncDataService.getAllUsersFromFirebase();
   
   $scope.submitForm =  function(data){
     if ($scope.profile.$valid) {
-      $rootScope.currentUserInfo = data;
-      usersMocksService.currentUserInfo = data;
-      syncDataService.saveUserInfoToFirebase(usersMocksService.currentUserId);
+      $rootScope.currentUser = data;
+      syncDataService.saveUserInfoToFirebase($rootScope.currentUser);
       $scope.success = true;
       setTimeout(function(){
         $state.go('profile');
-        // syncDataService.getUserInfoFromFirebase();
+        syncDataService.getAllUsersFromFirebase();
       }, 1500);
     }
   }
