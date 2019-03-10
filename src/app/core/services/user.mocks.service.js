@@ -11,7 +11,7 @@ export default function (app) {
           phone: '380672386289',
           email: 'vasya@gmail.com',
           role: 'user',
-          ava: []
+          ava: "https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg"
         };
 
         this.currentUserDeals = [

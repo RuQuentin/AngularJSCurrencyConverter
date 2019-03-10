@@ -21,5 +21,16 @@ export default function (app) {
         usersMocksService.currentUser = new newUser(email);
         usersMocksService.currentUserId = uid;
       };
+
+      this.createFormInfo = function (rootScope) {
+        return {
+          firstName: rootScope.currentUserInfo.firstName,
+          lastName: rootScope.currentUserInfo.lastName,
+          role: rootScope.currentUserInfo.role,
+          phone: rootScope.currentUserInfo.phone,
+          email: rootScope.currentUserInfo.email,
+          ava: rootScope.currentUserInfo.ava
+        }
+      };
     })
 }
