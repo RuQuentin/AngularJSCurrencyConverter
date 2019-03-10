@@ -6,6 +6,8 @@ export default function (app) {
     function resolverProvider () {
         this.profilePagePrealoading = profilePagePrealoading;
         this.editProfilePagePrealoading = editProfilePagePrealoading;
+        this.transactionsListPagePreloading = transactionsListPagePreloading;
+        this.signInPagePreloading = signInPagePreloading;
         this.$get = function() { return this; };
     }
 
@@ -36,5 +38,32 @@ export default function (app) {
         });
         return deferred.promise;
     }
+    
+    function transactionsListPagePreloading ($q, $ocLazyLoad) {
+        "ngInject";
 
+        const deferred = $q.defer();
+        require.ensure([], require => {
+            const transactionsListModule = require('../../pages/transactions-list/transactions-list.module');
+            $ocLazyLoad.load({
+                name: transactionsListModule.default.name,
+            });
+            deferred.resolve(transactionsListModule.default.controller);
+        });
+        return deferred.promise;
+    }
+
+    function signInPagePreloading ($q, $ocLazyLoad) {
+        "ngInject";
+
+        const deferred = $q.defer();
+        require.ensure([], require => {
+            const signInModule = require('../../pages/sign-in/sign-in.module');
+            $ocLazyLoad.load({
+                name: signInModule.default.name,
+            });
+            deferred.resolve(signInModule.default.controller);
+        });
+        return deferred.promise;
+    }
 }

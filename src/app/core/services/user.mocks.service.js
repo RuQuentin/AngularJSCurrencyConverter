@@ -20,7 +20,7 @@ export default function (app) {
           { date: '12.12.2012', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 100, amountTo: 111 }
         ];
 
-        this.currentUserId = 'randomId';
+        this.currentUserId = '7sikAxSigSZGC6v6FezOSeaNEPw2';
 
         this.listOfUsers = [
           { "id": 0, "name":"Alex", "login":"alex@gmail.com", "status":"user", "password":"a123" }, 
@@ -40,7 +40,7 @@ export default function (app) {
         }
 
         this.userDeal = {
-          date: '10.10.2010', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 200, amountTo: 222
+          date: '10.10.2010', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 500, amountTo: 800
         };
     });
 }
