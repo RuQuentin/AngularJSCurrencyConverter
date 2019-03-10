@@ -65,6 +65,21 @@
             margin-bottom: 20px;
             padding: 0;
           }
+          .changeAva {
+            margin-bottom: 0;
+            color: #17a2b8;
+            background-color: transparent;
+            border: 1px solid #17a2b8;
+            padding: 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 0.25rem;
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+          }
+          .changeAva:hover {
+            color: white;
+            background-color: #17a2b8;;
+          }
         }
       }
   }

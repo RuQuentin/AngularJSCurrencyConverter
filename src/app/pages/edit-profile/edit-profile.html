@@ -50,8 +50,9 @@
             </div>
 
             <div class="cardAva col-xs-4 col-md-4 col-lg-4">
-                <img type="image" class='ava' src="https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg">
-                <button class="btn btn-outline-info changeAva" type="button">Change ava</button>
+                <img type="image" class='ava' ng-src="{{formInfo.ava}}">
+                <input ng-hide='true' type="file" ng-model='formInfo.ava' ng-click="onFileChanged($event)" id ='fileInput'>
+                <label class="btn btn-outline-info changeAva" for='fileInput'>Select image</label>
             </div>
         </form>
 </div>
