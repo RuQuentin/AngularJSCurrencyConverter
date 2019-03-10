@@ -16,6 +16,9 @@ export default function (app) {
     .service('authenticationService', function ($firebaseAuth, userProfileService, syncDataService, $location) {
       'ngInject';
 
+      syncDataService.getProfileImageRef('default.svg').toString() // add to profile
+
+
       this.signUpToFirebase = (email, password) => {
         const auth = $firebaseAuth(firebase.auth());
         auth.$createUserWithEmailAndPassword(email, password)

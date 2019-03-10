@@ -3,7 +3,7 @@
 
 export default function (app) {
   app
-    .service('userProfileService', function ($rootScope) {
+    .service('userProfileService', function (usersMocksService, syncDataService, $rootScope) {
       'ngInject';
 
       class newUser {
@@ -13,7 +13,10 @@ export default function (app) {
           this.phone = null;
           this.email = email;
           this.role = 'user';
-          this.ava = null;
+          this.ava = [
+            'path',
+            usersMocksService.profileImageRefDefault
+          ];
         }
       }
 
@@ -32,5 +35,20 @@ export default function (app) {
           ava: rootScope.currentUser.ava
         }
       };
+
+      // this.convertProfileImageName = (name) => {
+      //   const extantion = 
+      //   return `${usersMocksService.currentUserId}.${extention}`
+      // }
+
+      this.setProfileImage = (blob, name) => {
+        syncDataService.uploadProfileImageRef(blob, name);
+        usersMocksService.currentUser.ava = syncDataService.getProfileImageRef(name);
+      }
+
+      this.deleteProfileImage = () => {
+        
+        usersMocksService.currentUser.ava = usersMocksService.profileImageRefDefault;
+      }
     })
 }

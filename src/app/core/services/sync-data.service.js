@@ -13,7 +13,7 @@ import 'angularfire';
 
 export default function (app) {
   app
-    .service('syncDataService', function ($firebaseArray, $firebaseObject, $rootScope) {
+    .service('syncDataService', function ($firebaseArray, $firebaseObject, $firebaseStorage, usersMocksService, $rootScope) {
       'ngInject';
       
       this.getDealsFromFirebase = () => {
@@ -65,6 +65,22 @@ export default function (app) {
         $rootScope.listOfDeals = $firebaseObject(ref.child('listOfDeals'));
         $rootScope.listOfDeals.$loaded()
           .then(console.log($rootScope.listOfDeals));
+      }
+
+      this.getProfileImageRef = name => {
+        const ref = firebase.storage().ref().child('currency-converter/profile-pictures').child(name)
+        const imageRef = $firebaseStorage(ref);
+        const urlPromise = imageRef.$getDownloadURL();
+        console.log(ref.fullPath)
+        return urlPromise;
+      }
+
+      this.uploadProfileImageRef = (blob, fileName) => {
+        const ref = firebase.storage().ref()
+          .child('currency-converter/profile-pictures')
+          .child(fileName);
+        const uploadTask = ref.$put(blob);
+        return uploadTask;
       }
     })
 }
