@@ -3,6 +3,7 @@
 const shared = angular.module('core.shared', []);
 
 import validationTestDirective from './directives/validation-test/validation-test.directive';
+import preloaderDirective from './directives/preloader/preloader.directive';
 import customSort from './directives/directive.table';
 
 import constants from './services/constants';
@@ -18,6 +19,7 @@ import authenticationService from './services/authentication.service';
 import userProfileService from './services/user-profile.service';
 
 validationTestDirective(shared);
+preloaderDirective(shared);
 
 constants(shared);
 storeFactory(shared);
