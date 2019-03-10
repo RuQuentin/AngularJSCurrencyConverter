@@ -1,16 +1,16 @@
 'use strict';
 
-function EditProfileController($log, $scope, $rootScope, userProfileService, usersMocksService, syncDataService, $state) {
+function EditProfileController($log, $scope, $rootScope, userProfileService, syncDataService, $state) {
   'ngInject';
   $scope.success = false;
   $scope.formInfo = userProfileService.createFormInfo($rootScope);
-  // syncDataService.getUserInfoFromFirebase(usersMocksService.currentUserId);
+  // syncDataService.getUserInfoFromFirebase($rootScope.currentUserId);
   
   $scope.submitForm =  function(data){
     if ($scope.profile.$valid) {
       $rootScope.currentUserInfo = data;
-      usersMocksService.currentUserInfo = data;
-      syncDataService.saveUserInfoToFirebase(usersMocksService.currentUserId);
+      $rootScope.currentUserInfo = data;
+      syncDataService.saveUserInfoToFirebase($rootScope.currentUserId);
       $scope.success = true;
       setTimeout(function(){
         $state.go('profile');

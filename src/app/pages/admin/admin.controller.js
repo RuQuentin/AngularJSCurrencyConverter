@@ -1,14 +1,13 @@
 'use strict';
 
 export default class AdminController {
-    constructor($scope, $rootScope, $filter, usersMocksService) {
+    constructor($scope, $rootScope, $filter) {
         'ngInject';
         this.scope = $scope;
         this.filter = $filter;
         this.rootScope = $rootScope;
 
-        this.scope.usersMocksService = usersMocksService;
-        this.scope.listOfUsers = usersMocksService.listOfUsers;
+        this.scope.listOfUsers = $rootScope.listOfUsers;
         this.scope.filteredItems = [];
         this.scope.sort = {       
             sortingOrder : 'id',
