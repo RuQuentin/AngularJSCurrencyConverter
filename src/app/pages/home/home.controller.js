@@ -1,7 +1,9 @@
 'use strict';
 
-function MainController($scope, $filter, $rootScope) {
+function MainController($scope, $filter, $rootScope, syncDataService) {
   'ngInject';
+
+  $scope.currentUserDeals = syncDataService.getDealsFromFirebase();
 
   $scope.sort = {
     sortingOrder: 'date',
