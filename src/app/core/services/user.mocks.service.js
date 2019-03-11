@@ -5,7 +5,7 @@ export default function (app) {
     .service('usersMocksService', function ($rootScope) {
       'ngInject';
 
-        this.currentUserInfo = {
+        this.currentUser = {
           firstName: 'Vasya',
           lastName: 'Poopkin',
           phone: '380672386289',
@@ -32,7 +32,7 @@ export default function (app) {
         this.adminRole = 'admin',
       
         this.initMocks = () => {
-          $rootScope.currentUserInfo = this.currentUserInfo;
+          $rootScope.currentUser = this.currentUser;
           $rootScope.currentUserDeals = this.currentUserDeals;
           $rootScope.userRole = this.userRole;
           $rootScope.adminRole = this.adminRole;
