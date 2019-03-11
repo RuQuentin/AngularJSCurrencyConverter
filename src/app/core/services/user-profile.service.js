@@ -8,11 +8,11 @@ export default function (app) {
 
       class User {
         constructor(email) {
-          this.firstName = null;
-          this.lastName = null;
-          this.phone = null;
+          this.firstName = '';
+          this.lastName = '';
+          this.phone = '';
           this.email = email;
-          this.role = 'user';
+          this.role = usersMocksService.userRole;
           this.ava = null;
         }
       }
@@ -34,38 +34,26 @@ export default function (app) {
       };
 
       this.saveToCurrentUser = function (data) {
-        $rootScope.currentUser.firstName = data.firstName ? data.firstName : '',
-        $rootScope.currentUser.lastName =  data.firstName ? data.lastName : '',
-        $rootScope.currentUser.role = data.role ? data.role : 'user',
-        $rootScope.currentUser.phone = data.phone ? data.phone : '',
-        $rootScope.currentUser.email = data.email ? data.email : '',
-        $rootScope.currentUser.ava = data.ava ? data.ava : ''
+        $rootScope.currentUser.firstName = data.firstName || '',
+        $rootScope.currentUser.lastName =  data.lastName || '',
+        $rootScope.currentUser.role = data.role || 'user',
+        $rootScope.currentUser.phone = data.phone || '',
+        $rootScope.currentUser.email = data.email || ''
+        $rootScope.currentUser.ava = data.ava || ''
       };
 
-      // this.convertProfileImageName = (name) => {
-      //   const extantion = 
-      //   return `${usersMocksService.currentUserId}.${extention}`
-      // }
-
-      // this.setProfileImage = file => {
-        // syncDataService.uploadProfileImage(file)
-          // .then(function() {
-          //   syncDataService.getProfileImageRef()
-          // }
-          // .then(function(link) {
-          //   $rootScope.currentUserInfo.ava = link;
-          // })
-          // .then(function() {
-          //   console.log($rootScope.currentUserInfo);
-            
-          // })
-
-        // usersMocksService.currentUser.ava = syncDataService.getProfileImageRef(name);
-      // }
-
-      this.deleteProfileImage = () => {
-        
-        usersMocksService.currentUser.ava = usersMocksService.profileImageRefDefault;
-      }
+      this.setProfileImage = file => {
+        syncDataService.uploadProfileImage(file)
+          .then(function() {
+            return syncDataService.getProfileImageRef()
+          })
+          .then(function(link) {
+            $rootScope.currentUser.ava = link;
+            console.log($rootScope.currentUser)
+          })
+          .catch(function(error) {
+            console.log('error:', error)
+          })
+      };
     })
 }
