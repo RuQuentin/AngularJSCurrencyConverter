@@ -13,9 +13,7 @@ export default function (app) {
           this.phone = null;
           this.email = email;
           this.role = 'user';
-          this.ava = [
-            'path',
-            usersMocksService.profileImageRefDefault
+          this.ava = usersMocksService.profileImageRefDefault
           ];
         }
       }
