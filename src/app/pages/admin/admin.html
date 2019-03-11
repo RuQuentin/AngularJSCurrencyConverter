@@ -18,9 +18,9 @@
             E-mail
           </th>
           
-          <th custom-sort order="'status'" sort="sort">
+          <!-- <th custom-sort order="'status'" sort="sort">
             Status
-          </th>
+          </th> -->
 
           <th custom-sort order="'field5'" sort="sort">
             Admin
@@ -45,21 +45,19 @@
           <td>{{ item.id }}</td>
           <td>{{ item.name }}</td>
           <td>{{ item.login }}</td>
-          <td>{{ item.status }}</td>
           <td>
             <div class="make-switch switch-mini">
               <label><input type="checkbox" checked></label>
             </div>
           </td>
-          <td><div class="input-group mb-2">
-              <!-- <input type="text" class="form-control" placeholder="password" value='{{ item.password }}' readonly> -->
+          <td><div class="input-group mb-2 justify-content-center">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" ng-click='admCont.resetPsw(item.id)'>Reset password</button>
               </div>
             </div>
           </td>
           <td><i class="fas fa-history tabble__icon" ng-click="admCont.setSelectedUser(item.id)" ui-sref="transactionsList"></i></td>
-          <td><i class="fas fa-user-circle tabble__icon"></i></td>
+          <td><i class="fas fa-user-circle tabble__icon" ui-sref="profile"></i></td>
         </tr>
       </tbody>
     </table>
