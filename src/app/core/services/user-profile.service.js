@@ -22,15 +22,24 @@ export default function (app) {
         $rootScope.currentUserId = uid;
       };
 
-      this.createFormInfo = function (rootScope) {
+      this.createFormInfo = function () {
         return {
-          firstName: rootScope.currentUser.firstName,
-          lastName:  rootScope.currentUser.lastName,
-          role: rootScope.currentUser.role,
-          phone:  rootScope.currentUser.phone,
-          email:  rootScope.currentUser.email,
-          ava: rootScope.currentUser.ava
+          firstName: $rootScope.currentUser.firstName,
+          lastName:  $rootScope.currentUser.lastName,
+          role: $rootScope.currentUser.role,
+          phone:  $rootScope.currentUser.phone,
+          email:  $rootScope.currentUser.email,
+          ava: $rootScope.currentUser.ava
         }
+      };
+
+      this.saveToCurrentUser = function (data) {
+        $rootScope.currentUser.firstName = data.firstName ? data.firstName : '',
+        $rootScope.currentUser.lastName =  data.firstName ? data.lastName : '',
+        $rootScope.currentUser.role = data.role ? data.role : 'user',
+        $rootScope.currentUser.phone = data.phone ? data.phone : '',
+        $rootScope.currentUser.email = data.email ? data.email : '',
+        $rootScope.currentUser.ava = data.ava ? data.ava : ''
       };
 
       // this.convertProfileImageName = (name) => {

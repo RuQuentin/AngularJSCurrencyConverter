@@ -41,8 +41,12 @@ export default function (app) {
 
       this.saveUserInfoToFirebase = uid => {
         const ref = firebase.database().ref();
-        return ref.child('listOfUsers').update({
-          [uid]: $rootScope.currentUser
+        return ref.child('listOfUsers')
+        .child(uid)
+        .update({
+          firstName: $rootScope.currentUser.firstName,
+          lastName: $rootScope.currentUser.lastName,
+          phone: $rootScope.currentUser.phone
         })
       }
 
