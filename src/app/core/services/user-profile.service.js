@@ -3,22 +3,23 @@
 
 export default function (app) {
   app
-    .service('userProfileService', function ($rootScope) {
+    .service('userProfileService', function (usersMocksService, syncDataService, $rootScope) {
       'ngInject';
 
-      class newUser {
+      class User {
         constructor(email) {
           this.firstName = null;
           this.lastName = null;
           this.phone = null;
           this.email = email;
           this.role = 'user';
-          this.ava = null;
+          this.ava = usersMocksService.profileImageRefDefault
+          ];
         }
       }
 
       this.createNewUser = (email, uid) => {
-        $rootScope.currentUser = new newUser(email);
+        $rootScope.currentUserInfo = new User(email);
         $rootScope.currentUserId = uid;
       };
 
@@ -32,5 +33,31 @@ export default function (app) {
           ava: rootScope.currentUser.ava
         }
       };
+
+      // this.convertProfileImageName = (name) => {
+      //   const extantion = 
+      //   return `${usersMocksService.currentUserId}.${extention}`
+      // }
+
+      this.setProfileImage = file => {
+        // syncDataService.uploadProfileImage(file)
+          // .then(function() {
+          //   syncDataService.getProfileImageRef()
+          // }
+          // .then(function(link) {
+          //   $rootScope.currentUserInfo.ava = link;
+          // })
+          // .then(function() {
+          //   console.log($rootScope.currentUserInfo);
+            
+          // })
+
+        // usersMocksService.currentUser.ava = syncDataService.getProfileImageRef(name);
+      }
+
+      this.deleteProfileImage = () => {
+        
+        usersMocksService.currentUser.ava = usersMocksService.profileImageRefDefault;
+      }
     })
 }
