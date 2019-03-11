@@ -31,16 +31,19 @@ export default function (app) {
         this.userRole = 'user',
         this.adminRole = 'admin',
       
-        this.initMocks = () => {
-          $rootScope.currentUser = this.currentUser;
-          $rootScope.currentUserDeals = this.currentUserDeals;
-          $rootScope.userRole = this.userRole;
-          $rootScope.adminRole = this.adminRole;
-          $rootScope.listOfUsers = this.listOfUsers;
-        }
-
+        
         this.userDeal = {
           date: '10.10.2010', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 500, amountTo: 800
         };
+
+        this.initMocks = () => {
+          $rootScope.currentUser = this.currentUser;
+          $rootScope.currentUserDeals = this.currentUserDeals;
+          $rootScope.currentUserId = this.currentUserId;
+          $rootScope.userRole = this.userRole;
+          $rootScope.adminRole = this.adminRole;
+          $rootScope.listOfUsers = this.listOfUsers;
+          $rootScope.userDeal = this.userDeal;
+        }
     });
 }

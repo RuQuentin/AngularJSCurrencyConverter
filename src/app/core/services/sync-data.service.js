@@ -13,58 +13,58 @@ import 'angularfire';
 
 export default function (app) {
   app
-    .service('syncDataService', function ($firebaseArray, $firebaseObject, usersMocksService) {
+    .service('syncDataService', function ($firebaseArray, $firebaseObject, $rootScope) {
       'ngInject';
       
       this.getDealsFromFirebase = () => {
         const ref = firebase.database().ref();
-        usersMocksService.currentUserDeals = $firebaseArray(ref.child('listOfDeals').child(usersMocksService.currentUserId));
-        return usersMocksService.currentUserDeals;
+        $rootScope.currentUserDeals = $firebaseArray(ref.child('listOfDeals').child($rootScope.currentUserId));
+        return $rootScope.currentUserDeals;
       };
       
       this.addDealToFirebase = deal => {
         const ref = firebase.database().ref();
-        usersMocksService.currentUserDeals = $firebaseArray(ref.child('listOfDeals').child(usersMocksService.currentUserId));
-        usersMocksService.currentUserDeals.$add(deal);
-        return usersMocksService.currentUserDeals;
+        $rootScope.currentUserDeals = $firebaseArray(ref.child('listOfDeals').child($rootScope.currentUserId));
+        $rootScope.currentUserDeals.$add(deal);
+        return $rootScope.currentUserDeals;
       };
 
       this.getUserInfoFromFirebase = uid => {
         const ref = firebase.database().ref();
-        usersMocksService.currentUser = $firebaseObject(ref.child('listOfUsers').child(uid));
+        $rootScope.currentUser = $firebaseObject(ref.child('listOfUsers').child(uid));
       }
 
       this.saveUserInfoToFirebase = uid => {
         const ref = firebase.database().ref();
         ref.child('listOfUsers').update({
-          [uid]: usersMocksService.currentUser
+          [uid]: $rootScope.currentUser
         })
       }
 
       this.getAllFromFirebase = () => {
         const ref = firebase.database().ref();
         const obj = $firebaseObject(ref);
-        usersMocksService.fullBase = {};
+        $rootScope.fullBase = {};
         obj.$loaded()
           .then(function() {
-            usersMocksService.fullBase.listOfUsers = obj.listOfUsers;
-            usersMocksService.fullBase.listOfDeals = obj.listOfDeals;
+            $rootScope.fullBase.listOfUsers = obj.listOfUsers;
+            $rootScope.fullBase.listOfDeals = obj.listOfDeals;
           })
-          .then(console.log(usersMocksService.fullBase));
+          .then(console.log($rootScope.fullBase));
       }
 
       this.getAllUsersFromFirebase = () => {
         const ref = firebase.database().ref();
-        usersMocksService.listOfUsers = $firebaseObject(ref.child('listOfUsers'));
-        usersMocksService.listOfUsers.$loaded()
-          .then(console.log(usersMocksService.listOfUsers));
+        $rootScope.listOfUsers = $firebaseObject(ref.child('listOfUsers'));
+        $rootScope.listOfUsers.$loaded()
+          .then(console.log($rootScope.listOfUsers));
       }
 
       this.getAllDealsFromFirebase = () => {
         const ref = firebase.database().ref();
-        usersMocksService.listOfDeals = $firebaseObject(ref.child('listOfDeals'));
-        usersMocksService.listOfDeals.$loaded()
-          .then(console.log(usersMocksService.listOfDeals));
+        $rootScope.listOfDeals = $firebaseObject(ref.child('listOfDeals'));
+        $rootScope.listOfDeals.$loaded()
+          .then(console.log($rootScope.listOfDeals));
       }
     })
 }

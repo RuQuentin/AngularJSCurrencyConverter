@@ -3,7 +3,7 @@
 
 export default function (app) {
   app
-    .service('userProfileService', function (usersMocksService) {
+    .service('userProfileService', function ($rootScope) {
       'ngInject';
 
       class newUser {
@@ -18,8 +18,8 @@ export default function (app) {
       }
 
       this.createNewUser = (email, uid) => {
-        usersMocksService.currentUser = new newUser(email);
-        usersMocksService.currentUserId = uid;
+        $rootScope.currentUser = new newUser(email);
+        $rootScope.currentUserId = uid;
       };
 
       this.createFormInfo = function (rootScope) {
