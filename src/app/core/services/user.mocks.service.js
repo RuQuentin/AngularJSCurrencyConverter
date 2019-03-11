@@ -7,15 +7,6 @@ export default function (app) {
     .service('usersMocksService', function ($rootScope) {
       'ngInject';
 
-        this.currentUser = {
-          firstName: 'Vasya',
-          lastName: 'Poopkin',
-          phone: '380672386289',
-          email: 'vasya@gmail.com',
-          role: 'user',
-          ava: "https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg"
-        };
-
         this.currentUserDeals = [
           { date: '10.10.2010', currencyFrom: 'EUR', currencyTo: 'USD', commission: 0, rate: 1.11, amountFrom: 200, amountTo: 222 },
           { date: '11.11.2011', currencyFrom: 'UAH', currencyTo: 'USD', commission: 0, rate: 27.1, amountFrom: 271, amountTo: 10 },
@@ -35,7 +26,6 @@ export default function (app) {
         };
 
         this.initMocks = () => {
-          $rootScope.currentUser = this.currentUser;
           $rootScope.currentUserDeals = this.currentUserDeals;
           $rootScope.currentUserId = this.currentUserId;
           $rootScope.userRole = this.userRole;

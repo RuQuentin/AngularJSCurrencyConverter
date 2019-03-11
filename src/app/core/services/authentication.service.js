@@ -53,7 +53,7 @@ export default function (app) {
           })
           .then(function(user) {
             $rootScope.currentUser = user;
-            console.log($rootScope.auth)
+            console.log($rootScope.auth);
           })
           .then(function() {
             $location.path('/home')
