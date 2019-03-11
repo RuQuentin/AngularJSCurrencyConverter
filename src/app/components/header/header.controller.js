@@ -2,17 +2,13 @@
 
 function HeaderController($log, $rootScope) {
     'ngInject';
+
     if ($rootScope.currentUser) {
-        this.firstName = $rootScope.currentUser.firstName;
-        this.lastName = $rootScope.currentUser.lastName;
+        this.currentUser = $rootScope.currentUser;
     }
 
-
     $rootScope.$watch('currentUser', currentUser => {
-        if (currentUser) {
-            this.firstName = currentUser.firstName;
-            this.lastName = currentUser.lastName;
-        }
+        this.currentUser = currentUser;
     });
 
     $log.debug('Hello from Header controller!');
