@@ -24,13 +24,15 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
     if (!file) {
       return;
     }
-    // eslint-disable-next-line no-console
+
+      // eslint-disable-next-line no-console
     console.log(file);
 
+    
     // в процессе реализации
-    // 1) загрузить файл в файрбейс, типа так $http('my-backend.com/file-upload', file);
-    // 2) получить его src
-    // 3) присвоить src в formInfo.ava
+    // 1) загрузить файл в файрбейс, типа так syncDataService.saveUserInfoToFirebase($rootScope.currentUserId);
+    // 2) получить его src syncDataService.getURL()
+    // 3) присвоить src в formInfo.ava = syncDataService.getURL();
   }
 
   $log.debug('Hello from EDIT-PROFILE controller!');
