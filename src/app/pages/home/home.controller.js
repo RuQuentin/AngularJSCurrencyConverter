@@ -1,9 +1,13 @@
 'use strict';
 
-function MainController($scope, $filter, $rootScope, syncDataService) {
+function MainController($scope, $filter, $rootScope, syncDataService, $state) {
   'ngInject';
 
-  $scope.currentUserDeals = syncDataService.getDealsFromFirebase();
+  if (!$rootScope.currentUserId) {
+    $state.go('sign-up');
+  } else {
+    $scope.currentUserDeals = syncDataService.getDealsFromFirebase();
+  }
 
   $scope.sort = {
     sortingOrder: 'date',

@@ -28,7 +28,7 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
       // eslint-disable-next-line no-console
     console.log(file);
 
-    
+    userProfileService.setProfileImage(file)
     // в процессе реализации
     // 1) загрузить файл в файрбейс, типа так syncDataService.saveUserInfoToFirebase($rootScope.currentUserId);
     // 2) получить его src syncDataService.getURL()
