@@ -24,12 +24,12 @@ export default function (app) {
 
       this.createFormInfo = function (rootScope) {
         return {
-          firstName: rootScope.currentUserInfo.firstName,
-          lastName: rootScope.currentUserInfo.lastName,
-          role: rootScope.currentUserInfo.role,
-          phone: rootScope.currentUserInfo.phone,
-          email: rootScope.currentUserInfo.email,
-          ava: rootScope.currentUserInfo.ava
+          firstName: rootScope.currentUser.firstName,
+          lastName: rootScope.currentUser.lastName,
+          role: rootScope.currentUser.role,
+          phone: rootScope.currentUser.phone,
+          email: rootScope.currentUser.email,
+          ava: rootScope.currentUser.ava
         }
       };
     })

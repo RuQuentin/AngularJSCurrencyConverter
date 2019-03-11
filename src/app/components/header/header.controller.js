@@ -3,12 +3,12 @@
 function HeaderController($log, $rootScope) {
     'ngInject';
 
-    this.firstName = $rootScope.currentUserInfo.firstName;
-    this.lastName = $rootScope.currentUserInfo.lastName;
+    this.firstName = $rootScope.currentUser.firstName;
+    this.lastName = $rootScope.currentUser.lastName;
 
-    $rootScope.$watch('currentUserInfo', currentUserInfo => {
-        this.firstName = currentUserInfo.firstName;
-        this.lastName = currentUserInfo.lastName;
+    $rootScope.$watch('currentUser', currentUser => {
+        this.firstName = currentUser.firstName;
+        this.lastName = currentUser.lastName;
     });
 
     $log.debug('Hello from Header controller!');
