@@ -4,17 +4,16 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
   'ngInject';
   $scope.success = false;
   $scope.formInfo = userProfileService.createFormInfo($rootScope);
-  // syncDataService.getUserInfoFromFirebase($rootScope.currentUserId);
+  syncDataService.getAllUsersFromFirebase();
   
   $scope.submitForm =  function(data){
     if ($scope.profile.$valid) {
-      $rootScope.currentUserInfo = data;
-      $rootScope.currentUserInfo = data;
+      $rootScope.currentUser = data;
       syncDataService.saveUserInfoToFirebase($rootScope.currentUserId);
       $scope.success = true;
       setTimeout(function(){
         $state.go('profile');
-        // syncDataService.getUserInfoFromFirebase();
+        syncDataService.getAllUsersFromFirebase();
       }, 1500);
     }
   }

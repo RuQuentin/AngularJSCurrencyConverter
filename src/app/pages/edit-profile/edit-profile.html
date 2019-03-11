@@ -7,7 +7,6 @@
                                 <h3>Edit profile</h3>
                                 <button class="btn btn-outline-info" type="button" ui-sref="profile">Return to profile</button>
                             </div>
-                            <p ng-show="profile.firstName.$error.required" class="alert alert-danger">First name is required.</p>
                             <p ng-show="profile.firstName.$error.maxlength" class="alert alert-danger">First name is too long.</p>
                             <p ng-show="profile.firstName.$error.pattern" class="alert alert-danger">Must have only latin letters</p>
             
@@ -15,7 +14,6 @@
                                 <p class="item col-xs-4 col-md-4 col-lg-4">first name: </p><input class='col-xs-8 col-md-8 col-lg-8' ng-class="{ 'has-error' : profile.firstName.$invalid && !profile.firstName.$pristine }"
                                     type="text" name='firstName' ng-pattern='/^[A-Za-z]+$/' ng-model='formInfo.firstName' required ng-maxlength='20'>
                             </div>
-                            <p ng-show="profile.lastName.$error.required" class="alert alert-danger">Last name is required.</p>
                             <p ng-show="profile.lastName.$error.maxlength" class="alert alert-danger">Last name is too long.</p>
                             <p ng-show="profile.lastName.$error.pattern" class="alert alert-danger">Must have only latin letters</p>
             
@@ -23,14 +21,12 @@
                                 <p class="item col-xs-4 col-md-4 col-lg-4">last name: </p><input class='col-xs-8 col-md-8 col-lg-8' ng-class="{ 'has-error' : profile.lastName.$invalid && !profile.lastName.$pristine }"
                                     type="text" name='lastName' ng-pattern='/^[A-Za-z]+$/' ng-model='formInfo.lastName' required ng-maxlength='20'>
                             </div>
-                            <p ng-show="profile.phone.$error.required" class="alert alert-danger">Phone is required.</p>
                             <p ng-show="profile.phone.$error.pattern" class="alert alert-danger">Enter a valid phone number, e.g. 380952665723</p>
             
                             <div class="editItem">
                                 <p class="item col-xs-4 col-md-4 col-lg-4">phone: </p><input class='col-xs-8 col-md-8 col-lg-8' ng-class="{ 'has-error' : profile.phone.$invalid && !profile.phone.$pristine }"
                                     type="text" name='phone' ng-pattern='/^380[1-9]{1}[0-9]{8}$/' ng-model='formInfo.phone' required>
                             </div>
-                            <p ng-show="profile.email.$error.required" class="alert alert-danger">Email is required.</p>
                             <p ng-show="profile.email.$error.minlength" class="alert alert-danger">Email is too short.</p>
                             <p ng-show="profile.email.$error.maxlength" class="alert alert-danger">Email is too long.</p>
                             <p ng-show="profile.email.$invalid" class="alert alert-danger">Enter a valid email, e.g. vasya@gmail.com</p>
