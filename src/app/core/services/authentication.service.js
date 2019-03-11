@@ -16,8 +16,6 @@ export default function (app) {
     .service('authenticationService', function ($firebaseAuth, userProfileService, syncDataService, $location, $rootScope) {
       'ngInject';
 
-      // syncDataService.getProfileImageRef('default.svg').toString() // add to profile
-
       this.signUpToFirebase = (email, password) => {
         $rootScope.auth = $firebaseAuth(firebase.auth());
 
@@ -69,11 +67,5 @@ export default function (app) {
             $location.path('/sign-in')
           })
       }
-
-      // ========= test =========
-      // console.log('========================')
-      // this.signInToFirebase('denis1@gmail.com', 'qwerty')
-      // $timeout(() => this.signOutFromFirebase(), 5000)
-
     })
 }
