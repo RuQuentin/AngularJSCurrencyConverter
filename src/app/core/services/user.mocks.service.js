@@ -24,11 +24,7 @@ export default function (app) {
 
         this.currentUserId = '7sikAxSigSZGC6v6FezOSeaNEPw2';
 
-        this.listOfUsers = [
-          { "id": 0, "name":"Alex", "login":"alex@gmail.com", "status":"user", "password":"a123" }, 
-          { "id": 1, "name":"Bill", "login":"bill@gmail.com", "status":"user", "password":"b123" }, 
-          { "id": 2, "name":"Nob",  "login":"nob@gmail.com",  "status":"user", "password":"n123" }, 
-        ];
+        this.listOfUsers = {};
     
         this.userRole = 'user',
         this.adminRole = 'admin',

@@ -13,7 +13,7 @@ export default function (app) {
           this.phone = null;
           this.email = email;
           this.role = 'user';
-          this.ava = usersMocksService.profileImageRefDefault
+          this.ava = '';
         }
       }
 
@@ -38,7 +38,7 @@ export default function (app) {
       //   return `${usersMocksService.currentUserId}.${extention}`
       // }
 
-      this.setProfileImage = () => {
+      // this.setProfileImage = file => {
         // syncDataService.uploadProfileImage(file)
           // .then(function() {
           //   syncDataService.getProfileImageRef()
@@ -52,7 +52,7 @@ export default function (app) {
           // })
 
         // usersMocksService.currentUser.ava = syncDataService.getProfileImageRef(name);
-      }
+      // }
 
       this.deleteProfileImage = () => {
         

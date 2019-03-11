@@ -48,6 +48,7 @@ export default function (app) {
 
         $rootScope.auth.$signInWithEmailAndPassword(email, password)
           .then(function(data) {
+            $rootScope.currentUserId = data.user.uid;
             return syncDataService.getUserInfoFromFirebase(data.user.uid)
           })
           .then(function(user) {
