@@ -6,7 +6,7 @@ export default function (app) {
     .service('userProfileService', function (usersMocksService, syncDataService, $rootScope) {
       'ngInject';
 
-      class newUser {
+      class User {
         constructor(email) {
           this.firstName = null;
           this.lastName = null;
@@ -21,7 +21,7 @@ export default function (app) {
       }
 
       this.createNewUser = (email, uid) => {
-        $rootScope.currentUser = new newUser(email);
+        $rootScope.currentUserInfo = new User(email);
         $rootScope.currentUserId = uid;
       };
 
@@ -41,9 +41,20 @@ export default function (app) {
       //   return `${usersMocksService.currentUserId}.${extention}`
       // }
 
-      this.setProfileImage = (blob, name) => {
-        syncDataService.uploadProfileImageRef(blob, name);
-        usersMocksService.currentUser.ava = syncDataService.getProfileImageRef(name);
+      this.setProfileImage = file => {
+        // syncDataService.uploadProfileImage(file)
+          // .then(function() {
+          //   syncDataService.getProfileImageRef()
+          // }
+          // .then(function(link) {
+          //   $rootScope.currentUserInfo.ava = link;
+          // })
+          // .then(function() {
+          //   console.log($rootScope.currentUserInfo);
+            
+          // })
+
+        // usersMocksService.currentUser.ava = syncDataService.getProfileImageRef(name);
       }
 
       this.deleteProfileImage = () => {

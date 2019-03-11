@@ -15,6 +15,10 @@ export default function (app) {
   app
     .service('syncDataService', function ($firebaseArray, $firebaseObject, $firebaseStorage, usersMocksService, $rootScope) {
       'ngInject';
+
+      // const currentUserId = usersMocksService.currentUserId;
+      // firebase.auth()[7sikAxSigSZGC6v6FezOSeaNEPw2].$loaded()
+      //   .then(data => console.log(data))
       
       this.getDealsFromFirebase = () => {
         const ref = firebase.database().ref();
@@ -31,13 +35,14 @@ export default function (app) {
 
       this.getUserInfoFromFirebase = uid => {
         const ref = firebase.database().ref();
-        $rootScope.currentUser = $firebaseObject(ref.child('listOfUsers').child(uid));
+        const user = $firebaseObject(ref.child('listOfUsers').child(uid));
+        return user;
       }
 
       this.saveUserInfoToFirebase = uid => {
         const ref = firebase.database().ref();
-        ref.child('listOfUsers').update({
-          [uid]: $rootScope.currentUser
+        return ref.child('listOfUsers').update({
+          [uid]: $rootScope.currentUserInfo
         })
       }
 
@@ -67,20 +72,22 @@ export default function (app) {
           .then(console.log($rootScope.listOfDeals));
       }
 
-      this.getProfileImageRef = name => {
-        const ref = firebase.storage().ref().child('currency-converter/profile-pictures').child(name)
+      this.getProfileImageRef = () => {
+        const ref = firebase.storage().ref()
+          .child('currency-converter/profile-pictures')
+          .child($rootScope.currentUserId)
         const imageRef = $firebaseStorage(ref);
         const urlPromise = imageRef.$getDownloadURL();
-        console.log(ref.fullPath)
+        console.log(urlPromise)
         return urlPromise;
       }
 
-      this.uploadProfileImageRef = (blob, fileName) => {
+      this.uploadProfileImage = file => {
         const ref = firebase.storage().ref()
           .child('currency-converter/profile-pictures')
-          .child(fileName);
-        const uploadTask = ref.$put(blob);
-        return uploadTask;
+          .child($rootScope.currentUserId);
+        const imageRef = $firebaseStorage(ref);
+        return imageRef.$put(file);
       }
     })
 }

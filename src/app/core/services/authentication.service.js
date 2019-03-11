@@ -13,18 +13,22 @@ firebase.initializeApp(configFirebase);
 
 export default function (app) {
   app
-    .service('authenticationService', function ($firebaseAuth, userProfileService, syncDataService, $location) {
+    .service('authenticationService', function ($firebaseAuth, userProfileService, syncDataService, $location, $rootScope) {
       'ngInject';
 
-      syncDataService.getProfileImageRef('default.svg').toString() // add to profile
-
+      // syncDataService.getProfileImageRef('default.svg').toString() // add to profile
 
       this.signUpToFirebase = (email, password) => {
-        const auth = $firebaseAuth(firebase.auth());
-        auth.$createUserWithEmailAndPassword(email, password)
+        $rootScope.auth = $firebaseAuth(firebase.auth());
+
+        $rootScope.auth.$createUserWithEmailAndPassword(email, password)
           .then(function(firebaseUser) {
             userProfileService.createNewUser(email, firebaseUser.user.uid);
-            syncDataService.saveUserInfoToFirebase(firebaseUser.user.uid);
+
+            return syncDataService.saveUserInfoToFirebase(firebaseUser.user.uid);
+          })
+          .then(function() {
+            $location.path('/editProfile')
           })
           .catch(function(error) {
             console.log('error: ', error)
@@ -40,14 +44,35 @@ export default function (app) {
       // }
 
       this.signInToFirebase = (email, password) => {
-        const auth = $firebaseAuth(firebase.auth());
-        auth.$signInWithEmailAndPassword(email, password)
+        $rootScope.auth = $firebaseAuth(firebase.auth());
+
+        $rootScope.auth.$signInWithEmailAndPassword(email, password)
+          .then(function(data) {
+            return syncDataService.getUserInfoFromFirebase(data.user.uid)
+          })
+          .then(function(user) {
+            $rootScope.currentUser = user;
+            console.log($rootScope.auth)
+          })
           .then(function() {
-            $location.path('/#!/home')
+            $location.path('/home')
           })
           .catch(function(error) {
             console.log('error: ', error)
           })
       };
+
+      this.signOutFromFirebase = () => {
+        $rootScope.auth.$signOut()
+          .then(function() {
+            $location.path('/sign-in')
+          })
+      }
+
+      // ========= test =========
+      // console.log('========================')
+      // this.signInToFirebase('denis1@gmail.com', 'qwerty')
+      // $timeout(() => this.signOutFromFirebase(), 5000)
+
     })
 }
