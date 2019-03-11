@@ -1,31 +1,36 @@
-<div class="card">
+<div class="shadow card">
   <div class="card-body">
     <h5 class="card-title">Weather widget</h5>
-    <table class="table table-borderless">
+    <table class="text-left table table-borderless table-striped">
         <tbody>
           <tr>
             <th scope="row">Temp:</th>
-            <td>{{ weatherCtrl.temp }}</td>
+            <td>{{ weatherCtrl.weatherData.temp }}</td>
           </tr>
           <tr>
             <th scope="row">Feel like:</th>
-            <td>{{ weatherCtrl.feelLike }}</td>
+            <td>{{ weatherCtrl.weatherData.feelLike }}</td>
           </tr>
           <tr>
             <th scope="row">Wind:</th>
-            <td>{{ weatherCtrl.wind }}</td>
+            <td>{{ weatherCtrl.weatherData.wind }}</td>
           </tr>
           <tr>
             <th scope="row">Direction:</th>
-            <td>{{ weatherCtrl.dir }}</td>
+            <td>{{ weatherCtrl.weatherData.dir }}</td>
           </tr>
           <tr>
             <th scope="row">City:</th>
-            <td>{{ weatherCtrl.city }}</td>
+            <td>{{ weatherCtrl.weatherData.city }}</td>
           </tr>
           <tr>
             <th scope="row">Country:</th>
-            <td>{{ weatherCtrl.country }}</td>
+            <td>{{ weatherCtrl.weatherData.country }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <input type="text" class="form-control" placeholder="Enter location">
+            </td>
           </tr>
         </tbody>
       </table>
