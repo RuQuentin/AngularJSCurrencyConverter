@@ -26,11 +26,11 @@ export default function (app) {
             return syncDataService.saveUserInfoToFirebase(firebaseUser.user.uid);
           })
           .then(function() {
-            $location.path('/editProfile')
+            $location.path('/home')
           })
           .catch(function(error) {
-            console.log('error: ', error)
-          })
+            return error;
+          });
       };
 
       // this.getUserFromLocalStorage = () => {
@@ -44,20 +44,17 @@ export default function (app) {
       this.signInToFirebase = (email, password) => {
         $rootScope.auth = $firebaseAuth(firebase.auth());
 
-        $rootScope.auth.$signInWithEmailAndPassword(email, password)
+        return $rootScope.auth.$signInWithEmailAndPassword(email, password)
           .then(function(data) {
             $rootScope.currentUserId = data.user.uid;
-            return syncDataService.getUserInfoFromFirebase(data.user.uid)
+            return syncDataService.getUserInfoFromFirebase(data.user.uid);
           })
           .then(function(user) {
             $rootScope.currentUser = user;
-            console.log($rootScope.auth);
-          })
-          .then(function() {
-            $location.path('/home')
+            $location.path('/home');
           })
           .catch(function(error) {
-            console.log('error: ', error)
+            return error;
           })
       };
 
