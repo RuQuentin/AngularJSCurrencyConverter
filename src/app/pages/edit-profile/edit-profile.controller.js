@@ -5,31 +5,34 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
   $scope.success = false;
   const reader = new FileReader();
   let file = null;
-  
-  if($rootScope.currentUser){
+
+  if ($rootScope.currentUser) {
     $scope.formInfo = userProfileService.createFormInfo();
   }
-  
-  $scope.submitForm =  function(data){
+
+  $scope.submitForm = function (data) {
     if ($scope.profile.$valid) {
       userProfileService.saveToCurrentUser(data);
       syncDataService.saveUserInfoToFirebase($rootScope.currentUserId);
-      userProfileService.setProfileImage(file);
+      
+      if (file) {
+        userProfileService.setProfileImage(file);
+      }
       $scope.success = true;
-      setTimeout(function(){
+      setTimeout(function () {
         $state.go('profile');
       }, 1500);
     }
   }
 
-  $scope.onFileChanged = function(files) {
+  $scope.onFileChanged = function (files) {
     const ava = document.querySelector('.ava');
-    file = files[0];
 
-    if (!file) {
+    if (!files[0]) {
       return;
-    } 
+    }
 
+    file = files[0];
     reader.readAsDataURL(file);
     reader.onloadend = function () {
       $scope.formInfo.ava = reader.result;
