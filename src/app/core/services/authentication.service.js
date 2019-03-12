@@ -22,7 +22,7 @@ export default function (app) {
 
         $rootScope.auth = $firebaseAuth(firebase.auth());
 
-        $rootScope.auth.$createUserWithEmailAndPassword(email, password)
+        return $rootScope.auth.$createUserWithEmailAndPassword(email, password)
           .then(function(firebaseUser) {
             userProfileService.createNewUser(user, firebaseUser.user.uid);
 
@@ -32,7 +32,7 @@ export default function (app) {
             $location.path('/home')
           })
           .catch(function(error) {
-            console.log('error:', error)
+            return error;
           });
       };
 
@@ -57,7 +57,7 @@ export default function (app) {
             $location.path('/home');
           })
           .catch(function(error) {
-            console.log('error:', error)
+            return error;
           })
       };
 

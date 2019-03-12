@@ -12,6 +12,9 @@
                                                        regForm.email.$invalid">
             E-Mail address is not valid
         </small>
+        <small class="help-block text-danger" ng-hide="warning === ''" ng-bind="warning">
+
+        </small> 
     </div>
     <div class="form-group sign-up-form__group col-xs-12 col-md-12 col-lg-12 mb-3"
       ng-class="{'has-error': 'regForm.password.$touched && 
