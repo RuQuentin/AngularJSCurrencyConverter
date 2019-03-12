@@ -1,9 +1,13 @@
 'use strict';
 
-function AdminModal() {
+function AdminModalController(sharedAdminFactory, $scope) {
     'ngInject';
 
-    this.name = 'MODAL';
+    const self = this;
+    
+    $scope.$watch(() => sharedAdminFactory.userData, () => {
+        self.data = sharedAdminFactory.getUserData();
+    });
 }
 
-export default AdminModal;
+export default AdminModalController;
