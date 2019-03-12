@@ -8,7 +8,7 @@ export default class SignUpController {
       $scope.warning = "";
       authenticationService.signUpToFirebase(this.newUser)
       .then(function(response) {
-        if(response.message) {
+        if (response) {
           $scope.warning = response.message;
         }
       })
