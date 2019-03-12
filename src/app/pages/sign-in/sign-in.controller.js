@@ -8,7 +8,7 @@ function SignInController($scope, authenticationService) {
 
     authenticationService.signInToFirebase(login, password)
     .then(function(response) {
-      if(response) {
+      if (response) {
         $scope.warning = response.message;
       }
     })
