@@ -18,6 +18,7 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
       if (file) {
         userProfileService.setProfileImage(file);
       }
+
       $scope.success = true;
       setTimeout(function () {
         $state.go('profile');
@@ -26,8 +27,6 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
   }
 
   $scope.onFileChanged = function (files) {
-    const ava = document.querySelector('.ava');
-
     if (!files[0]) {
       return;
     }
@@ -36,8 +35,7 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
     reader.readAsDataURL(file);
     reader.onloadend = function () {
       $scope.formInfo.ava = reader.result;
-      ava.src = reader.result;
-
+      $scope.$apply();
     }
   }
 
