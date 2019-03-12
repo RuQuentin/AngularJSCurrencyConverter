@@ -43,6 +43,7 @@ export default function (app) {
           firstName: $rootScope.currentUser.firstName,
           lastName: $rootScope.currentUser.lastName,
           phone: $rootScope.currentUser.phone,
+          email: $rootScope.currentUser.email,
           ava: $rootScope.currentUser.ava,
         })
       }
