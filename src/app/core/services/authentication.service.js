@@ -16,18 +16,20 @@ export default function (app) {
     .service('authenticationService', function ($firebaseAuth, userProfileService, syncDataService, $location, $rootScope) {
       'ngInject';
 
-      // syncDataService.getProfileImageRef('default.svg').toString() // add to profile
+      this.signUpToFirebase = user => {
+        console.log(user)
+        const { email, password } = user;
 
-      this.signUpToFirebase = (email, password) => {
         $rootScope.auth = $firebaseAuth(firebase.auth());
 
         $rootScope.auth.$createUserWithEmailAndPassword(email, password)
           .then(function(firebaseUser) {
-            userProfileService.createNewUser(email, firebaseUser.user.uid);
+            userProfileService.createNewUser(user, firebaseUser.user.uid);
 
             return syncDataService.saveUserInfoToFirebase(firebaseUser.user.uid);
           })
           .then(function() {
+            console.log(syncDataService.getAllUsersFromFirebase())
             $location.path('/editProfile')
           })
           .catch(function(error) {
@@ -69,11 +71,5 @@ export default function (app) {
             $location.path('/sign-in')
           })
       }
-
-      // ========= test =========
-      // console.log('========================')
-      // this.signInToFirebase('denis1@gmail.com', 'qwerty')
-      // $timeout(() => this.signOutFromFirebase(), 5000)
-
     })
 }

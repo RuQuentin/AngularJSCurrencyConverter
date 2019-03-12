@@ -15,10 +15,6 @@ export default function (app) {
   app
     .service('syncDataService', function ($firebaseArray, $firebaseObject, $firebaseStorage, usersMocksService, $rootScope) {
       'ngInject';
-
-      // const currentUserId = usersMocksService.currentUserId;
-      // firebase.auth()[7sikAxSigSZGC6v6FezOSeaNEPw2].$loaded()
-      //   .then(data => console.log(data))
       
       this.getDealsFromFirebase = () => {
         const ref = firebase.database().ref();
@@ -46,7 +42,9 @@ export default function (app) {
         .update({
           firstName: $rootScope.currentUser.firstName,
           lastName: $rootScope.currentUser.lastName,
-          phone: $rootScope.currentUser.phone
+          phone: $rootScope.currentUser.phone,
+          email: $rootScope.currentUser.email,
+          ava: $rootScope.currentUser.ava
         })
       }
 
@@ -80,18 +78,25 @@ export default function (app) {
         const ref = firebase.storage().ref()
           .child('currency-converter/profile-pictures')
           .child($rootScope.currentUserId)
-        const imageRef = $firebaseStorage(ref);
-        const urlPromise = imageRef.$getDownloadURL();
-        console.log(urlPromise)
-        return urlPromise;
+        return ref.getDownloadURL();
       }
 
       this.uploadProfileImage = file => {
         const ref = firebase.storage().ref()
           .child('currency-converter/profile-pictures')
           .child($rootScope.currentUserId);
-        const imageRef = $firebaseStorage(ref);
-        return imageRef.$put(file);
+        return ref.put(file)
+      }
+
+      this.changeUserRole = (uid, role) => {
+        $rootScope.listOfUsers.uid.role = role;
+
+        const ref = firebase.database().ref()
+          .child('listOfUsers')
+          .child(uid);
+        return ref.update({
+          [role]: role
+        })
       }
     })
 }
