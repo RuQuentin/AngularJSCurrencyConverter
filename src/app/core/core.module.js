@@ -17,6 +17,7 @@ import currencyFilter from './filter/currenyc.filter';
 import syncDataService from './services/sync-data.service';
 import authenticationService from './services/authentication.service';
 import userProfileService from './services/user-profile.service';
+import weatherAPIService from './services/weatherAPI.service';
 
 validationTestDirective(shared);
 preloaderDirective(shared);
@@ -34,5 +35,6 @@ currencyFilter(shared);
 syncDataService(shared);
 authenticationService(shared);
 userProfileService(shared);
+weatherAPIService(shared);
 
 export default shared;
