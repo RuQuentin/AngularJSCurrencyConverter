@@ -87,7 +87,8 @@ export default function (app) {
       }
 
       this.changeUserRole = (uid, role) => {
-        $rootScope.listOfUsers.uid.role = role;
+        console.log(role);
+        $rootScope.listOfUsers[uid].role = role;
 
         const ref = firebase.database().ref()
           .child('listOfUsers')
