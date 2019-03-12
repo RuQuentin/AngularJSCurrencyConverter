@@ -9,7 +9,7 @@ export default function (app) {
       class User {
         constructor(user) {
           this.firstName = user.firstName || '';
-          this.lastName = user.firstName || '';
+          this.lastName = user.lastName || '';
           this.phone = user.phone || '';
           this.email = user.email;
           this.role = usersMocksService.userRole;
