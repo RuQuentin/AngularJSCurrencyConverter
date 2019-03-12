@@ -29,7 +29,7 @@ export default function (app) {
             $location.path('/home')
           })
           .catch(function(error) {
-            return error;
+            console.log('error:', error)
           });
       };
 
@@ -54,7 +54,7 @@ export default function (app) {
             $location.path('/home');
           })
           .catch(function(error) {
-            return error;
+            console.log('error:', error)
           })
       };
 
