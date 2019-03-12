@@ -27,4 +27,11 @@ export default class AdminController {
     resetPsw(id) {
         this.rootScope.listOfUsers[id].password = this.rootScope.listOfUsers[id].login;
     }
+    
+    changeUserRole(id){
+        let userRole = this.rootScope.listOfUsers[id].role;
+        userRole = userRole === 'admin' ? 'user': 'admin';
+        this.syncDataService.changeUserRole(id, userRole);
+    }
+
 }
