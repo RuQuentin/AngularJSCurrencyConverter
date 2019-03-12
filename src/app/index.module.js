@@ -5,6 +5,7 @@ import run from './index.run';
 
 import uiRouter from '@uirouter/angularjs';
 import 'angularjs-geolocation';
+import 'angular-local-storage';
 
 // import firebase from 'firebase';
 
@@ -27,6 +28,7 @@ const App = angular.module(
     // plugins
     uiRouter,
     "geolocation",
+    "LocalStorageModule",
     "ngMessages", 
     "oc.lazyLoad",
     "firebase",
