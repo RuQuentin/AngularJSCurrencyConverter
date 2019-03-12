@@ -13,7 +13,7 @@ import 'angularfire';
 
 export default function (app) {
   app
-    .service('syncDataService', function ($firebaseArray, $firebaseObject, $rootScope) {
+    .service('syncDataService', function ($firebaseArray, $firebaseObject, $firebaseStorage, usersMocksService, $rootScope) {
       'ngInject';
       
       this.getDealsFromFirebase = () => {
@@ -31,13 +31,19 @@ export default function (app) {
 
       this.getUserInfoFromFirebase = uid => {
         const ref = firebase.database().ref();
-        $rootScope.currentUser = $firebaseObject(ref.child('listOfUsers').child(uid));
+        const user = $firebaseObject(ref.child('listOfUsers').child(uid));
+        return user;
       }
 
       this.saveUserInfoToFirebase = uid => {
         const ref = firebase.database().ref();
-        ref.child('listOfUsers').update({
-          [uid]: $rootScope.currentUser
+        return ref.child('listOfUsers')
+        .child(uid)
+        .update({
+          firstName: $rootScope.currentUser.firstName,
+          lastName: $rootScope.currentUser.lastName,
+          phone: $rootScope.currentUser.phone,
+          ava: $rootScope.currentUser.ava,
         })
       }
 
@@ -65,6 +71,31 @@ export default function (app) {
         $rootScope.listOfDeals = $firebaseObject(ref.child('listOfDeals'));
         $rootScope.listOfDeals.$loaded()
           .then(console.log($rootScope.listOfDeals));
+      }
+
+      this.getProfileImageRef = () => {
+        const ref = firebase.storage().ref()
+          .child('currency-converter/profile-pictures')
+          .child($rootScope.currentUserId)
+        return ref.getDownloadURL();
+      }
+
+      this.uploadProfileImage = file => {
+        const ref = firebase.storage().ref()
+          .child('currency-converter/profile-pictures')
+          .child($rootScope.currentUserId);
+        return ref.put(file)
+      }
+
+      this.changeUserRole = (uid, role) => {
+        $rootScope.listOfUsers.uid.role = role;
+
+        const ref = firebase.database().ref()
+          .child('listOfUsers')
+          .child(uid);
+        return ref.update({
+          [role]: role
+        })
       }
     })
 }

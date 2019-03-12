@@ -3,12 +3,15 @@
 function EditProfileController($log, $scope, $rootScope, userProfileService, syncDataService, $state) {
   'ngInject';
   $scope.success = false;
-  $scope.formInfo = userProfileService.createFormInfo($rootScope);
+  if($rootScope.currentUser){
+    $scope.formInfo = userProfileService.createFormInfo();
+  }
+ 
   syncDataService.getAllUsersFromFirebase();
   
   $scope.submitForm =  function(data){
     if ($scope.profile.$valid) {
-      $rootScope.currentUser = data;
+      userProfileService.saveToCurrentUser(data);
       syncDataService.saveUserInfoToFirebase($rootScope.currentUserId);
       $scope.success = true;
       setTimeout(function(){
@@ -24,13 +27,8 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
     if (!file) {
       return;
     }
-    // eslint-disable-next-line no-console
-    console.log(file);
 
-    // в процессе реализации
-    // 1) загрузить файл в файрбейс, типа так $http('my-backend.com/file-upload', file);
-    // 2) получить его src
-    // 3) присвоить src в formInfo.ava
+    userProfileService.setProfileImage(file)
   }
 
   $log.debug('Hello from EDIT-PROFILE controller!');

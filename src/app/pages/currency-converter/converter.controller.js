@@ -46,7 +46,6 @@ export default class currencyController {
 
     swapCurrency () {
         [this.currencyGiveName, this.currencyReceiveName] = [this.currencyReceiveName, this.currencyGiveName];
-        [this.tradeValue, this.receiveValue] = [this.receiveValue, this.tradeValue];
     }
 
     withCommissions () {
@@ -64,9 +63,9 @@ export default class currencyController {
             commission: this.commission,
             rate: this.rate
         };
-        const userDeals = this.CurrencyService.getUserDeals(objValue);
+        const userDeal = this.CurrencyService.getUserDeals(objValue);
 
-        this.syncDataService.addDealToFirebase(userDeals);
+        this.syncDataService.addDealToFirebase(userDeal);
         this.syncDataService.getAllFromFirebase(); // it's just for check. It show all deals in console
    }
 

@@ -6,15 +6,15 @@
     <table class="table table-striped rounded table-hover">
       <thead>
         <tr>
-          <th custom-sort order="'id'" sort="sort">
+          <th >
             Id
           </th>
 
-          <th custom-sort order="'name'" sort="sort">
+          <th >
             Name
           </th>
 
-          <th custom-sort order="'login'" sort="sort">
+          <th >
             E-mail
           </th>
           
@@ -22,11 +22,11 @@
             Status
           </th> -->
 
-          <th custom-sort order="'field5'" sort="sort">
+          <th >
             Admin
           </th>
 
-          <th custom-sort order="'password'" sort="sort">
+          <th  >
             Password
           </th>
 
@@ -41,23 +41,29 @@
       </thead>
 
       <tbody>
-        <tr ng-repeat="item in filteredItems | orderBy:sort.sortingOrder:sort.reverse">
-          <td>{{ item.id }}</td>
-          <td>{{ item.name }}</td>
-          <td>{{ item.login }}</td>
+        <tr ng-repeat="(key, value) in admCont.listOfUsers">
+          <td ng-short>{{ key }}</td>
+          <td>{{ value.firstName }}</td>
+          <td>{{ value.email }}</td>
+          <!-- <td>{{ value.role }}</td> -->
+
           <td>
             <div class="make-switch switch-mini">
-              <label><input type="checkbox" checked></label>
+              <label><input type="checkbox"></label>
             </div>
           </td>
+
           <td><div class="input-group mb-2 justify-content-center">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="button" ng-click='admCont.resetPsw(item.id)'>Reset password</button>
               </div>
             </div>
           </td>
+
           <td><i class="fas fa-history tabble__icon" ng-click="admCont.setSelectedUser(item.id)" ui-sref="transactionsList"></i></td>
+          
           <td><i class="fas fa-user-circle tabble__icon" ui-sref="profile"></i></td>
+
         </tr>
       </tbody>
     </table>
