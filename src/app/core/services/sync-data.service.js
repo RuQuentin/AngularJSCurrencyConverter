@@ -44,7 +44,7 @@ export default function (app) {
           lastName: $rootScope.currentUser.lastName,
           phone: $rootScope.currentUser.phone,
           email: $rootScope.currentUser.email,
-          ava: $rootScope.currentUser.ava,
+          ava: $rootScope.currentUser.ava
         })
       }
 

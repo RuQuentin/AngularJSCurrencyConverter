@@ -5,7 +5,7 @@ export default class SignUpController {
     'ngInject';
     // #fix add user's name and last name to firebase
     this.addUser = () => {
-      authenticationService.signUpToFirebase(this.newUser.login, this.newUser.password);
+      authenticationService.signUpToFirebase(this.newUser);
     }
   }  
 }
