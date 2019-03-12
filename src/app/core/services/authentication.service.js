@@ -16,16 +16,20 @@ export default function (app) {
     .service('authenticationService', function ($firebaseAuth, userProfileService, syncDataService, $location, $rootScope) {
       'ngInject';
 
-      this.signUpToFirebase = (email, password) => {
+      this.signUpToFirebase = user => {
+        console.log(user)
+        const { email, password } = user;
+
         $rootScope.auth = $firebaseAuth(firebase.auth());
 
         $rootScope.auth.$createUserWithEmailAndPassword(email, password)
           .then(function(firebaseUser) {
-            userProfileService.createNewUser(email, firebaseUser.user.uid);
+            userProfileService.createNewUser(user, firebaseUser.user.uid);
 
             return syncDataService.saveUserInfoToFirebase(firebaseUser.user.uid);
           })
           .then(function() {
+            console.log(syncDataService.getAllUsersFromFirebase())
             $location.path('/editProfile')
           })
           .catch(function(error) {
