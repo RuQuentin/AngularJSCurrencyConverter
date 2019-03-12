@@ -60,7 +60,7 @@
             </div>
           </td>
 
-          <td><i class="fas fa-history tabble__icon" ng-click="admCont.setSelectedUser(item.id)" ui-sref="transactionsList"></i></td>
+          <td><i class="fas fa-history tabble__icon" data-toggle="modal" ng-click="admCont.setSelectedUser(key)" data-target="#userHistoryModal"></i></td>
           
           <td><i class="fas fa-user-circle tabble__icon" ui-sref="profile"></i></td>
 
@@ -69,3 +69,5 @@
     </table>
   </div>
 </div>
+
+<admin-modal-component></admin-modal-component>

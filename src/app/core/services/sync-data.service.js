@@ -67,11 +67,9 @@ export default function (app) {
           .then(console.log($rootScope.listOfUsers));
       }
 
-      this.getAllDealsFromFirebase = () => {
+      this.getCheckedUserDealsFromFirebase = userID => {
         const ref = firebase.database().ref();
-        $rootScope.listOfDeals = $firebaseObject(ref.child('listOfDeals'));
-        $rootScope.listOfDeals.$loaded()
-          .then(console.log($rootScope.listOfDeals));
+        return $firebaseArray(ref.child('listOfDeals').child(userID));
       }
 
       this.getProfileImageRef = () => {
