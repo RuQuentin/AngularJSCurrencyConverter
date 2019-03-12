@@ -7,12 +7,11 @@ export default function (app) {
 
         const key = weatherAPIconstants.APIkey;
 
-        this.getData = () => $http({
+        this.getData = city => $http({
                 method: 'GET',
-                url: `http://api.weatherbit.io/v2.0/current?lat=48.4503701&lon=35.0779096&key=${key}`
+                url: `http://api.weatherbit.io/v2.0/current?city=${city}&key=${key}`
               })
-              .then(({ data }) => data)
-              .then(({ data }) => data)
+              .then(({ data: { data } }) => data)
               .then(([ weatherData ]) => weatherData);
     });
 }

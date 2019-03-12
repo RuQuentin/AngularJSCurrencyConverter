@@ -5,15 +5,15 @@
         <tbody>
           <tr>
             <th scope="row">Temp:</th>
-            <td>{{ weatherCtrl.weatherData.temp }}</td>
+            <td>{{ weatherCtrl.weatherData.temp }}°C</td>
           </tr>
           <tr>
             <th scope="row">Feel like:</th>
-            <td>{{ weatherCtrl.weatherData.feelLike }}</td>
+            <td>{{ weatherCtrl.weatherData.feelLike }}°C</td>
           </tr>
           <tr>
             <th scope="row">Wind:</th>
-            <td>{{ weatherCtrl.weatherData.wind }}</td>
+            <td>{{ weatherCtrl.weatherData.wind }}m/s</td>
           </tr>
           <tr>
             <th scope="row">Direction:</th>
@@ -29,7 +29,15 @@
           </tr>
           <tr>
             <td colspan="2">
-              <input type="text" class="form-control" placeholder="Enter location">
+              <input type="text" class="form-control" ng-model="weatherCtrl.currentCity" placeholder="Enter location">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button type="button" class="btn btn-dark w-100" ng-click="weatherCtrl.getForecast(weatherCtrl.currentCity)">Get forecast</button>
+            </td>
+            <td>
+              <button type="button" class="btn btn-outline-dark w-100" ng-click="weatherCtrl.getLocal()">Set my location</button>
             </td>
           </tr>
         </tbody>
