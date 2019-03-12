@@ -34,34 +34,23 @@ export default function (app) {
       };
 
       this.saveToCurrentUser = function (data) {
-        $rootScope.currentUser.firstName = data.firstName ? data.firstName : '',
-        $rootScope.currentUser.lastName =  data.firstName ? data.lastName : '',
-        $rootScope.currentUser.role = data.role ? data.role : 'user',
-        $rootScope.currentUser.phone = data.phone ? data.phone : '',
-        $rootScope.currentUser.email = data.email ? data.email : '',
-        $rootScope.currentUser.ava = data.ava ? data.ava : ''
+        $rootScope.currentUser.firstName = data.firstName || '',
+        $rootScope.currentUser.lastName = data.lastName || '',
+        $rootScope.currentUser.role = data.role || 'user',
+        $rootScope.currentUser.phone = data.phone || '',
+        $rootScope.currentUser.email = data.email || '',
+        $rootScope.currentUser.ava = data.ava || ''
       };
 
-      // this.convertProfileImageName = (name) => {
-      //   const extantion = 
-      //   return `${usersMocksService.currentUserId}.${extention}`
-      // }
-
-      // this.setProfileImage = file => {
-        // syncDataService.uploadProfileImage(file)
-          // .then(function() {
-          //   syncDataService.getProfileImageRef()
-          // }
-          // .then(function(link) {
-          //   $rootScope.currentUserInfo.ava = link;
-          // })
-          // .then(function() {
-          //   console.log($rootScope.currentUserInfo);
-            
-          // })
-
-        // usersMocksService.currentUser.ava = syncDataService.getProfileImageRef(name);
-      // }
+      this.setProfileImage = file => {
+        syncDataService.uploadProfileImage(file)
+          .then(function() {
+            syncDataService.getProfileImageRef()
+          })
+          .then(function(link) {
+            $rootScope.currentUserInfo.ava = link;
+          });
+      }
 
       this.deleteProfileImage = () => {
         
