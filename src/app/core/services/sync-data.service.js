@@ -2,12 +2,6 @@
 'use strict';
 
 import firebase from 'firebase';
-import 'angularfire';
-
-// ==== connecting to firebase ====
-// import configFirebase from '~/env.js'
-// firebase.initializeApp(configFirebase);
-// ================================
 
 
 export default function (app) {
@@ -60,10 +54,14 @@ export default function (app) {
       }
 
       this.getAllUsersFromFirebase = () => {
+        $rootScope.listOfUsers = {};
         const ref = firebase.database().ref();
-        $rootScope.listOfUsers = $firebaseObject(ref.child('listOfUsers'));
-        $rootScope.listOfUsers.$loaded()
-          .then(console.log($rootScope.listOfUsers));
+        const objectOfUsers = $firebaseObject(ref.child('listOfUsers'));
+        return objectOfUsers.$loaded()
+          .then(() => {
+            $rootScope.listOfUsers = Object.values(objectOfUsers)
+            console.log($rootScope.listOfUsers.filter(item => item && item.email))
+          });
       }
 
       this.getCheckedUserDealsFromFirebase = userID => {
