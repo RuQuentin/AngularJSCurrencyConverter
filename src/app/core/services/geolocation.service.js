@@ -6,8 +6,8 @@ export default function (app) {
         'ngInject';
 
         this.getCoordinates = () => geolocation.getLocation().then(data => ({
-              lat: data.coords.latitude,
-              long: data.coords.longitude
-          }))
+            lat: data.coords.latitude,
+            long: data.coords.longitude
+        }))
     });
 }

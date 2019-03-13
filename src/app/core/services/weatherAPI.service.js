@@ -7,14 +7,7 @@ export default function (app) {
 
         const key = weatherAPIconstants.APIkey;
 
-        this.getCityForecast = city => $http({
-          method: 'GET',
-          url: `http://api.weatherbit.io/v2.0/current?city=${city}&key=${key}`
-        })
-        .then(({ data: { data } }) => data)
-        .then(([ weatherData ]) => weatherData);
-
-        this.getCoordinatesForecast = ({ lat, long }) => $http({
+        this.getForecast = (lat, long) => $http({
           method: 'GET',
           url: `http://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${long}&key=${key}`
         })
