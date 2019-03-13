@@ -1,49 +1,55 @@
 'use strict';
 
-function WeatherController(weatherAPIService, geolocationService, localStorageService) {
-    'ngInject';
+export default class WeatherController {
+    constructor(weatherAPIService, geolocationService, localStorageService) {
+        'ngInject';
+        
+        this.weatherAPIService = weatherAPIService;
+        this.geolocationService = geolocationService;
+        this.localStorageService = localStorageService;
 
-    this.weatherData = {};
-    this.selectedLocation = null;
-    this.tableShow = false;
+        this.weatherData = {};
+        this.selectedLocation = null;
+        this.tableShow = false;
+    }
 
-    this.getSavedCoordinates = () => {
-      const coords = localStorageService.getCoordinates();
+    getSavedCoordinates() {
+      const coords = this.localStorageService.getCoordinates();
 
       if (coords) {
         const { lat, long } = coords;
-        weatherAPIService.getForecast(lat, long)
+        this.weatherAPIService.getForecast(lat, long)
         .then(data => {
-          localStorageService.setCoordinates(lat, long);
+          this.localStorageService.setCoordinates(lat, long);
           this.setWeatherData(data);
         });
       }
     }
 
-    this.getForecastForSelected = () => {
+    getForecastForSelected() {
       const location = this.autocomplete.details.geometry.location;
       const lat = location.lat();
       const long = location.lng();
       
-      weatherAPIService.getForecast(lat, long)
+      this.weatherAPIService.getForecast(lat, long)
         .then(data => {
-          localStorageService.setCoordinates(lat, long);
+          this.localStorageService.setCoordinates(lat, long);
           this.setWeatherData(data);
         });
-    };
+    }
 
-    this.getLocal = () => {
-      geolocationService.getCoordinates().then(({ lat, long }) => {
-        weatherAPIService.getForecast(lat, long)
+    getLocal() {
+      this.geolocationService.getCoordinates().then(({ lat, long }) => {
+        this.weatherAPIService.getForecast(lat, long)
         .then(data => {
-          localStorageService.setCoordinates(lat, long);
+          this.localStorageService.setCoordinates(lat, long);
           this.selectedLocation = `${data.city_name}, ${data.country_code}`;
           this.setWeatherData(data);
         });
       });
-    };
+    }
 
-    this.setWeatherData = data => {
+    setWeatherData(data) {
       this.weatherData.temp = data.temp;
       this.weatherData.feelLike = data.app_temp;
       this.weatherData.wind = data.wind_spd;
@@ -52,9 +58,9 @@ function WeatherController(weatherAPIService, geolocationService, localStorageSe
       this.weatherData.country = data.country_code;
 
       this.tableShow = true;
-    };
+    }
 
-    this.getSavedCoordinates();
+    $onInit() {
+        this.getSavedCoordinates();
+    }
 }
-
-export default WeatherController;
