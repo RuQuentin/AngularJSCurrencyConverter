@@ -17,6 +17,7 @@ import workWithCurrencyProvider from './services/converter.provider';
 import currencyFilter from './filter/currenyc.filter';
 
 import syncDataService from './services/sync-data.service';
+import adminService from './services/admin.service';
 import authenticationService from './services/authentication.service';
 import userProfileService from './services/user-profile.service';
 import weatherAPIService from './services/weatherAPI.service';
@@ -37,6 +38,7 @@ workWithCurrencyProvider(shared);
 currencyFilter(shared);
 
 syncDataService(shared);
+adminService(shared);
 authenticationService(shared);
 userProfileService(shared);
 weatherAPIService(shared);
