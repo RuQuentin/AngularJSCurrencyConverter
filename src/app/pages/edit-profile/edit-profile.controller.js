@@ -1,6 +1,6 @@
 'use strict';
 
-function EditProfileController($log, $scope, $rootScope, userProfileService, syncDataService, $state) {
+function EditProfileController($log, $scope, $rootScope, $timeout, userProfileService, syncDataService, $state) {
   'ngInject';
   $scope.success = false;
   const reader = new FileReader();
@@ -20,7 +20,7 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
       }
 
       $scope.success = true;
-      setTimeout(function () {
+      $timeout(function () {
         $state.go('profile');
       }, 1500);
     }
@@ -34,8 +34,9 @@ function EditProfileController($log, $scope, $rootScope, userProfileService, syn
     file = files[0];
     reader.readAsDataURL(file);
     reader.onloadend = function () {
-      $scope.formInfo.ava = reader.result;
-      $scope.$apply();
+      $scope.$applyAsync(() => {
+        $scope.formInfo.ava = reader.result;
+      }) 
     }
   }
 
