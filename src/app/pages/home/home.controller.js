@@ -13,6 +13,7 @@ function MainController($scope, $filter, $rootScope, syncDataService, $state) {
     sortingOrder: 'date',
     reverse: false
   };
+  $scope.headers = ['Amount From', 'Amount To', 'Commission', 'Currency From', 'Currency To', 'Date', 'Rate'];
 
   $scope.filteredItems = [];
 

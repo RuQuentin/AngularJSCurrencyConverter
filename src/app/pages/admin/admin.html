@@ -19,11 +19,6 @@
           <th >
             E-mail
           </th>
-          
-          <!-- <th custom-sort order="'status'" sort="sort">
-            Status
-          </th> -->
-
           <th >
             Admin
           </th>
@@ -47,11 +42,11 @@
           <td ng-short>{{ key }}</td>
           <td>{{ value.firstName }}</td>
           <td>{{ value.email }}</td>
-          <!-- <td>{{ value.role }}</td> -->
+           <td>{{ value.role }}</td>
 
           <td>
             <div class="make-switch switch-mini">
-              <label><input type="checkbox" ng-checked ="value.role === admin" ng-click='admCont.changeUserRole(key)'
+              <label><input type="checkbox" ng-checked ="value.role === 'admin'" ng-click='admCont.changeUserRole(key)'
                 ></label>
             </div>
           </td>
@@ -70,6 +65,7 @@
         </tr>
       </tbody>
     </table>
+    <custom-table headers = 'admCont.headers' data = 'admCont.listOfUsers' sort = 'sort'></custom-table>
   </div>
 </div>
 

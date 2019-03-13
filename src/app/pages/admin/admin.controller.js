@@ -12,6 +12,7 @@ export default class AdminController {
         this.listOfUsers = this.rootScope.listOfUsers;
 
         this.scope.filteredItems = [];
+        this.headers = ['NAME','PASSWORD','E-MAIL','STATUS'];
         this.scope.sort = {       
             sortingOrder : 'id',
             reverse : false
@@ -29,8 +30,8 @@ export default class AdminController {
     }
     
     changeUserRole(id){
-        let userRole = this.rootScope.listOfUsers[id].role;
-        userRole = userRole === 'admin' ? 'user': 'admin';
+        // let userRole = this.rootScope.listOfUsers[id].role;
+        const userRole = this.rootScope.listOfUsers[id].role === 'admin' ? 'user': 'admin';
         this.syncDataService.changeUserRole(id, userRole);
     }
 
