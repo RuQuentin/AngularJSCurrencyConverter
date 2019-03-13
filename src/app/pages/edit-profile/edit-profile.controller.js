@@ -1,46 +1,46 @@
 'use strict';
-
-function EditProfileController($log, $scope, $rootScope, $timeout, userProfileService, syncDataService, $state) {
-  'ngInject';
-  $scope.success = false;
-  const reader = new FileReader();
-  let file = null;
-
-  if ($rootScope.currentUser) {
-    $scope.formInfo = userProfileService.createFormInfo();
+export default class EditProfileController {
+  constructor($log, $scope, $rootScope, userProfileService, syncDataService, $state) {
+    'ngInject'
+    this.$log = $log;
+    this.scope = $scope;
+    this.currentUserId = $rootScope.currentUserId;
+    this.userProfileService = userProfileService;
+    this.syncDataService = syncDataService;
+    this. $state =  $state;
+    this.file = null;
+    this.formInfo = userProfileService.createFormInfo();
   }
 
-  $scope.submitForm = function (data) {
-    if ($scope.profile.$valid) {
-      userProfileService.saveToCurrentUser(data);
-      syncDataService.saveUserInfoToFirebase($rootScope.currentUserId);
-      
-      if (file) {
-        userProfileService.setProfileImage(file);
+  submitForm(data) {
+    if (this.scope.profile.$valid) {
+      this.userProfileService.saveToCurrentUser(data);
+      this.syncDataService.saveUserInfoToFirebase(this.currentUserId);
+
+      if (this.file) {
+        this.userProfileService.setProfileImage(this.file);
       }
 
-      $scope.success = true;
-      $timeout(function () {
-        $state.go('profile');
-      }, 1500);
-    }
+      this.$state.go('profile');
+    } 
   }
 
-  $scope.onFileChanged = function (files) {
+  onFileChanged(files) {
     if (!files[0]) {
       return;
     }
+    const reader = new FileReader();
+    this.file = files[0];
 
-    file = files[0];
-    reader.readAsDataURL(file);
-    reader.onloadend = function () {
-      $scope.$applyAsync(() => {
-        $scope.formInfo.ava = reader.result;
-      }) 
+    reader.readAsDataURL(this.file);
+    reader.onload = function () {
+      this.scope.$applyAsync(() => {
+        this.formInfo.ava = reader.result;
+      });
     }
   }
 
-  $log.debug('Hello from EDIT-PROFILE controller!');
+  $onInit() {
+    this.$log.log('Hello from Edit-profile controller!');
+  }
 }
-
-export default EditProfileController;

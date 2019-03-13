@@ -23,6 +23,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           url: '/editProfile',
           templateUrl: editProfileTemplate,
           controller: 'editProfileController',
+          controllerAs: 'edProf',
           resolve: {
             asyncPreloading: resolverProvider.editProfilePagePrealoading
           }
