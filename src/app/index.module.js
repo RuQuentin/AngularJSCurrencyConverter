@@ -5,8 +5,8 @@ import run from './index.run';
 
 import uiRouter from '@uirouter/angularjs';
 import 'angularjs-geolocation';
-import 'angular-local-storage';
 import 'ng-autocomplete';
+import 'ng-storage';
 
 // import firebase from 'firebase';
 
@@ -29,7 +29,7 @@ const App = angular.module(
     // plugins
     uiRouter,
     "geolocation",
-    "LocalStorageModule",
+    "ngStorage",
     "ngAutocomplete",
     "ngMessages", 
     "oc.lazyLoad",

@@ -1,19 +1,33 @@
 'use strict';
 
-function WeatherController(weatherAPIService, geolocationService) {
+function WeatherController(weatherAPIService, geolocationService, localStorageService) {
     'ngInject';
 
     this.weatherData = {};
     this.selectedLocation = null;
     this.tableShow = false;
 
+    this.getSavedCoordinates = () => {
+      const coords = localStorageService.getCoordinates();
+
+      if (coords) {
+        const { lat, long } = coords;
+        weatherAPIService.getForecast(lat, long)
+        .then(data => {
+          localStorageService.setCoordinates(lat, long);
+          this.setWeatherData(data);
+        });
+      }
+    }
+
     this.getForecastForSelected = () => {
       const location = this.autocomplete.details.geometry.location;
       const lat = location.lat();
-      const lng = location.lng();
+      const long = location.lng();
       
-      weatherAPIService.getForecast(lat, lng)
+      weatherAPIService.getForecast(lat, long)
         .then(data => {
+          localStorageService.setCoordinates(lat, long);
           this.setWeatherData(data);
         });
     };
@@ -22,6 +36,7 @@ function WeatherController(weatherAPIService, geolocationService) {
       geolocationService.getCoordinates().then(({ lat, long }) => {
         weatherAPIService.getForecast(lat, long)
         .then(data => {
+          localStorageService.setCoordinates(lat, long);
           this.selectedLocation = `${data.city_name}, ${data.country_code}`;
           this.setWeatherData(data);
         });
@@ -38,6 +53,8 @@ function WeatherController(weatherAPIService, geolocationService) {
 
       this.tableShow = true;
     };
+
+    this.getSavedCoordinates();
 }
 
 export default WeatherController;
