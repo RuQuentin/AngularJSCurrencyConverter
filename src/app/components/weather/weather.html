@@ -50,21 +50,11 @@
 
             <button
               type="button"
-              class="btn btn-outline-secondary dropdown-toggle dropdown-toggle-split"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              >
-                <span class="sr-only">Toggle Dropdown</span>
+              class="btn btn-outline-secondary"
+              ng-click="weatherCtrl.getLocal()"
+            >
+              <i class="fas fa-location-arrow"></i>
             </button>
-
-            <div class="dropdown-menu">
-              <a
-                class="dropdown-item"
-                href="javascript:void(0);"
-                ng-click="weatherCtrl.getLocal()">
-              Set my location</a>
-            </div>
           </div>
         </div>
       </form>
