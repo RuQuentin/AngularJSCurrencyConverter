@@ -1,18 +1,24 @@
-/* eslint-disable no-console */
-function SignInController($scope, authenticationService) {
-  'ngInject';
-  $scope.signIn = () => {
-    $scope.warning = "";
-    const login = $scope.user.email;
-    const password = $scope.user.password;
+'use strict';
 
-    authenticationService.signInToFirebase(login, password)
-    .then(function(response) {
-      if (response) {
-        $scope.warning = response.message;
+export default class SignInController {
+    constructor($scope, authenticationService) {
+        'ngInject';
+        this.scope = $scope;
+        this.scope.warning = "";
+        this.authenticationService = authenticationService;
       }
-    })
-  };
+      
+      $onInit () {
+        this.scope.signIn = () => {
+        this.scope.warning = "";
+        const { email, password } = this.scope.user;
+    
+        this.authenticationService.signInToFirebase(email, password)
+        .then(response => {
+          if (response) {
+            this.scope.warning = response.message;
+          }
+        });
+      }
+    }
 }
-
-export default SignInController;
