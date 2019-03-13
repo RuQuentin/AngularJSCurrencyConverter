@@ -12,6 +12,17 @@ export default function (app) {
           url: `http://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${long}&key=${key}`
         })
         .then(({ data: { data } }) => data)
-        .then(([ weatherData ]) => weatherData);
+        .then(([ weatherData ]) => {
+          const {
+            temp: temp, 
+            app_temp: feelLike, 
+            wind_spd: wind, 
+            wind_cdir_full: dir, 
+            city_name: city, 
+            country_code: country
+          } = weatherData;
+
+          return {temp, feelLike, wind, dir, city, country};
+        });
     });
 }

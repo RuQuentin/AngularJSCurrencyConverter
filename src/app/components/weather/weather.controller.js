@@ -21,7 +21,8 @@ export default class WeatherController {
         this.weatherAPIService.getForecast(lat, long)
         .then(data => {
           this.localStorageService.setCoordinates(lat, long);
-          this.setWeatherData(data);
+          this.weatherData = data;
+          this.tableShow = true;
         });
       }
     }
@@ -34,7 +35,8 @@ export default class WeatherController {
       this.weatherAPIService.getForecast(lat, long)
         .then(data => {
           this.localStorageService.setCoordinates(lat, long);
-          this.setWeatherData(data);
+          this.weatherData = data;
+          this.tableShow = true;
         });
     }
 
@@ -44,23 +46,10 @@ export default class WeatherController {
         .then(data => {
           this.localStorageService.setCoordinates(lat, long);
           this.selectedLocation = `${data.city_name}, ${data.country_code}`;
-          this.setWeatherData(data);
+          this.weatherData = data;
+          this.tableShow = true;
         });
       });
-    }
-
-    setWeatherData(data) {
-      const {
-        temp: temp, 
-        app_temp: feelLike, 
-        wind_spd: wind, 
-        wind_cdir_full: dir, 
-        city_name: city, 
-        country_code: country
-      } = data;
-
-      this.weatherData = {temp, feelLike, wind, dir, city, country};
-      this.tableShow = true;
     }
 
     $onInit() {
