@@ -16,7 +16,11 @@ import "popper.js";
 
 import "bootstrap";
 
+import 'angularjs-geolocation';
 
+import 'ng-autocomplete';
+
+import 'ng-storage';
 
 // local scripts
 //import "../assets/js/...";

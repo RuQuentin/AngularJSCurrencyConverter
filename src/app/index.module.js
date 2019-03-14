@@ -4,9 +4,6 @@ import config from './index.config';
 import run from './index.run';
 
 import uiRouter from '@uirouter/angularjs';
-import 'angularjs-geolocation';
-import 'ng-autocomplete';
-import 'ng-storage';
 
 // import firebase from 'firebase';
 
