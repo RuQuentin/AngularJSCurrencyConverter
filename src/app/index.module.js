@@ -30,7 +30,6 @@ const App = angular.module(
     "ngMessages", 
     "oc.lazyLoad",
     "firebase",
-    "toastr",
 
     // core
     coreModule.name,
