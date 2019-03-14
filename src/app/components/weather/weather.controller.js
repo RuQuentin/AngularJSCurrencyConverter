@@ -47,7 +47,7 @@ export default class WeatherController {
         this.weatherAPIService.getForecast(coords)
         .then(data => {
           this.localStorageService.setCoordinates(coords);
-          this.selectedLocation = `${data.city_name}, ${data.country_code}`;
+          this.selectedLocation = `${data.city}, ${data.country}`;
           this.weatherData = data;
           this.tableShow = true;
         });
