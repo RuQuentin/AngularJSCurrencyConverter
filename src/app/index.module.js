@@ -5,8 +5,6 @@ import run from './index.run';
 
 import uiRouter from '@uirouter/angularjs';
 
-// import firebase from 'firebase';
-
 import coreModule from './core/core.module';
 import indexComponents from './index.components';
 import indexRoutes from './index.routes';
@@ -31,6 +29,7 @@ const App = angular.module(
     "ngMessages", 
     "oc.lazyLoad",
     "firebase",
+    "toastr",
 
     // core
     coreModule.name,
