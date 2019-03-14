@@ -5,7 +5,7 @@
     <h1 class="display-4 text-center">Admin Page</h1>
   </div>
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table table-striped rounded table-hover">
+    <!-- <table class="table table-striped rounded table-hover">
       <thead>
         <tr>
           <th >
@@ -64,9 +64,12 @@
 
         </tr>
       </tbody>
-    </table>
-    <custom-table headers = 'admCont.headers' data = 'admCont.listOfUsers' sort = 'sort'></custom-table>
+    </table> -->
+    <custom-table headers='admCont.headers' data='listOfUsers' sort='sort' admin-table ='adm' 
+    change-user-role = 'admCont.changeUserRole()' reset-psw = "admCont.resetPsw(data)" 
+    set-selected-user = "admCont.setSelectedUser()" ></custom-table>
   </div>
 </div>
 
 <admin-modal-component></admin-modal-component>
+<!-- data = 'admCont.listOfUsers' -->

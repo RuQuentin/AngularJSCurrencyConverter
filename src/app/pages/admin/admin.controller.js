@@ -1,3 +1,5 @@
+
+/* eslint-disable */
 'use strict';
 
 export default class AdminController {
@@ -12,11 +14,13 @@ export default class AdminController {
         this.listOfUsers = this.rootScope.listOfUsers;
 
         this.scope.filteredItems = [];
-        this.headers = ['NAME','PASSWORD','E-MAIL','STATUS'];
+        this.headers = ['Id','Name','E-mail','Admin','Password','History',' Profile'];
         this.scope.sort = {       
             sortingOrder : 'id',
             reverse : false
         }
+        this.scope.adm = true;
+        this.scope.listOfUsers = this.syncDataService.getDealsFromFirebase();
 
         this.sharedAdminFactory = sharedAdminFactory;
     }
@@ -25,8 +29,11 @@ export default class AdminController {
         this.sharedAdminFactory.setUserData(id);
     }
 
-    resetPsw(id) {
-        this.rootScope.listOfUsers[id].password = this.rootScope.listOfUsers[id].login;
+    resetPsw(amount) {
+        // this.rootScope.listOfUsers[id].password = this.rootScope.listOfUsers[id].login;
+// console.log(this.scope.listOfUsers);
+console.log(amount);
+
     }
     
     changeUserRole(id){
