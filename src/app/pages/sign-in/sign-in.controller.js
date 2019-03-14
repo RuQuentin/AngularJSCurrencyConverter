@@ -1,11 +1,13 @@
 'use strict';
 
-export default class SignInController {
-    constructor($scope, authenticationService) {
+
+class SignInController {
+    constructor($scope, authenticationService, toastr) {
         'ngInject';
         this.scope = $scope;
         this.scope.warning = "";
         this.authenticationService = authenticationService;
+        this.toastr = toastr;
       }
       
       $onInit () {
@@ -17,8 +19,10 @@ export default class SignInController {
         .then(response => {
           if (response) {
             this.scope.warning = response.message;
+            this.toastr.success('Hello World')
           }
         });
       }
     }
 }
+export default SignInController;
