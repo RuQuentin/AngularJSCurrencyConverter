@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 'use strict';
-
 import firebase from 'firebase';
 
 export default function (app) {
@@ -8,14 +7,14 @@ export default function (app) {
     .service('adminService', function ($rootScope) {
       'ngInject';
 
-      this.changeUserRole = (uid, role) => {
-        $rootScope.listOfUsers.uid.role = role;
+      this.changeUserRole = (uid, newRole) => {
+        $rootScope.listOfUsers.uid.role = newRole;
 
         const ref = firebase.database().ref()
           .child('listOfUsers')
           .child(uid);
         return ref.update({
-          [role]: role
+          role: newRole
         })
       }
 
