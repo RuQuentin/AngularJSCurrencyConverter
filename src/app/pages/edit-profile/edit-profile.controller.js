@@ -8,12 +8,13 @@ export default class EditProfileController {
     this.userProfileService = userProfileService;
     this.syncDataService = syncDataService;
     this.$state =  $state;
+    this.profile = null;
     this.formInfo = userProfileService.createFormInfo();
     this.scope.$watch('file', this.onChanged.bind(this));
   }
 
   submitForm(data) {
-    if (this.scope.profile.$valid) {
+    if (this.profile.$valid) {
       this.userProfileService.saveToCurrentUser(data);
       
       if (this.scope.file) {
