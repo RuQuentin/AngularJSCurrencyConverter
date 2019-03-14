@@ -13,7 +13,7 @@ export default class WeatherController {
         this.tableShow = false;
     }
 
-    getSavedCoordinates() {
+    getForecastForSavedLocation() {
       const coords = this.localStorageService.getCoordinates();
 
       if (coords) {
@@ -53,6 +53,6 @@ export default class WeatherController {
     }
 
     $onInit() {
-        this.getSavedCoordinates();
+        this.getForecastForSavedLocation();
     }
 }
