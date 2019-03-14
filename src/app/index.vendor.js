@@ -22,5 +22,9 @@ import 'ng-autocomplete';
 
 import 'ng-storage';
 
+import "angular-toastr";
+
+import "../../node_modules/angular-toastr/dist/angular-toastr.min.css";
+
 // local scripts
 //import "../assets/js/...";
