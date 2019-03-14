@@ -174,7 +174,8 @@ module.exports = function (_path) {
       }),
       new HtmlWebpackPlugin({
         filename: 'index.html',
-        template: path.join(_path, 'src', 'tpl-index.ejs')
+        template: path.join(_path, 'src', 'tpl-index.ejs'),
+        placesApiKey: 'AIzaSyDSTtBBFiqGY_Wx5q3cPIUfRpO6pZTj77I'
       })
     ]
   };
