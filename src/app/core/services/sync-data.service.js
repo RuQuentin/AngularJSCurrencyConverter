@@ -2,6 +2,15 @@
 'use strict';
 
 import firebase from 'firebase';
+<<<<<<< HEAD
+=======
+import 'angularfire';
+
+// ==== connecting to firebase ====
+// import configFirebase from '~/env.js'
+// firebase.initializeApp(configFirebase);
+// ================================
+>>>>>>> 9649d3e020398790a0407cbdfbc414f5d523dd0c
 
 
 export default function (app) {
