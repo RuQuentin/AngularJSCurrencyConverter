@@ -4,6 +4,7 @@ const shared = angular.module('core.shared', []);
 
 import validationTestDirective from './directives/validation-test/validation-test.directive';
 import preloaderDirective from './directives/preloader/preloader.directive';
+import onFileChange from './directives/on-file-change/on-file-change.directive';
 import customSort from './directives/directive.table';
 
 import constants from './services/constants';
@@ -23,6 +24,7 @@ import weatherAPIService from './services/weatherAPI.service';
 
 validationTestDirective(shared);
 preloaderDirective(shared);
+onFileChange(shared);
 
 constants(shared);
 storeFactory(shared);
