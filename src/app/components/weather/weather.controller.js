@@ -15,12 +15,11 @@ export default class WeatherController {
 
     getForecastForSavedLocation() {
       const coords = this.localStorageService.getCoordinates();
-
+      
       if (coords) {
-        const { lat, long } = coords;
-        this.weatherAPIService.getForecast(lat, long)
+        this.weatherAPIService.getForecast(coords)
         .then(data => {
-          this.localStorageService.setCoordinates(lat, long);
+          this.localStorageService.setCoordinates(coords);
           this.weatherData = data;
           this.tableShow = true;
         });
@@ -29,22 +28,25 @@ export default class WeatherController {
 
     getForecastForSelected() {
       const location = this.autocomplete.details.geometry.location;
-      const lat = location.lat();
-      const long = location.lng();
+
+      const coords = {
+        lat: location.lat(),
+        long: location.lng()
+      }
       
-      this.weatherAPIService.getForecast(lat, long)
+      this.weatherAPIService.getForecast(coords)
         .then(data => {
-          this.localStorageService.setCoordinates(lat, long);
+          this.localStorageService.setCoordinates(coords);
           this.weatherData = data;
           this.tableShow = true;
         });
     }
 
     getForecastForLocal() {
-      this.geolocationService.getCoordinates().then(({ lat, long }) => {
-        this.weatherAPIService.getForecast(lat, long)
+      this.geolocationService.getCoordinates().then(coords => {
+        this.weatherAPIService.getForecast(coords)
         .then(data => {
-          this.localStorageService.setCoordinates(lat, long);
+          this.localStorageService.setCoordinates(coords);
           this.selectedLocation = `${data.city_name}, ${data.country_code}`;
           this.weatherData = data;
           this.tableShow = true;

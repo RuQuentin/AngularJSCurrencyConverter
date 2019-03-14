@@ -5,7 +5,7 @@ export default function (app) {
     .service('localStorageService', function ($localStorage) {
         'ngInject';
 
-        this.setCoordinates = (lat, long) => {
+        this.setCoordinates = ({ lat, long }) => {
             $localStorage.coordinates = {lat, long};
         };
 
