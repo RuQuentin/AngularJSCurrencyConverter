@@ -4,7 +4,7 @@ import config from './index.config';
 import run from './index.run';
 
 import uiRouter from '@uirouter/angularjs';
-
+import '../../node_modules/angular-toastr/dist/angular-toastr.min.css';
 // import firebase from 'firebase';
 
 import coreModule from './core/core.module';
