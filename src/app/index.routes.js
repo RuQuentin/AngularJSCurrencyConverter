@@ -40,6 +40,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           url: '/sign-in',
           templateUrl: signInTemplate,
           controller: 'SignInController',
+          controllerAs: 'signInCtrl',
           resolve: {
             asyncPreloading: resolverProvider.signInPagePreloading
           }
