@@ -40,7 +40,7 @@ export default class WeatherController {
         });
     }
 
-    getLocal() {
+    getForecastForLocal() {
       this.geolocationService.getCoordinates().then(({ lat, long }) => {
         this.weatherAPIService.getForecast(lat, long)
         .then(data => {
