@@ -13,4 +13,10 @@ export default function (app) {
     app.constant('weatherAPIconstants', {
         'APIkey': 'b0f2a7928e6c418baf01f03c9101c5df'
     });
+    app.constant('homeConstants', {
+        'headers':  ['Amount From', 'Amount To', 'Commission', 'Currency From', 'Currency To', 'Date', 'Rate']
+    });
+    app.constant('adminConstants', {
+        'headers':  ['Id','Name','E-mail','Admin','Password','History',' Profile']
+    });
 }

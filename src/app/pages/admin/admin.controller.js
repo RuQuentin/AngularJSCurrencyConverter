@@ -1,9 +1,7 @@
-
-/* eslint-disable */
 'use strict';
 
 export default class AdminController {
-    constructor($scope, $rootScope, $filter, syncDataService, sharedAdminFactory) {
+    constructor($scope, $rootScope, $filter, syncDataService, adminConstants, sharedAdminFactory) {
         'ngInject';
         this.scope = $scope;
         this.filter = $filter;
@@ -14,7 +12,7 @@ export default class AdminController {
         this.listOfUsers = this.rootScope.listOfUsers;
 
         this.scope.filteredItems = [];
-        this.headers = ['Id','Name','E-mail','Admin','Password','History',' Profile'];
+        this.headers = adminConstants.headers;
         this.scope.sort = {       
             sortingOrder : 'id',
             reverse : false
@@ -29,15 +27,11 @@ export default class AdminController {
         this.sharedAdminFactory.setUserData(id);
     }
 
-    resetPsw(amount) {
-        // this.rootScope.listOfUsers[id].password = this.rootScope.listOfUsers[id].login;
-// console.log(this.scope.listOfUsers);
-console.log(amount);
-
+    resetPsw(id) {
+        this.rootScope.listOfUsers[id].password = this.rootScope.listOfUsers[id].login;
     }
     
     changeUserRole(id){
-        // let userRole = this.rootScope.listOfUsers[id].role;
         const userRole = this.rootScope.listOfUsers[id].role === 'admin' ? 'user': 'admin';
         this.syncDataService.changeUserRole(id, userRole);
     }
