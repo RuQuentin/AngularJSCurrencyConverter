@@ -6,7 +6,7 @@ import 'angularfire';
 
 
 // // ==== connecting to firebase ====
-import configFirebase from '~/env.js'
+import configFirebase from '~/config.js'
 firebase.initializeApp(configFirebase);
 // // ================================
 
