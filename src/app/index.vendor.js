@@ -16,6 +16,8 @@ import "popper.js";
 
 import "bootstrap";
 
+import 'angular-toastr';
+
 
 
 // local scripts

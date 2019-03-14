@@ -10,6 +10,7 @@ import "./index.vendor";
 import "./index.module";
 
 import "../assets/styles/sass/index.scss";
+import '../../node_modules/angular-toastr/dist/angular-toastr.min.css';
 
 angular.element(document).ready(() => {
   angular.bootstrap(document, ['angularApp'], {

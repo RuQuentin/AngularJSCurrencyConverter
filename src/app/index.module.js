@@ -4,8 +4,6 @@ import config from './index.config';
 import run from './index.run';
 
 import uiRouter from '@uirouter/angularjs';
-import '../../node_modules/angular-toastr/dist/angular-toastr.min.css';
-// import firebase from 'firebase';
 
 import coreModule from './core/core.module';
 import indexComponents from './index.components';
@@ -15,7 +13,6 @@ import adminModule from './pages/admin/admin.module';
 import converterModule from './pages/currency-converter/converter.module';
 import homeModule from './pages/home/home.module';
 import signUpModule from './pages/sign-up/sign-up.module';
-import toastr from 'angular-toastr';
 
 // // ==== connecting to firebase ====
 // import configFirebase from '../../env'
@@ -26,10 +23,10 @@ const App = angular.module(
   "angularApp", [
     // plugins
     uiRouter,
-    toastr,
     "ngMessages", 
     "oc.lazyLoad",
     "firebase",
+    'toastr',
 
     // core
     coreModule.name,

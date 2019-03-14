@@ -8,18 +8,16 @@ class SignInController {
         this.authenticationService = authenticationService;
         this.toastr = toastr;
       }
+  
+    signIn () {
+      const { email, password } = this.scope.user;
       
-      $onInit () {
-        this.scope.signIn = () => {
-        const { email, password } = this.scope.user;
-        
-        this.authenticationService.signInToFirebase(email, password)
-        .then(response => {
-          if (response) {
-            this.toastr.error(`${ response.message }`);
-          }
-        });
-      }
+      this.authenticationService.signInToFirebase(email, password)
+      .then(response => {
+        if (response) {
+          this.toastr.error(response.message);
+        }
+      });
     }
 }
 export default SignInController;
