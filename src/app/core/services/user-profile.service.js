@@ -12,7 +12,7 @@ export default function (app) {
           this.phone = user.phone || '';
           this.email = user.email;
           this.role = usersMocksService.userRole;
-          this.ava = null;
+          this.ava = '../assets/images/user_adc3e83e17d37cfa9fc2dc69f1f284f9.png';
         }
       }
 

@@ -21,4 +21,4 @@ import "angular-toastr";
 import "../../node_modules/angular-toastr/dist/angular-toastr.min.css";
 
 // local scripts
-//import "../assets/js/...";
+import "../assets/images/user.png";
