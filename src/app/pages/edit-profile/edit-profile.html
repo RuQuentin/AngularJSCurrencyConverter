@@ -48,7 +48,7 @@
 
             <div class="cardAva col-xs-4 col-md-4 col-lg-4">
                 <img type="image" class='ava' ng-model='edProf.formInfo.ava' ng-src="{{edProf.formInfo.ava || 'https://whatsism.com/uploads/posts/2018-07/1530544023_n6fgwzftnvg.jpg'}}">
-                <input ng-hide='true' type="file" onchange="angular.element(this).scope().onFileChanged(this.files)" id ='fileInput'>
+                <input ng-hide='true' type="file" name="file" on-file-change id ='fileInput'>
                 <label class="btn btn-outline-info changeAva" for='fileInput'>Select image</label>
             </div>
         </form>

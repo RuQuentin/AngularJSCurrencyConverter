@@ -7,33 +7,32 @@ export default class EditProfileController {
     this.currentUserId = $rootScope.currentUserId;
     this.userProfileService = userProfileService;
     this.syncDataService = syncDataService;
-    this. $state =  $state;
-    this.file = null;
+    this.$state =  $state;
     this.formInfo = userProfileService.createFormInfo();
+    this.scope.$watch('file', this.onChanged.bind(this));
   }
 
   submitForm(data) {
     if (this.scope.profile.$valid) {
       this.userProfileService.saveToCurrentUser(data);
-      this.syncDataService.saveUserInfoToFirebase(this.currentUserId);
-
-      if (this.file) {
-        this.userProfileService.setProfileImage(this.file);
+      
+      if (this.scope.file) {
+        this.userProfileService.setProfileImage(this.scope.file);
       }
-
+      
+      this.syncDataService.saveUserInfoToFirebase(this.currentUserId);
       this.$state.go('profile');
     } 
   }
 
-  onFileChanged(files) {
-    if (!files[0]) {
+  onChanged() {
+    if (!this.scope.file) {
       return;
     }
-    const reader = new FileReader();
-    this.file = files[0];
 
-    reader.readAsDataURL(this.file);
-    reader.onload = function () {
+    const reader = new FileReader();
+    reader.readAsDataURL(this.scope.file);
+    reader.onload = () => {
       this.scope.$applyAsync(() => {
         this.formInfo.ava = reader.result;
       });
