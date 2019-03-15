@@ -3,7 +3,6 @@
 
 import firebase from 'firebase';
 
-
 export default function (app) {
   app
     .service('syncDataService', function ($firebaseArray, $firebaseObject, $rootScope) {
@@ -56,11 +55,10 @@ export default function (app) {
       this.getAllUsersFromFirebase = () => {
         $rootScope.listOfUsers = {};
         const ref = firebase.database().ref();
-        const objectOfUsers = $firebaseObject(ref.child('listOfUsers'));
-        return objectOfUsers.$loaded()
+        $rootScope.listOfUsers = $firebaseObject(ref.child('listOfUsers'));
+        return $rootScope.listOfUsers.$loaded()
           .then(() => {
-            $rootScope.listOfUsers = Object.values(objectOfUsers)
-            console.log($rootScope.listOfUsers.filter(item => item && item.email))
+            console.log($rootScope.listOfUsers)
           });
       }
 
