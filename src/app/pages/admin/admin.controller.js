@@ -28,7 +28,8 @@ export default class AdminController {
     }
     
     changeUserRole(id){
-        const userRole = this.rootScope.listOfUsers[id].role === 'admin' ? 'user': 'admin';
+        let userRole = this.rootScope.listOfUsers[id].role;
+        userRole = userRole === 'admin' ? 'user': 'admin';
         this.syncDataService.changeUserRole(id, userRole);
     }
 
