@@ -8,6 +8,8 @@ export default function (app) {
         this.editProfilePagePrealoading = editProfilePagePrealoading;
         this.transactionsListPagePreloading = transactionsListPagePreloading;
         this.signInPagePreloading = signInPagePreloading;
+        this.adminPagePreloading = adminPagePreloading;
+        this.getUsersFromFirebase = getUsersFromFirebase;
         this.$get = function() { return this; };
     }
 
@@ -65,5 +67,26 @@ export default function (app) {
             deferred.resolve(signInModule.default.controller);
         });
         return deferred.promise;
+    }
+
+    function adminPagePreloading ($q, $ocLazyLoad) {
+        "ngInject";
+
+        const deferred = $q.defer();
+        require.ensure([], require => {
+            const adminPageModule = require('../../pages/admin/admin.module');
+            $ocLazyLoad.load({
+                name: adminPageModule.default.name,
+            });
+            deferred.resolve(adminPageModule.default.controller);
+        });
+        return deferred.promise;
+    }
+
+    function getUsersFromFirebase (syncDataService) {
+        "ngInject";
+
+        return syncDataService.getAllUsersFromFirebase()
+
     }
 }

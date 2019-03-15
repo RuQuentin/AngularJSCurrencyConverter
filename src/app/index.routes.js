@@ -5,6 +5,7 @@ import profileTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/p
 import editProfileTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/edit-profile/edit-profile.html';
 import transactionsListTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/transactions-list/transactions-list.html';
 import signInTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/sign-in/sign-in.html';
+import  adminTpl from '!!file-loader?name=templates/[name].[ext]!./pages/admin/admin.html';
 
 function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
   'ngInject';
@@ -42,6 +43,16 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           controllerAs: 'signInCtrl',
           resolve: {
             asyncPreloading: resolverProvider.signInPagePreloading
+          }
+        })
+        .state('admin', {
+          url: '/admin',
+          templateUrl: adminTpl,
+          controller: 'AdminController',
+          controllerAs: 'admCont',
+          resolve: {
+            getUsersFromFirebase: resolverProvider.getUsersFromFirebase,
+            asyncPreloading: resolverProvider.adminPagePreloading,
           }
         })
 
