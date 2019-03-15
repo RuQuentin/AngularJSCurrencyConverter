@@ -4,49 +4,51 @@ export default class AdminController {
     constructor($rootScope, syncDataService, adminService, sharedAdminFactory) {
         'ngInject';
 
-
+        // this.listOfUsers = null;
         this.rootScope = $rootScope;
         this.syncDataService = syncDataService;
         this.adminService = adminService;
-        // syncDataService.getAllUsersFromFirebase()
-        //     .then(() => {
-                this.listOfUsers = Object.values($rootScope.listOfUsers).filter(item => {
-                    if (item && item.email) {
-                        return item
-                    }
-                });
-            // eslint-disable-next-line no-console
-                console.log(this.listOfUsers);
-        //         // eslint-disable-next-line no-console
-        //         console.log(this.listOfUsers);
-        //     })
+        const data = Object.values($rootScope.listOfUsers).filter(item => {
+            if (item && item.email) {
+                return item
+            }
+        });
 
+            this.listOfUsers = data.map(({ userId, firstName, lastName, email, phone }) => ({
+                userId,
+                firstName,
+                lastName,
+                email,
+                phone
+            }));
 
+        // eslint-disable-next-line no-console
+        console.log(data);
 
-        this.filteredItems = [];      
-        this.headers =  ['Id','Name','E-mail','Admin','Password','History',' Profile'];
-        this.sort = {       
-            sortingOrder : 'id',
-            reverse : false
+        this.filteredItems = [];
+        this.headers = ['Id', 'Name', 'Last Name', 'E-mail', 'Phone','Admin', 'Password', 'History'];
+        this.sort = {
+            sortingOrder: 'id',
+            reverse: false
         }
         this.adm = true;
         this.sharedAdminFactory = sharedAdminFactory;
     }
 
-    setSelectedUser(id){
+    setSelectedUser(id) {
         this.sharedAdminFactory.setUserData(id);
     }
 
     resetPsw(id) {
         // this.rootScope.listOfUsers[id].password = this.rootScope.listOfUsers[id].login;
         //add login instaed "gggggg"
-        this.adminService.resetUserPassword( { uid: id, newPassword: 'qqqqqq' });
+        this.adminService.resetUserPassword({ uid: id, newPassword: 'qqqqqq' });
     }
 
-    
-    changeUserRole(id){
+
+    changeUserRole(id) {
         let userRole = this.rootScope.listOfUsers[id].role;
-        userRole = userRole === 'admin' ? 'user': 'admin';
+        userRole = userRole === 'admin' ? 'user' : 'admin';
         this.adminService.changeUserRole(id, userRole);
     }
 

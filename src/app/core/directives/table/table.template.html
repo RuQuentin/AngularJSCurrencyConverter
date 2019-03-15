@@ -1,4 +1,4 @@
-<table class="table table-striped rounded table-hover">
+<table class="table table-sm table-striped table-hover">
   <thead>
     <tr>
       <th custom-sort order="'date'" sort="sort" ng-repeat="item in headers">{{item}}
@@ -7,21 +7,18 @@
   </thead>
 
   <tbody>
-    <tr class="table-row" ng-repeat="el in data | orderBy:sort.sortingOrder:sort.reverse">
+    <tr ng-repeat="el in data | orderBy:sort.sortingOrder:sort.reverse">
       <td ng-repeat='item in el '>{{ item}}</td>
-<!-- 
+
       <td ng-show='adminTable'>
-        <input type="checkbox" ng-checked="value.role === 'admin'" ng-click='changeUserRole({data:el.id})'>
+        <input type="checkbox" ng-checked="el.role === 'admin'" ng-click='changeUserRole({data:el.id})'>
       </td>
       <td ng-show='adminTable'>
-        <button class="btn btn-outline-secondary" type="button" ng-click='resetPsw({data:el.id})'>Reset
-          password</button>
+        <button class="btn btn-sm btn-outline-danger" type="button" ng-click='resetPsw({data:el.id})'>Reset</button>
       </td>
 
       <td ng-show='adminTable'><i class="fas fa-history tabble__icon" data-toggle="modal"
           ng-click="setSelectedUser({data:el.id})" data-target="#userHistoryModal"></i></td>
-
-      <td ng-show='adminTable'><i class="fas fa-user-circle tabble__icon" ui-sref="profile"></i></td> -->
     </tr>
   </tbody>
 </table>
