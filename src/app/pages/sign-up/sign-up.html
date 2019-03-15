@@ -8,10 +8,6 @@
             placeholder="example@mail.com"
             ng-model="su.newUser.email" 
             />
-        <!-- <small class="help-block text-danger" ng-show="regForm.email.$touched && 
-                                                       regForm.email.$invalid">
-            E-Mail address is not valid
-        </small> -->
         <div class="help-block text-danger" ng-messages="regForm.email.$error" role="alert">
           <div ng-message="email">This field must be a valid email address.</div>
         </div>
