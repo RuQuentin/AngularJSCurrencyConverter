@@ -1,12 +1,17 @@
 'use strict';
 
 export default class ProfileController {
-  constructor($log) {
+  constructor($log, toastr, $rootScope) {
     'ngInject';
     this.$log = $log;
+    this.toastr = toastr;
+    this.rootScope = $rootScope;
   }
 
   $onInit() {
-    this.$log.log('Hello from PROFILE controller!');
+    if(this.rootScope.success){
+    this.toastr.success("Successfully saved.");
+    this.rootScope.success = false;
+    }
   }
 }
