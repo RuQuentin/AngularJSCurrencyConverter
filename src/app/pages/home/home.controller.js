@@ -1,6 +1,6 @@
 'use strict';
 
-function MainController($scope, $filter, $rootScope, syncDataService, $state) {
+function MainController($scope, $filter, $rootScope, syncDataService,$state) {
   'ngInject';
 
   if (!$rootScope.currentUserId) {
@@ -12,8 +12,8 @@ function MainController($scope, $filter, $rootScope, syncDataService, $state) {
   $scope.sort = {
     sortingOrder: 'date',
     reverse: false
-  };
-
+  }; 
+  $scope.headers = ['Amount From', 'Amount To', 'Commission', 'Currency From', 'Currency To', 'Date', 'Rate'];
   $scope.filteredItems = [];
 
   let searchMatch = function (haystack, needle) {
