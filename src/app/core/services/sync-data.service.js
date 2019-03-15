@@ -5,7 +5,7 @@ import firebase from 'firebase';
 
 export default function (app) {
   app
-    .service('syncDataService', function ($firebaseArray, $firebaseObject, $rootScope) {
+    .service('syncDataService', function ($firebaseArray, $firebaseObject, $rootScope, toastr) {
       'ngInject';
       
       this.getDealsFromFirebase = () => {
@@ -37,6 +37,9 @@ export default function (app) {
           phone: $rootScope.currentUser.phone,
           email: $rootScope.currentUser.email,
           ava: $rootScope.currentUser.ava
+        })
+        .then(() => {
+          toastr.success("Successfully saved.");
         })
       }
 

@@ -4,7 +4,6 @@ export default class EditProfileController {
     'ngInject'
     this.$log = $log;
     this.scope = $scope;
-    this.rootScope = $rootScope;
     this.currentUserId = $rootScope.currentUserId;
     this.userProfileService = userProfileService;
     this.syncDataService = syncDataService;
@@ -22,7 +21,6 @@ export default class EditProfileController {
     }
 
     this.syncDataService.saveUserInfoToFirebase(this.currentUserId);
-    this.rootScope.success = true;
     this.$state.go('profile');
   }
 
