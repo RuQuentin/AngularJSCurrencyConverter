@@ -2,14 +2,6 @@
 'use strict';
 
 import firebase from 'firebase';
-// import 'angularfire';
-
-
-// // // ==== connecting to firebase ====
-// import configFirebase from '~/env.js'
-// firebase.initializeApp(configFirebase);
-// // // ================================
-
 
 export default function (app) {
   app
@@ -60,6 +52,7 @@ export default function (app) {
             return error;
           })
       };
+
 
       this.signOutFromFirebase = () => {
         $rootScope.auth.$signOut()
