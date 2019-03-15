@@ -1,10 +1,12 @@
 'use strict';
 
-function ProfileController($log) {
-  'ngInject';
+export default class ProfileController {
+  constructor($log) {
+    'ngInject';
+    this.$log = $log;
+  }
 
-  $log.debug('Hello from PROFILE controller!');
-
+  $onInit() {
+    this.$log.log('Hello from PROFILE controller!');
+  }
 }
-
-export default ProfileController;

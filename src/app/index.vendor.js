@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 'use strict';
 
 // node_modules
@@ -17,8 +18,9 @@ import "popper.js";
 import "bootstrap";
 
 import "angular-toastr";
+import "./index.firebase.config";
 
 import "../../node_modules/angular-toastr/dist/angular-toastr.min.css";
 
 // local scripts
-//import "../assets/js/...";
+import "../assets/images/user.png";
