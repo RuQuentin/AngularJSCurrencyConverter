@@ -18,7 +18,7 @@ import "popper.js";
 import "bootstrap";
 
 import "angular-toastr";
-import './index.firebase.config';
+import "./index.firebase.config";
 
 import "../../node_modules/angular-toastr/dist/angular-toastr.min.css";
 
