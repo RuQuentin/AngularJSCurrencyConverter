@@ -1,9 +1,10 @@
 'use strict';
 export default class EditProfileController {
-  constructor($log, $scope, $rootScope, userProfileService, syncDataService, $state) {
+  constructor($log, $scope, $rootScope, userProfileService, syncDataService, $state, toastr) {
     'ngInject'
     this.$log = $log;
     this.scope = $scope;
+    this.toastr = toastr;
     this.currentUserId = $rootScope.currentUserId;
     this.userProfileService = userProfileService;
     this.syncDataService = syncDataService;
@@ -20,8 +21,11 @@ export default class EditProfileController {
       this.userProfileService.setProfileImage(this.scope.file);
     }
 
-    this.syncDataService.saveUserInfoToFirebase(this.currentUserId);
-    this.$state.go('profile');
+    this.syncDataService.saveUserInfoToFirebase(this.currentUserId)
+      .then(() => {
+        this.toastr.success("Successfully saved.");
+        this.$state.go('profile');
+      })
   }
 
   onChanged() {
@@ -36,9 +40,5 @@ export default class EditProfileController {
         this.formInfo.ava = reader.result;
       });
     }
-  }
-
-  $onInit() {
-    this.$log.log('Hello from Edit-profile controller!');
   }
 }

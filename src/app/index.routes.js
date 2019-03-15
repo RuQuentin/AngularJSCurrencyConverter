@@ -14,7 +14,6 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
         .state('profile', {
           url: '/profile',
           templateUrl: profileTemplate,
-          controller: 'profileController',
           resolve: {
             asyncPreloading: resolverProvider.profilePagePrealoading
           }

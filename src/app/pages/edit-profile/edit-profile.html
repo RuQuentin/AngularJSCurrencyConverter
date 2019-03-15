@@ -21,7 +21,7 @@
                             </div>
                             <div ng-messages="edProf.profile.firstName.$error">
                                 <p ng-message='maxlength' class='danger'>First name is too long.</p>
-                                <p ng-message='pattern' class='danger'>Must have only latin letters</p>
+                                <p ng-message='pattern' class='danger'>Use only latin letters</p>
                             </div>
             
                             <div class="editItem">
@@ -37,7 +37,7 @@
                             </div>
                             <div ng-messages="edProf.profile.lastName.$error">
                                 <p ng-message= 'maxlength' class='danger'>Last name is too long.</p>
-                                <p ng-message= 'pattern' class='danger'>Must have only latin letters</p>
+                                <p ng-message= 'pattern' class='danger'>Use only latin letters</p>
                             </div>
             
                             <div class='editItem'>
@@ -62,13 +62,9 @@
                                     type='email'
                                     name='email'
                                     ng-disabled='true'
-                                    ng-model='edProf.formInfo.email'
-                                    ng-minlength='4'
-                                    ng-maxlength='30'>
+                                    ng-model='edProf.formInfo.email'>
                             </div>
                             <div ng-messages="edProf.profile.email.$error">
-                                <p ng-message='minlength' class='danger'>Email is too short.</p>
-                                <p ng-message='maxlength' class='danger'>Email is too long.</p>
                                 <p ng-message='email' class='danger'>Enter a valid email, e.g. vasya@gmail.com</p>   
                             </div>
                 </div>
@@ -83,8 +79,8 @@
                 <img 
                     type="image" 
                     class='ava' 
-                    ng-model='edProf.formInfo.ava' 
-                    ng-src="{{edProf.formInfo.ava || '../assets/images/user_adc3e83e17d37cfa9fc2dc69f1f284f9.png'}}">
+                    ng-model='edProf.formInfo.ava'
+                    ng-src="{{edProf.formInfo.ava || '../assets/images/noImage_b5c13ab258ec44db86a543446de93713.png'}}">
                 <input ng-hide='true' type="file" name="file" on-file-change id ='fileInput'>
                 <label class="btn btn-outline-info changeAva" for='fileInput'>Select image</label>
             </div>
