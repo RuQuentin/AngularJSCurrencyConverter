@@ -32,6 +32,7 @@ export default function (app) {
         return ref.child('listOfUsers')
         .child(uid)
         .update({
+          userId: uid,
           firstName: $rootScope.currentUser.firstName,
           lastName: $rootScope.currentUser.lastName,
           phone: $rootScope.currentUser.phone,
@@ -61,6 +62,7 @@ export default function (app) {
             console.log($rootScope.listOfUsers)
           });
       }
+
 
       this.getCheckedUserDealsFromFirebase = userID => {
         const ref = firebase.database().ref();

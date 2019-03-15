@@ -6,7 +6,8 @@ export default function (app) {
       'ngInject';
 
       class User {
-        constructor(user) {
+        constructor(user, uid) {
+          this.userId = uid;
           this.firstName = user.firstName || '';
           this.lastName = user.lastName || '';
           this.phone = user.phone || '';
@@ -17,7 +18,7 @@ export default function (app) {
       }
 
       this.createNewUser = (user, uid) => {
-        $rootScope.currentUser = new User(user);
+        $rootScope.currentUser = new User(user, uid);
         $rootScope.currentUserId = uid;
       };
 
