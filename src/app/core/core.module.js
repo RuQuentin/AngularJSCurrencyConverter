@@ -23,6 +23,8 @@ import adminService from './services/admin.service';
 import authenticationService from './services/authentication.service';
 import userProfileService from './services/user-profile.service';
 import weatherAPIService from './services/weatherAPI.service';
+import geolocationService from './services/geolocation.service';
+import localStorageService from './services/localStorage.service';
 
 validationTestDirective(shared);
 preloaderDirective(shared);
@@ -45,5 +47,7 @@ adminService(shared);
 authenticationService(shared);
 userProfileService(shared);
 weatherAPIService(shared);
+geolocationService(shared);
+localStorageService(shared);
 
 export default shared;
