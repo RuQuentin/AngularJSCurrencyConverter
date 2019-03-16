@@ -6,4 +6,9 @@ bower_components/
 true!ng-annotate/
 dist/
 package-lock.json
+<<<<<<< HEAD
 config.js
+=======
+functions
+env.js
+>>>>>>> feature/cloudFunctions,
