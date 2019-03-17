@@ -5,7 +5,7 @@ import firebase from 'firebase';
 
 export default function (app) {
   app
-    .service('syncDataService', function ($firebaseArray, $firebaseObject, $rootScope) {
+    .service('syncDataService', function ($firebaseArray, $firebaseObject, $rootScope, $log) {
       'ngInject';
       
       this.getDealsFromFirebase = () => {
@@ -59,7 +59,7 @@ export default function (app) {
         $rootScope.listOfUsers = $firebaseObject(ref.child('listOfUsers'));
         return $rootScope.listOfUsers.$loaded()
           .then(() => {
-            console.log($rootScope.listOfUsers);
+            $log.log($rootScope.listOfUsers);
           });
       }
 
