@@ -8,3 +8,4 @@ dist/
 package-lock.json
 functions
 env.js
+config.js
