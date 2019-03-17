@@ -12,7 +12,7 @@ export default function (app) {
           this.lastName = user.lastName || '';
           this.phone = user.phone || '';
           this.email = user.email;
-          this.role = usersMocksService.userRole;
+          this.role = 'role';
           this.ava = '';
         }
       }

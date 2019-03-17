@@ -8,7 +8,6 @@ export default function (app) {
       'ngInject';
 
       this.signUpToFirebase = user => {
-        console.log(user)
         const { email, password } = user;
 
         $rootScope.auth = $firebaseAuth(firebase.auth());
@@ -56,6 +55,7 @@ export default function (app) {
       this.signOutFromFirebase = () => {
         $rootScope.auth.$signOut()
           .then(function() {
+            $rootScope.auth = null;
             $rootScope.currentUser = null;
             $rootScope.currentUserId = null;
             $rootScope.currentUserDeals = null;
