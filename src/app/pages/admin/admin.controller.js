@@ -1,27 +1,12 @@
 'use strict';
 
 export default class AdminController {
-    constructor($rootScope, syncDataService, adminService, sharedAdminFactory, $log) {
+    constructor($rootScope, syncDataService, adminService, sharedAdminFactory) {
         'ngInject';
 
         this.rootScope = $rootScope;
         this.syncDataService = syncDataService;
         this.adminService = adminService;
-        const data = Object.values($rootScope.listOfUsers).filter(item => {
-            if (item && item.email) {
-                return item
-            }
-        });
-
-        this.listOfUsers = data.map(({ userId, firstName, lastName, email, phone }) => ({
-            userId,
-            firstName,
-            lastName,
-            email,
-            phone
-        }));
-
-        $log.log(data);
         this.filteredItems = [];
         this.headers = ['Id', 'Name', 'Last Name', 'E-mail', 'Phone', 'Admin', 'Password', 'History'];
         this.sort = {
@@ -29,6 +14,13 @@ export default class AdminController {
             reverse: false
         }
         this.adm = true;
+        this.listOfUsers = this.adminService.usersData.map(({ userId, firstName, lastName, email, phone }) => ({
+            userId,
+            firstName,
+            lastName,
+            email,
+            phone
+          }));
         this.sharedAdminFactory = sharedAdminFactory;
     }
 

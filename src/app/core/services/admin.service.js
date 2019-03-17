@@ -3,7 +3,7 @@ import firebase from 'firebase';
 
 export default function (app) {
   app
-    .service('adminService', function ($rootScope) {
+    .service('adminService', function ($rootScope, $log) {
       'ngInject';
 
       this.changeUserRole = (uid, newRole) => {
@@ -20,5 +20,11 @@ export default function (app) {
       // function resetUserPassword accept only one argument -
       // an object { uid: userId, newPassword: newPassword }
       this.resetUserPassword = firebase.functions().httpsCallable('resetPassword');
+      this.usersData = Object.values($rootScope.listOfUsers).filter(item => {
+        if (item && item.email) {
+          return item
+        }
+      });
+      $log.log(this.usersData);
     })
 }
