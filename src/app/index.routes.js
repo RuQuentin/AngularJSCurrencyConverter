@@ -14,7 +14,6 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
         .state('profile', {
           url: '/profile',
           templateUrl: profileTemplate,
-          controller: 'profileController',
           resolve: {
             asyncPreloading: resolverProvider.profilePagePrealoading
           }
@@ -23,6 +22,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           url: '/editProfile',
           templateUrl: editProfileTemplate,
           controller: 'editProfileController',
+          controllerAs: 'edProf',
           resolve: {
             asyncPreloading: resolverProvider.editProfilePagePrealoading
           }
@@ -39,6 +39,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           url: '/sign-in',
           templateUrl: signInTemplate,
           controller: 'SignInController',
+          controllerAs: 'signInCtrl',
           resolve: {
             asyncPreloading: resolverProvider.signInPagePreloading
           }

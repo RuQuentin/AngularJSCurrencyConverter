@@ -1,15 +1,6 @@
-/* eslint-disable no-console */
 'use strict';
 
 import firebase from 'firebase';
-import 'angularfire';
-
-
-// // ==== connecting to firebase ====
-import configFirebase from '~/env.js'
-firebase.initializeApp(configFirebase);
-// // ================================
-
 
 export default function (app) {
   app
@@ -61,9 +52,14 @@ export default function (app) {
           })
       };
 
+
       this.signOutFromFirebase = () => {
         $rootScope.auth.$signOut()
           .then(function() {
+            $rootScope.currentUser = null;
+            $rootScope.currentUserId = null;
+            $rootScope.currentUserDeals = null;
+            $rootScope.listOfUsers = null;
             $location.path('/sign-in')
           })
       }
