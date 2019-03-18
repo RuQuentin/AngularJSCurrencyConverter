@@ -53,6 +53,7 @@ export default function (app) {
       this.signOutFromFirebase = () => {
         $rootScope.auth.$signOut()
           .then(function() {
+            $rootScope.auth = null;
             $rootScope.currentUser = null;
             $rootScope.currentUserId = null;
             $rootScope.currentUserDeals = null;

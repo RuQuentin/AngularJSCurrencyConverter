@@ -24,7 +24,7 @@ export default function (app) {
       this.getUserFromFirebase = uid => {
         const ref = firebase.database().ref();
         const user = $firebaseObject(ref.child('listOfUsers').child(uid));
-        return user;
+        return user.$loaded();
       }
 
       this.saveCurrentUserToFirebase = () => {
@@ -58,9 +58,9 @@ export default function (app) {
       }
 
 
-      this.getCheckedUserDealsFromFirebase = userID => {
+      this.getCheckedUserDealsFromFirebase = uid => {
         const ref = firebase.database().ref();
-        return $firebaseArray(ref.child('listOfDeals').child(userID));
+        return $firebaseArray(ref.child('listOfDeals').child(uid));
       }
 
       this.getProfileImageRef = () => {
