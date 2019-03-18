@@ -1,6 +1,6 @@
 'use strict';
 
-export default class currencyController {
+export default class ConverterController {
     constructor($scope, $rootScope, CurrencyService, converterConstants, syncDataService) {
         'ngInject';
         this.CurrencyService = CurrencyService;
