@@ -21,23 +21,18 @@ export default function (app) {
         return $rootScope.currentUserDeals;
       };
 
-      this.getUserInfoFromFirebase = uid => {
+      this.getUserFromFirebase = uid => {
         const ref = firebase.database().ref();
         const user = $firebaseObject(ref.child('listOfUsers').child(uid));
-        return user;
+        return user.$loaded();
       }
 
-      this.saveUserInfoToFirebase = uid => {
+      this.saveCurrentUserToFirebase = () => {
+        const { uid, firstName, lastName, phone, email, role, ava } = $rootScope.currentUser;
         const ref = firebase.database().ref();
         return ref.child('listOfUsers')
         .child(uid)
-        .update({
-          firstName: $rootScope.currentUser.firstName,
-          lastName: $rootScope.currentUser.lastName,
-          phone: $rootScope.currentUser.phone,
-          email: $rootScope.currentUser.email,
-          ava: $rootScope.currentUser.ava
-        })
+        .update({ uid, firstName, lastName, phone, email, role, ava })
       }
 
       this.getAllFromFirebase = () => {
@@ -62,9 +57,10 @@ export default function (app) {
           });
       }
 
-      this.getCheckedUserDealsFromFirebase = userID => {
+
+      this.getCheckedUserDealsFromFirebase = uid => {
         const ref = firebase.database().ref();
-        return $firebaseArray(ref.child('listOfDeals').child(userID));
+        return $firebaseArray(ref.child('listOfDeals').child(uid));
       }
 
       this.getProfileImageRef = () => {

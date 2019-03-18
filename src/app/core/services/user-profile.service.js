@@ -2,22 +2,23 @@
 
 export default function (app) {
   app
-    .service('userProfileService', function (usersMocksService, syncDataService, $rootScope, $log) {
+    .service('userProfileService', function (usersMocksService, syncDataService, $rootScope, $log, roles) {
       'ngInject';
 
       class User {
-        constructor(user) {
+        constructor(user, uid) {
+          this.uid = uid;
           this.firstName = user.firstName || '';
           this.lastName = user.lastName || '';
           this.phone = user.phone || '';
           this.email = user.email;
-          this.role = usersMocksService.userRole;
+          this.role = roles.USER;
           this.ava = '';
         }
       }
 
       this.createNewUser = (user, uid) => {
-        $rootScope.currentUser = new User(user);
+        $rootScope.currentUser = new User(user, uid);
         $rootScope.currentUserId = uid;
       };
 
