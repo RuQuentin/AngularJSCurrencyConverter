@@ -7,7 +7,7 @@ export default function (app) {
       'ngInject';
 
       this.changeUserRole = (uid, newRole) => {
-        $rootScope.listOfUsers.uid.role = newRole;
+        $rootScope.listOfUsers[uid].role = newRole;
 
         const ref = firebase.database().ref()
           .child('listOfUsers')

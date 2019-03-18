@@ -1,26 +1,29 @@
 'use strict';
 
 export default class AdminController {
-    constructor($rootScope, syncDataService, adminService, sharedAdminFactory) {
+    constructor($rootScope, syncDataService, adminService, sharedAdminFactory, roles, $log) {
         'ngInject';
 
         this.rootScope = $rootScope;
+        this.log = $log;
+        this.roles = roles;
         this.syncDataService = syncDataService;
         this.adminService = adminService;
         this.filteredItems = [];
-        this.headers = ['Id', 'Name', 'Last Name', 'E-mail', 'Phone', 'Admin', 'Password', 'History'];
+        this.headers = ['Id', 'Name', 'Last Name', 'E-mail', 'Phone', 'Role','Admin', 'Password', 'History'];
         this.sort = {
             sortingOrder: 'id',
             reverse: false
         }
         this.adm = true;
-        this.listOfUsers = this.adminService.usersData.map(({ userId, firstName, lastName, email, phone }) => ({
+        this.listOfUsers = this.adminService.usersData.map(({ userId, firstName, lastName, email, phone, role }) => ({
             userId,
             firstName,
             lastName,
             email,
-            phone
-          }));
+            phone,
+            role
+        }));
         this.sharedAdminFactory = sharedAdminFactory;
     }
 
@@ -33,11 +36,9 @@ export default class AdminController {
 
     }
 
-
-    changeUserRole(id) {
-        let userRole = this.rootScope.listOfUsers[id].role;
-        userRole = userRole === 'admin' ? 'user' : 'admin';
-        this.adminService.changeUserRole(id, userRole);
+    changeUserRole(userId, userRole) { 
+        const newRole = userRole === this.roles.ADMIN ? this.roles.USER : this.roles.ADMIN;
+        this.adminService.changeUserRole(userId, newRole);
     }
 
 }

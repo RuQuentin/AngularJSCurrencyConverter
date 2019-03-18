@@ -11,7 +11,7 @@
       <td ng-repeat='item in el '>{{ item}}</td>
 
       <td ng-show='adminTable'>
-        <input type="checkbox" ng-checked="el.role === 'admin'" ng-click='changeUserRole({data:el.id})'>
+        <input type="checkbox" ng-checked="el.role === 'admin'" ng-click='changeUserRole({data1:el.userId, data2:el.role})'>
       </td>
       <td ng-show='adminTable'>
         <button class="btn btn-sm btn-outline-danger" type="button" ng-click='resetPsw({data1:el.userId, data2:el.email})'>Reset</button>
