@@ -11,14 +11,14 @@
       <td ng-repeat='item in el '>{{ item}}</td>
 
       <td ng-show='adminTable'>
-        <input type="checkbox" ng-checked="el.role === 'admin'" ng-click='changeUserRole({data1:el.userId, data2:el.role})'>
+        <input type="checkbox" ng-checked="el.role === 'admin'" ng-click='changeUserRole({id:el.userId, role:el.role})'>
       </td>
       <td ng-show='adminTable'>
-        <button class="btn btn-sm btn-outline-danger" type="button" ng-click='resetPsw({data1:el.userId, data2:el.email})'>Reset</button>
+        <button class="btn btn-sm btn-outline-danger" type="button" ng-click='resetPsw({id:el.userId, email:el.email})'>Reset</button>
       </td>
 
       <td ng-show='adminTable'><i class="fas fa-history tabble__icon" data-toggle="modal"
-          ng-click="setSelectedUser({data:el.userId})" data-target="#userHistoryModal"></i></td>
+          ng-click="setSelectedUser({id:el.userId})" data-target="#userHistoryModal"></i></td>
     </tr>
   </tbody>
 </table>
