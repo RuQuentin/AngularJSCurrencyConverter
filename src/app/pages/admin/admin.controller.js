@@ -36,9 +36,9 @@ export default class AdminController {
 
     }
 
-    changeUserRole(userId, userRole) { 
-        const newRole = userRole === this.roles.ADMIN ? this.roles.USER : this.roles.ADMIN;
-        this.adminService.changeUserRole(userId, newRole);
+    changeUserRole(userObject) { 
+        const newRole = userObject.role === this.roles.ADMIN ? this.roles.USER : this.roles.ADMIN;
+        this.adminService.changeUserRole(userObject.userId, newRole)
+        userObject.role = newRole
     }
-
 }
