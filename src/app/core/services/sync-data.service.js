@@ -24,7 +24,7 @@ export default function (app) {
       this.getUserInfoFromFirebase = uid => {
         const ref = firebase.database().ref();
         const user = $firebaseObject(ref.child('listOfUsers').child(uid));
-        return user;
+        return user.$loaded();
       }
 
       this.saveUserInfoToFirebase = uid => {
