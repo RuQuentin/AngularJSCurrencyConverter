@@ -6,7 +6,7 @@
                 {{currentUser.firstName || 'User Name'}} {{currentUser.lastName}}
             </h3>
             <strong class="d-inline-block text-primary">{{currentUser.role || 'USER' | uppercase}}</strong>
-            <p><span class>phone: </span><span>{{currentUser.phone}}</span></p>
+            <p><span class>phone: </span><span>{{currentUser.phone | phoneFilter}}</span></p>
             <p class='email'>
                 <span>email: </span><span>{{currentUser.email}}</span>
             </p>
