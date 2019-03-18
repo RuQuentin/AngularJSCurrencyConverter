@@ -23,12 +23,13 @@ export default function (app) {
       };
 
       this.createFormInfo = function () {
-        const { firstName, lastName, role, phone, email, ava } = $rootScope.currentUser;
-        return { firstName, lastName, role, phone, email, ava };
+        const {uid, firstName, lastName, role, phone, email, ava } = $rootScope.currentUser;
+        return { uid, firstName, lastName, role, phone, email, ava };
       };
 
       this.saveToCurrentUser = function (data) {
         const { 
+          uid,
           firstName = '', 
           lastName = '', 
           role = usersMocksService.userRole, 
@@ -36,7 +37,7 @@ export default function (app) {
           email = '', 
           ava = '' } = data;
 
-        $rootScope.currentUser = { firstName, lastName, role, phone, email, ava };
+        $rootScope.currentUser = { uid, firstName, lastName, role, phone, email, ava };
       };
 
       this.setProfileImage = file => {
