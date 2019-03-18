@@ -27,7 +27,9 @@ export default class HeaderController{
                 { name: 'Home', link: 'home' }, 
                 { name: 'Converter', link: 'converter' },
             ];
-        } else if (this.currentUser.role === 'admin') {
+        }
+        
+        if (this.currentUser.role === 'admin') {
             this.menu = [
                 { name: 'Home', link: 'home' }, 
                 { name: 'Converter', link: 'converter' },
