@@ -14,6 +14,7 @@ import adminModule from './pages/admin/admin.module';
 import converterModule from './pages/currency-converter/converter.module';
 import homeModule from './pages/home/home.module';
 import signUpModule from './pages/sign-up/sign-up.module';
+import signInModule from './pages/sign-in/sign-in.module';
 
 const App = angular.module(
   "angularApp", [
@@ -44,6 +45,7 @@ const App = angular.module(
     adminModule.name,
     homeModule.name,
     signUpModule.name,
+    signInModule.name
   ]
 );
 

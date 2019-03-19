@@ -12,7 +12,7 @@ import constants from './services/constants';
 import storeFactory from './services/store.factory';
 import sharedAdminFactory from './services/share-admin.factory';
 import usersMocksService from './services/user.mocks.service';
-import resolverProvider from './services/resolver.provider';
+import resolverService from './services/resolver.service';
 
 
 import workWithCurrencyProvider from './services/converter.provider';
@@ -35,7 +35,7 @@ constants(shared);
 storeFactory(shared);
 sharedAdminFactory(shared);
 usersMocksService(shared);
-resolverProvider(shared);
+resolverService(shared);
 customSort(shared)
 
 
