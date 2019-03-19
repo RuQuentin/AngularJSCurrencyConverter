@@ -6,3 +6,4 @@ const adminPageModule = angular.module('admin-module', [])
 adminPageModule.controller('AdminController', AdminController)
 
 export default adminPageModule;
+

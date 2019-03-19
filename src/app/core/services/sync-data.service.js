@@ -51,10 +51,7 @@ export default function (app) {
         $rootScope.listOfUsers = {};
         const ref = firebase.database().ref();
         $rootScope.listOfUsers = $firebaseObject(ref.child('listOfUsers'));
-        return $rootScope.listOfUsers.$loaded()
-          .then(() => {
-            console.log($rootScope.listOfUsers)
-          });
+        return $rootScope.listOfUsers.$loaded();
       }
 
 

@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 'use strict';
 import firebase from 'firebase';
 
@@ -8,7 +7,7 @@ export default function (app) {
       'ngInject';
 
       this.changeUserRole = (uid, newRole) => {
-        $rootScope.listOfUsers.uid.role = newRole;
+        $rootScope.listOfUsers[uid].role = newRole;
 
         const ref = firebase.database().ref()
           .child('listOfUsers')
@@ -18,8 +17,11 @@ export default function (app) {
         })
       }
 
-      // function resetUserPassword accept only one argument -
-      // an object { uid: userId, newPassword: newPassword }
       this.resetUserPassword = firebase.functions().httpsCallable('resetPassword');
+      this.usersData = Object.values($rootScope.listOfUsers).filter(item => {
+        if (item && item.email) {
+          return item
+        }
+      });
     })
 }

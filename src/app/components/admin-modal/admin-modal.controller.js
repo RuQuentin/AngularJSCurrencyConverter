@@ -1,15 +1,32 @@
 'use strict';
 
-function AdminModalController(sharedAdminFactory, $scope, syncDataService) {
-    'ngInject';
+export default class AdminModalController {
+    constructor(sharedAdminFactory, $scope, syncDataService) {
+        'ngInject';
 
-    const self = this;
-    
-    $scope.$watch(() => sharedAdminFactory.userData, () => {
-        // const userID = sharedAdminFactory.getUserData();
-        const userID = '3vesXZTo6tYLgevTBY3aLdZ26TB2';
-        self.data = syncDataService.getCheckedUserDealsFromFirebase(userID);
-    });
+        this.sharedAdminFactory = sharedAdminFactory;
+        this.scope = $scope;
+        this.syncDataService = syncDataService;
+        this.headers = ['Amount From', 'Amount To', 'Commission', 'Currency From', 'Currency To', 'Date', 'Rate'];
+        
+        this.sort = {
+            sortingOrder: 'date',
+            reverse: false
+        }
+
+        this.init();
+    }
+
+    init() {
+        this.scope.$watch(() => this.sharedAdminFactory.userData, () => {
+            const userID = this.sharedAdminFactory.getUserData();
+            
+            if (!userID) {
+                this.data = null;
+                return;
+            }
+            
+            this.data = this.syncDataService.getCheckedUserDealsFromFirebase(userID);         
+        });
+    }
 }
-
-export default AdminModalController;

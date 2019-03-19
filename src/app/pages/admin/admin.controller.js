@@ -1,38 +1,44 @@
 'use strict';
 
 export default class AdminController {
-    constructor($rootScope, syncDataService, adminService, sharedAdminFactory) {
+    constructor($rootScope, syncDataService, adminService, sharedAdminFactory, roles, $log) {
         'ngInject';
+
         this.rootScope = $rootScope;
+        this.log = $log;
+        this.roles = roles;
         this.syncDataService = syncDataService;
         this.adminService = adminService;
-        syncDataService.getAllUsersFromFirebase();
-
-        this.listOfUsers = this.rootScope.listOfUsers;
-        this.filteredItems = [];      
-        this.headers =  ['Id','Name','E-mail','Admin','Password','History',' Profile'];
-        this.sort = {       
-            sortingOrder : 'id',
-            reverse : false
+        this.filteredItems = [];
+        this.headers = ['Id', 'Name', 'Last Name', 'E-mail', 'Phone', 'Role','Admin', 'Password', 'History'];
+        this.sort = {
+            sortingOrder: 'id',
+            reverse: false
         }
         this.adm = true;
-        this.listOfUsers = this.syncDataService.getDealsFromFirebase();
-
+        this.listOfUsers = this.adminService.usersData.map(({ userId, firstName, lastName, email, phone, role }) => ({
+            userId,
+            firstName,
+            lastName,
+            email,
+            phone,
+            role
+        }));
         this.sharedAdminFactory = sharedAdminFactory;
     }
 
-    setSelectedUser(id){
+    setSelectedUser(id) {
         this.sharedAdminFactory.setUserData(id);
     }
 
-    resetPsw(id) {
-        this.rootScope.listOfUsers[id].password = this.rootScope.listOfUsers[id].login;
-    }
-    
-    changeUserRole(id){
-        let userRole = this.rootScope.listOfUsers[id].role;
-        userRole = userRole === 'admin' ? 'user': 'admin';
-        this.adminService.changeUserRole(id, userRole);
+    resetPsw(userId, email) {
+        this.adminService.resetUserPassword({ uid: userId, newPassword: email });
+
     }
 
+    changeUserRole(userObject) { 
+        const newRole = userObject.role === this.roles.ADMIN ? this.roles.USER : this.roles.ADMIN;
+        this.adminService.changeUserRole(userObject.userId, newRole)
+        userObject.role = newRole
+    }
 }

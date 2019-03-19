@@ -10,7 +10,7 @@ import adminTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/adm
 import converterTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/currency-converter/converter.html';
 import homeTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/home/home.html';
 
-function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles) {
+function routeConfig($urlRouterProvider, $stateProvider, roles) {
   'ngInject';
 
     $stateProvider
@@ -18,7 +18,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
           url: '/profile',
           templateUrl: profileTemplate,
           resolve: {
-            asyncPreloading: resolverProvider.profilePagePrealoading
+            asyncPreloading: resolver => resolver.profilePagePrealoading()
           },
           data: {
             role: [roles.USER, roles.ADMIN]
@@ -30,7 +30,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
           controller: 'editProfileController',
           controllerAs: 'edProf',
           resolve: {
-            asyncPreloading: resolverProvider.editProfilePagePrealoading
+            asyncPreloading: resolver => resolver.editProfilePagePrealoading()
           },
           data: {
             role: [roles.USER, roles.ADMIN]
@@ -41,7 +41,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
           templateUrl: transactionsListTemplate,
           controller: 'transactionsListController',
           resolve: {
-            asyncPreloading: resolverProvider.transactionsListPagePreloading
+            asyncPreloading: resolver => resolver.transactionsListPagePreloading()
           },
           data: {
             role: [roles.ADMIN]
@@ -53,7 +53,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
           controller: 'SignInController',
           controllerAs: 'signInCtrl',
           resolve: {
-            asyncPreloading: resolverProvider.signInPagePreloading
+            asyncPreloading: resolver => resolver.signInPagePreloading()
           },
           data: {
             role: []
@@ -65,7 +65,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
           controller: 'SignUpController',
           controllerAs: 'su',
           resolve: {
-            asyncPreloading: resolverProvider.signUpPagePreloading
+            asyncPreloading: resolver => resolver.signUpPagePreloading()
           },
           data: {
             role: []
@@ -77,7 +77,8 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
           controller: 'AdminController',
           controllerAs: 'admCont',
           resolve: {
-            asyncPreloading: resolverProvider.adminPagePreloading
+            asyncGetUsersFromFirebase: resolver => resolver.getUsersFromFirebase(),
+            asyncPreloading: resolver => resolver.adminPagePreloading(),
           },
           data: {
             role: [roles.ADMIN]
@@ -89,7 +90,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
           controller: 'ConverterController',
           controllerAs: 'cc',
           resolve: {
-            asyncPreloading: resolverProvider.converterPagePreloading,
+            asyncPreloading: resolver => resolver.converterPagePreloading(),
           },
           data: {
             role: [roles.USER, roles.ADMIN]
@@ -100,7 +101,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
           templateUrl: homeTemplate,
           controller: 'HomeController',
           resolve: {
-            asyncPreloading: resolverProvider.homePagePreloading
+            asyncPreloading: resolver => resolver.homePagePreloading()
           },
           data: {
             role: [roles.USER, roles.ADMIN]
@@ -114,4 +115,3 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles
 export default angular
   .module('index.routes', [])
     .config(routeConfig);
-

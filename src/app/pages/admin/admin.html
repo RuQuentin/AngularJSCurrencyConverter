@@ -1,13 +1,11 @@
-<preloader show="admCont.listOfUsers === undefined || !admCont.listOfUsers.$resolved"></preloader>
-
 <div class="container">
   <div class="header">
     <h1 class="display-4 text-center">Admin Page</h1>
   </div>
-  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+  <div class="table-responsive">
     <custom-table headers='admCont.headers' data='admCont.listOfUsers' sort='admCont.sort' admin-table='admCont.adm'
-      change-user-role='admCont.changeUserRole(data)' reset-psw="admCont.resetPsw(data)"
-      set-selected-user="admCont.setSelectedUser(data)"></custom-table>
+      change-user-role='admCont.changeUserRole(userObject)' reset-psw="admCont.resetPsw(id, email)"
+      set-selected-user="admCont.setSelectedUser(id)"></custom-table>
   </div>
 </div>
 
