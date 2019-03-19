@@ -9,7 +9,7 @@
           <a class="nav-link" ui-sref="{{ value.link }}" ui-sref-active="active">{{ value.name }}</a>
         </li>
 
-        <li ng-show='headerCtrl.currentUser.role' class="nav-item dropdown">
+        <li ng-if='headerCtrl.currentUser.role' class="nav-item dropdown">
 
           <a class="nav-link dropdown-toggle menu" href="#" role="button" id="dropdownMenuLink"
             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
