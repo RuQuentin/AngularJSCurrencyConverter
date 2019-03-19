@@ -7,7 +7,7 @@ import transactionsListTemplate from '!!file-loader?name=templates/[name].[ext]!
 import signInTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/sign-in/sign-in.html';
 import  adminTpl from '!!file-loader?name=templates/[name].[ext]!./pages/admin/admin.html';
 
-function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
+function routeConfig($urlRouterProvider, $stateProvider) {
   'ngInject';
 
 
@@ -16,7 +16,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           url: '/profile',
           templateUrl: profileTemplate,
           resolve: {
-            asyncPreloading: resolverProvider.profilePagePrealoading
+            asyncPreloading: resolver => resolver.profilePagePrealoading
           }
         })
         .state('editProfile', {
@@ -25,7 +25,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           controller: 'editProfileController',
           controllerAs: 'edProf',
           resolve: {
-            asyncPreloading: resolverProvider.editProfilePagePrealoading
+            asyncPreloading: resolver => resolver.editProfilePagePrealoading
           }
         })
         .state('transactionsList', {
@@ -33,7 +33,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           templateUrl: transactionsListTemplate,
           controller: 'transactionsListController',
           resolve: {
-            asyncPreloading: resolverProvider.transactionsListPagePreloading
+            asyncPreloading: resolver => resolver.transactionsListPagePreloading
           }
         })
         .state('sign-in', {
@@ -42,7 +42,7 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           controller: 'SignInController',
           controllerAs: 'signInCtrl',
           resolve: {
-            asyncPreloading: resolverProvider.signInPagePreloading
+            asyncPreloading: resolver => resolver.signInPagePreloading
           }
         })
         .state('admin', {
@@ -51,8 +51,8 @@ function routeConfig($urlRouterProvider, $stateProvider, resolverProvider) {
           controller: 'AdminController',
           controllerAs: 'admCont',
           resolve: {
-            getUsersFromFirebase: resolverProvider.getUsersFromFirebase,
-            asyncPreloading: resolverProvider.adminPagePreloading,
+            getUsersFromFirebase: resolver => resolver.getUsersFromFirebase,
+            asyncPreloading: resolver => resolver.adminPagePreloading,
           }
         })
 
