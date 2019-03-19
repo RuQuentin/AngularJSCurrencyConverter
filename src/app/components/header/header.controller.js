@@ -1,18 +1,48 @@
 'use strict';
 
-function HeaderController($log, $rootScope) {
-    'ngInject';
+export default class HeaderController{
+    constructor ($rootScope, roles) {
+        'ngInject';   
+        this.menu = null;
+        this.roles = roles;
+            
+        if ($rootScope.currentUser) {   
+            this.currentUser = $rootScope.currentUser;
+        }
 
-    if ($rootScope.currentUser) {
-        this.currentUser = $rootScope.currentUser;
+        $rootScope.$watch('currentUser', currentUser => {
+            this.currentUser = currentUser;
+
+            if (this.currentUser) {
+                this.menuShow();
+            } else {
+                this.defaultMenu();
+            }
+        });
+
+        this.defaultMenu();
     }
 
-    $rootScope.$watch('currentUser', currentUser => {
-        this.currentUser = currentUser;
-    });
+    defaultMenu() {
+        this.menu = [
+            { name: 'Sign in', link: 'sign-in' }, 
+            { name: 'Sign up', link: 'sign-up' }
+        ];
+    }
 
-    $log.debug('Hello from Header controller!');
+    menuShow() {
+        if (this.currentUser.role === this.roles.USER) {
+            this.menu = [
+                { name: 'Home', link: 'home' }, 
+                { name: 'Converter', link: 'converter' },
+            ];
+        }
+         if (this.currentUser.role === this.roles.ADMIN) {
+            this.menu = [
+                { name: 'Home', link: 'home' }, 
+                { name: 'Converter', link: 'converter' },
+                { name: 'Admin', link: 'admin' },
+            ];
+        }
+    } 
 }
-
-export default HeaderController;
-
