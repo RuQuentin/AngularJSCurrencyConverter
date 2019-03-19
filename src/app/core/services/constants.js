@@ -10,9 +10,6 @@ export default function (app) {
         'fee': [0, 1, 2, 3, 4, 5]
     });
 
-    app.constant('weatherAPIconstants', {
-        'APIkey': 'b0f2a7928e6c418baf01f03c9101c5df'
-    });
     app.constant('roles', {
         'USER': 'user',
         'ADMIN': 'admin'
