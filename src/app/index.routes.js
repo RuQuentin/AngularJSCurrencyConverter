@@ -5,18 +5,23 @@ import profileTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/p
 import editProfileTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/edit-profile/edit-profile.html';
 import transactionsListTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/transactions-list/transactions-list.html';
 import signInTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/sign-in/sign-in.html';
-import  adminTpl from '!!file-loader?name=templates/[name].[ext]!./pages/admin/admin.html';
+import signUpTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/sign-up/sign-up.html';
+import adminTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/admin/admin.html';
+import converterTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/currency-converter/converter.html';
+import homeTemplate from '!!file-loader?name=templates/[name].[ext]!./pages/home/home.html';
 
-function routeConfig($urlRouterProvider, $stateProvider) {
+function routeConfig($urlRouterProvider, $stateProvider, resolverProvider, roles) {
   'ngInject';
-
 
     $stateProvider
         .state('profile', {
           url: '/profile',
           templateUrl: profileTemplate,
           resolve: {
-            asyncPreloading: resolver => resolver.profilePagePrealoading
+            asyncPreloading: resolverProvider.profilePagePrealoading
+          },
+          data: {
+            role: [roles.USER, roles.ADMIN]
           }
         })
         .state('editProfile', {
@@ -25,7 +30,10 @@ function routeConfig($urlRouterProvider, $stateProvider) {
           controller: 'editProfileController',
           controllerAs: 'edProf',
           resolve: {
-            asyncPreloading: resolver => resolver.editProfilePagePrealoading
+            asyncPreloading: resolverProvider.editProfilePagePrealoading
+          },
+          data: {
+            role: [roles.USER, roles.ADMIN]
           }
         })
         .state('transactionsList', {
@@ -33,7 +41,10 @@ function routeConfig($urlRouterProvider, $stateProvider) {
           templateUrl: transactionsListTemplate,
           controller: 'transactionsListController',
           resolve: {
-            asyncPreloading: resolver => resolver.transactionsListPagePreloading
+            asyncPreloading: resolverProvider.transactionsListPagePreloading
+          },
+          data: {
+            role: [roles.ADMIN]
           }
         })
         .state('sign-in', {
@@ -42,17 +53,57 @@ function routeConfig($urlRouterProvider, $stateProvider) {
           controller: 'SignInController',
           controllerAs: 'signInCtrl',
           resolve: {
-            asyncPreloading: resolver => resolver.signInPagePreloading
+            asyncPreloading: resolverProvider.signInPagePreloading
+          },
+          data: {
+            role: []
+          }
+        })
+        .state('sign-up', {
+          url: '/sign-up',
+          templateUrl: signUpTemplate,
+          controller: 'SignUpController',
+          controllerAs: 'su',
+          resolve: {
+            asyncPreloading: resolverProvider.signUpPagePreloading
+          },
+          data: {
+            role: []
           }
         })
         .state('admin', {
           url: '/admin',
-          templateUrl: adminTpl,
+          templateUrl: adminTemplate,
           controller: 'AdminController',
           controllerAs: 'admCont',
           resolve: {
-            getUsersFromFirebase: resolver => resolver.getUsersFromFirebase,
-            asyncPreloading: resolver => resolver.adminPagePreloading,
+            asyncPreloading: resolverProvider.adminPagePreloading
+          },
+          data: {
+            role: [roles.ADMIN]
+          }
+        })
+        .state('converter', {
+          url: '/converter',
+          templateUrl: converterTemplate,
+          controller: 'ConverterController',
+          controllerAs: 'cc',
+          resolve: {
+            asyncPreloading: resolverProvider.converterPagePreloading,
+          },
+          data: {
+            role: [roles.USER, roles.ADMIN]
+          }
+        })
+        .state('home', {
+          url: '/home',
+          templateUrl: homeTemplate,
+          controller: 'HomeController',
+          resolve: {
+            asyncPreloading: resolverProvider.homePagePreloading
+          },
+          data: {
+            role: [roles.USER, roles.ADMIN]
           }
         })
 

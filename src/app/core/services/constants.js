@@ -13,7 +13,6 @@ export default function (app) {
     app.constant('weatherAPIconstants', {
         'APIkey': 'b0f2a7928e6c418baf01f03c9101c5df'
     });
-    
     app.constant('roles', {
         'USER': 'user',
         'ADMIN': 'admin'
