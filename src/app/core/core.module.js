@@ -7,6 +7,7 @@ import preloaderDirective from './directives/preloader/preloader.directive';
 import onFileChange from './directives/on-file-change/on-file-change.directive';
 import customSort from './directives/directive.table';
 import tableDirective from './directives/table/table.directive';
+import phone from './directives/phone/phone.directive';
 
 import constants from './services/constants';
 import storeFactory from './services/store.factory';
@@ -30,6 +31,7 @@ validationTestDirective(shared);
 preloaderDirective(shared);
 tableDirective(shared);
 onFileChange(shared);
+phone(shared);
 
 constants(shared);
 storeFactory(shared);

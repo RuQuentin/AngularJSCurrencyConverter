@@ -21,6 +21,17 @@
       .email {
         margin-bottom: 40px;
       }
+      .phone {
+        padding: 0;
+        display: inline;
+        background: #f8f8ff;
+        border: none;
+      }
+      .phone:focus {
+        display: inline;
+        border: none;
+        cursor: inherit;
+      }
     }
     .ava {
       height: 100%;

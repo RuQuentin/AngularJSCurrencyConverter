@@ -44,14 +44,14 @@
                                 <p class="item col-xs-4 col-md-4 col-lg-4">phone: </p>
                                 <input 
                                     class='col-xs-8 col-md-8 col-lg-8' 
-                                    type='text' 
+                                    type='text'
                                     name='phone' 
-                                    ng-pattern='/^380[1-9]{1}[0-9]{8}$/'
-                                    ng-model='edProf.formInfo.phone' 
-                                    required>
+                                    ng-model='edProf.formInfo.phone'
+                                    ng-pattern='/^[\+]{1}[0-9]{2}[-]{1}[(]{1}[0-9]{3}[)]{1}[-]{1}[0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$/im'
+                                    phone>
                             </div>
                             <div ng-messages="edProf.profile.phone.$error">
-                                <p ng-message="pattern" class="danger">Enter a valid phone number, e.g. 380952665723</p>
+                                <p ng-message="pattern" class="danger">Enter a valid phone number, e.g. +38-(095)-266-57-23</p>
                             </div>
     
 
