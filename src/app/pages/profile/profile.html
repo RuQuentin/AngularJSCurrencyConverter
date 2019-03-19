@@ -1,14 +1,18 @@
 <div class='profileContainer col-xs-12 col-md-12 col-lg-12'>
 
-    <div class="profileCard col-xs-10 col-sm-10 col-md-8 col-lg-5">
+    <div class="profileCard col-xs-10 col-sm-10 col-md-9 col-lg-5">
         <div class="content col-xs-7 col-sm-7 col-md-7 col-lg-7">
             <h3>
                 {{currentUser.firstName || 'User Name'}} {{currentUser.lastName}}
             </h3>
             <strong class="d-inline-block text-primary">{{currentUser.role || 'USER' | uppercase}}</strong>
-            <p><span class>phone: </span><span>{{currentUser.phone | phoneFilter}}</span></p>
+            <p>
+                <span>phone: </span>
+                <input class='phone' ng-readonly='true' ng-model='currentUser.phone' phone>
+            </p>
             <p class='email'>
-                <span>email: </span><span>{{currentUser.email}}</span>
+                <span>email: </span>
+                <span>{{currentUser.email}}</span>
             </p>
             <button class="btn btn-info" type="button" ui-sref="editProfile">Edit profile</button>
         </div>

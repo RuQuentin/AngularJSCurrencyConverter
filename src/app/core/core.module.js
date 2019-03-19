@@ -18,7 +18,6 @@ import resolverProvider from './services/resolver.provider';
 
 import workWithCurrencyProvider from './services/converter.provider';
 import currencyFilter from './filter/currenyc.filter';
-import phoneFilter from './filter/phone.filter';
 
 import syncDataService from './services/sync-data.service';
 import adminService from './services/admin.service';
@@ -44,7 +43,6 @@ customSort(shared)
 
 workWithCurrencyProvider(shared);
 currencyFilter(shared);
-phoneFilter(shared);
 
 syncDataService(shared);
 adminService(shared);

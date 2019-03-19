@@ -23,32 +23,22 @@ export default function (app) {
       };
 
       this.createFormInfo = function () {
-        const {uid, firstName, lastName, role, phone, email, ava } = $rootScope.currentUser;
-        return { uid, firstName, lastName, role, phone, email, ava };
+        return Object.assign({}, $rootScope.currentUser);
       };
 
       this.saveToCurrentUser = function (data) {
-        const { 
-          uid,
-          firstName = '', 
-          lastName = '', 
-          role = usersMocksService.userRole, 
-          phone = '', 
-          email = '', 
-          ava = '' } = data;
-
-        $rootScope.currentUser = { uid, firstName, lastName, role, phone, email, ava };
+        $rootScope.currentUser = Object.assign($rootScope.currentUser, data);
       };
 
       this.setProfileImage = file => {
         syncDataService.uploadProfileImage(file)
-          .then(function() {
+          .then(function () {
             return syncDataService.getProfileImageRef()
           })
-          .then(function(link) {
+          .then(function (link) {
             $rootScope.currentUser.ava = link;
           })
-          .catch(function(error) {
+          .catch(function (error) {
             $log.log(error);
           })
       };
