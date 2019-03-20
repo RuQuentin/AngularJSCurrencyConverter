@@ -11,7 +11,7 @@ import indexComponents from './index.components';
 import indexRoutes from './index.routes';
 import adminModule from './pages/admin/admin.module';
 import converterModule from './pages/currency-converter/converter.module';
-import homeModule from './pages/home/home.module';
+import homePageModule from './pages/home/home.module';
 import signUpModule from './pages/sign-up/sign-up.module';
 import signInModule from './pages/sign-in/sign-in.module';
 
@@ -39,7 +39,7 @@ const App = angular.module(
     // pages
     converterModule.name,
     adminModule.name,
-    homeModule.name,
+    homePageModule.name,
     signUpModule.name,
     signInModule.name
   ]
