@@ -108,7 +108,7 @@ function routeConfig($urlRouterProvider, $stateProvider, roles) {
           }
         })
 
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/sign-in');
 
 }
 
