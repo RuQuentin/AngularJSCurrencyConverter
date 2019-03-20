@@ -5,6 +5,7 @@ export default class HeaderController{
         'ngInject';   
         this.menu = null;
         this.roles = roles;
+        this.rootScope = $rootScope
             
         if ($rootScope.currentUser) {   
             this.currentUser = $rootScope.currentUser;
@@ -44,5 +45,9 @@ export default class HeaderController{
                 { name: 'Admin', link: 'admin' },
             ];
         }
+    } 
+
+    logOut() {
+        this.rootScope.$emit('logOut', 'logOut')
     } 
 }
