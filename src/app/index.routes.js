@@ -100,6 +100,7 @@ function routeConfig($urlRouterProvider, $stateProvider, roles) {
           url: '/home',
           templateUrl: homeTemplate,
           controller: 'HomeController',
+          controllerAs: 'homeCtrl',
           resolve: {
             asyncPreloading: resolver => resolver.homePagePreloading()
           },
