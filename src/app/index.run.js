@@ -16,9 +16,7 @@ function runBlock($rootScope, $log, $transitions, authenticationService) {
 
 		const toAdminPages = transition.to().name === 'admin' || transition.to().name === 'transactionsList';
 
-		const toUserOrAdminPage = transition.to().name !== 'sign-in' &&
-			transition.to().name !== 'sign-up' &&
-			transition.to().name !== 'main';
+		const toUserOrAdminPage = transition.to().name !== 'sign-in' && transition.to().name !== 'sign-up';
 
 
 		// abort if not authorized user try to go to any page
