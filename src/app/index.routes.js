@@ -36,17 +36,6 @@ function routeConfig($urlRouterProvider, $stateProvider, roles) {
             role: [roles.USER, roles.ADMIN]
           }
         })
-        .state('transactionsList', {
-          url: '/transactionsList',
-          templateUrl: transactionsListTemplate,
-          controller: 'transactionsListController',
-          resolve: {
-            asyncPreloading: resolver => resolver.transactionsListPagePreloading()
-          },
-          data: {
-            role: [roles.ADMIN]
-          }
-        })
         .state('sign-in', {
           url: '/sign-in',
           templateUrl: signInTemplate,

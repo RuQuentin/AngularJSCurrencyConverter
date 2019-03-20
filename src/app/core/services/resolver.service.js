@@ -31,14 +31,14 @@ export default function (app) {
             return deferred.promise;
         };
 
-        this.transactionsListPagePreloading = () => {
+        this.signUpPagePreloading = () => {
             const deferred = $q.defer();
             require.ensure([], require => {
-                const transactionsListModule = require('../../pages/transactions-list/transactions-list.module');
+                const signUpModule = require('../../pages/sign-up/sign-up.module');
                 $ocLazyLoad.load({
-                    name: transactionsListModule.default.name,
+                    name: signUpModule.default.name,
                 });
-                deferred.resolve(transactionsListModule.default.controller);
+                deferred.resolve(signUpModule.default.controller);
             });
 
             return deferred.promise;
