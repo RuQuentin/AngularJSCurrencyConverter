@@ -10,7 +10,6 @@ export default class WeatherController {
 
         this.weatherData = {};
         this.selectedLocation = null;
-        this.tableShow = false;
     }
 
     getForecastForSavedLocation() {
@@ -21,7 +20,6 @@ export default class WeatherController {
         .then(data => {
           this.localStorageService.setCoordinates(coords);
           this.weatherData = data;
-          this.tableShow = true;
         });
       }
     }
@@ -38,20 +36,19 @@ export default class WeatherController {
         .then(data => {
           this.localStorageService.setCoordinates(coords);
           this.weatherData = data;
-          this.tableShow = true;
         });
     }
 
     getForecastForLocal() {
-      this.geolocationService.getCoordinates().then(coords => {
-        this.weatherAPIService.getForecast(coords)
-        .then(data => {
+      this.geolocationService.getCoordinates()
+        .then(coords => {
           this.localStorageService.setCoordinates(coords);
+          return this.weatherAPIService.getForecast(coords)
+        })
+        .then(data => {
           this.selectedLocation = `${data.city}, ${data.country}`;
           this.weatherData = data;
-          this.tableShow = true;
         });
-      });
     }
 
     $onInit() {
