@@ -1,0 +1,25 @@
+<table class="table table-sm table-striped table-hover">
+  <thead>
+    <tr>
+      <th custom-sort order="'date'" sort="sort" ng-repeat="item in headers">{{item}}
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr ng-repeat="el in data | orderBy:sort.sortingOrder:sort.reverse">
+      <td ng-repeat='item in el '>{{ item}}</td>
+
+      <td ng-show='adminTable'>
+        <input type="checkbox" ng-checked="el.role === 'admin'" ng-click='changeUserRole({ userObject: el })'>
+      </td>
+      <td ng-show='adminTable'>
+        <button class="btn btn-sm btn-outline-danger" type="button" ng-click='resetPsw({id:el.uid, email:el.email})'>Reset</button>
+      </td>
+
+      <td ng-show='adminTable'><i class="fas fa-history tabble__icon" data-toggle="modal"
+          ng-click="setSelectedUser({id:el.uid})" data-target="#userHistoryModal"></i></td>
+    </tr>
+  </tbody>
+</table>
+    

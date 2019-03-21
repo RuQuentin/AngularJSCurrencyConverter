@@ -1,0 +1,89 @@
+<div class='profileContainer col-xs-12 col-md-12 col-lg-12'>
+
+        <form name='edProf.profile' ng-submit="edProf.submitForm(edProf.formInfo)" class="col-xs-9 col-md-8 col-lg-6" novalidate>
+            <div class="content col-xs-8 col-md-8 col-lg-8">
+                <div class='editItems'>
+                            <div class='editItem title'>
+                                <h3>Edit profile</h3>
+                                <button class='btn btn-outline-info' type='button' ui-sref='profile'>Return to profile</button>
+                            </div>
+           
+                            <div class='editItem'>
+                                <p class="item col-xs-4 col-md-4 col-lg-4">first name: </p>
+                                <input 
+                                    class='col-xs-8 col-md-8 col-lg-8' 
+                                    type='text' 
+                                    name='firstName' 
+                                    ng-pattern='/^[A-Za-z]+$/' 
+                                    ng-model='edProf.formInfo.firstName' 
+                                    required 
+                                    ng-maxlength='20'>
+                            </div>
+                            <div ng-messages="edProf.profile.firstName.$error">
+                                <p ng-message='maxlength' class='danger'>First name is too long.</p>
+                                <p ng-message='pattern' class='danger'>Use only latin letters</p>
+                            </div>
+            
+                            <div class="editItem">
+                                <p class="item col-xs-4 col-md-4 col-lg-4">last name: </p>
+                                <input 
+                                    class='col-xs-8 col-md-8 col-lg-8' 
+                                    type='text' 
+                                    name='lastName' 
+                                    ng-pattern='/^[A-Za-z]+$/' 
+                                    ng-model='edProf.formInfo.lastName' 
+                                    required 
+                                    ng-maxlength='20'>
+                            </div>
+                            <div ng-messages="edProf.profile.lastName.$error">
+                                <p ng-message= 'maxlength' class='danger'>Last name is too long.</p>
+                                <p ng-message= 'pattern' class='danger'>Use only latin letters</p>
+                            </div>
+            
+                            <div class='editItem'>
+                                <p class="item col-xs-4 col-md-4 col-lg-4">phone: </p>
+                                <input 
+                                    class='col-xs-8 col-md-8 col-lg-8' 
+                                    type='text'
+                                    name='phone' 
+                                    ng-model='edProf.formInfo.phone'
+                                    ng-pattern='/^[\+]{1}[0-9]{2}[-]{1}[(]{1}[0-9]{3}[)]{1}[-]{1}[0-9]{3}[-]{1}[0-9]{2}[-]{1}[0-9]{2}$/im'
+                                    phone>
+                            </div>
+                            <div ng-messages="edProf.profile.phone.$error">
+                                <p ng-message="pattern" class="danger">Enter a valid phone number, e.g. +38-(095)-266-57-23</p>
+                            </div>
+    
+
+                            <div class="editItem">
+                                <p class="item col-xs-4 col-md-4 col-lg-4"> email: </p>
+                                <input
+                                    class='col-xs-8 col-md-8 col-lg-8'
+                                    type='email'
+                                    name='email'
+                                    ng-disabled='true'
+                                    ng-model='edProf.formInfo.email'>
+                            </div>
+                            <div ng-messages="edProf.profile.email.$error">
+                                <p ng-message='email' class='danger'>Enter a valid email, e.g. vasya@gmail.com</p>   
+                            </div>
+                </div>
+                <div class="saveChanges">
+                    <button class="btn btn-info col-xs-12 col-md-12 col-lg-12 buttonSave" 
+                            type="submit" 
+                            ng-disabled="edProf.profile.$invalid">Save changes</button>
+                </div>
+            </div>
+
+            <div class="cardAva col-xs-4 col-md-4 col-lg-4">
+                <img 
+                    type="image" 
+                    class='ava' 
+                    ng-model='edProf.formInfo.ava'
+                    ng-src="{{edProf.formInfo.ava || '../assets/images/noImage_b5c13ab258ec44db86a543446de93713.png'}}">
+                <input ng-hide='true' type="file" name="file" on-file-change id ='fileInput'>
+                <label class="btn btn-outline-info changeAva" for='fileInput'>Select image</label>
+            </div>
+        </form>
+
+</div>

@@ -1,0 +1,30 @@
+<header class="header bg-primary">
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+
+      <h3 class="navbar-brand col-md-5">CC App</h3>
+      
+      <ul class="navbar-nav col-md-7 d-flex flex-row">
+        <li class="nav-item" ng-repeat='value in headerCtrl.menu track by value.name '>
+          <a class="nav-link" ui-sref="{{ value.link }}" ui-sref-active="active">{{ value.name }}</a>
+        </li>
+
+        <li ng-if='headerCtrl.currentUser.role' class="nav-item dropdown">
+
+          <a class="nav-link dropdown-toggle menu" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{headerCtrl.currentUser.firstName || 'User '}} {{headerCtrl.currentUser.lastName || 'Name'}}
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item" href="#" ui-sref="profile">Profile</a>
+            <a class="dropdown-item" href="#" ng-click="headerCtrl.logOut()">Log out</a>
+          </div>
+
+        </li>
+      </ul>
+
+    </nav>
+  </div>
+
+</header>

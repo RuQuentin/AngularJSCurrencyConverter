@@ -1,0 +1,108 @@
+
+.convert-app {
+    max-width: 700px;
+    margin: 0 auto;
+    border: 1px solid#6c757d;
+    background-color: #F8F8FF;
+    border-radius: 5px;
+    padding: 20px;
+    position: relative;
+    font-family: Arial;
+    font-size: 26px;
+  
+    .choose-value, .choose-sum {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-bottom: 2rem;
+    }
+  
+    .choose-sum {
+        align-items: center;
+  
+        p {
+            margin-top: 20px;
+        }
+    }
+  
+    .nav {
+        position: relative;
+        top: -20px;
+  
+        &-item {
+            text-transform: uppercase;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0; 
+            font-weight: bold;
+            font-size: 12px;
+        }
+    }
+  
+    label {
+        margin-bottom: 10px;
+    }
+}
+  
+  
+.form-group {
+  width: 40%;
+  margin-bottom: 0;
+}
+
+.input-group>.custom-select {
+  width: 20%;
+  flex: 0 auto;
+}
+
+.input-group {
+  display: flex;
+  align-items: flex-start;
+}
+
+.wrapper {
+  padding: 80px 0;
+}
+
+.input-group-text {
+  font-size: 20px;
+}
+
+.h2 {
+  text-align: center;
+  margin: 15px 0 ;
+}
+
+.custom-select {
+  font-size: 19px;
+}
+
+.btn {
+  &:hover {
+    color: #fff;
+  }
+} 
+
+.select {
+  width: 82%;
+  margin-bottom: 10px;
+  height: 38px;
+  padding: 5px;
+  font-size: 16px
+}
+
+#toast-container{ 
+  top:100px;
+  .toast-error {
+    background-color: #C4392A;
+  }
+  .toast-success {
+    background-color: green;
+  }
+  .toast {
+    .toast-message {
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}

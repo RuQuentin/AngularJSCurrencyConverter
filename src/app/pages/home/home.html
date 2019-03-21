@@ -1,0 +1,14 @@
+<section class="container-fluid">
+  <preloader show="homeCtrl.currentUserDeals === undefined || !homeCtrl.currentUserDeals.$resolved"></preloader>
+  <div class="row d-flex">
+    <article class="col-3 sidebar">
+        <weather-component></weather-component>
+    </article>
+    <article class="col-9">
+      <h1 class="display-4 text-center">Successful transactions</h1>
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <custom-table headers = 'homeCtrl.headers' data = 'homeCtrl.currentUserDeals' sort = 'homeCtrl.sort'></custom-table>
+      </div>
+    </article>
+  </div>
+</section>
